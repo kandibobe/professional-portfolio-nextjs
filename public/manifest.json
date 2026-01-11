@@ -1,0 +1,16 @@
+{
+  "name": "Professional Photography Portfolio",
+  "short_name": "PhotoPortfolio",
+  "description": "Premium photography services and portfolio",
+  "start_url": "/",
+  "display": "standalone",
+  "background_color": "#ffffff",
+  "theme_color": "#0f172a",
+  "icons": [
+    {
+      "src": "/favicon.ico",
+      "sizes": "any",
+      "type": "image/x-icon"
+    }
+  ]
+}

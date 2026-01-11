@@ -1,0 +1,14 @@
+export default function robots() {
+  const baseUrl = process.env.NEXT_PUBLIC_BASE_URL || 'https://your-portfolio.com';
+  
+  return {
+    rules: [
+      {
+        userAgent: '*',
+        allow: '/',
+        disallow: ['/api/', '/admin/', '/clients/login'],
+      },
+    ],
+    sitemap: `${baseUrl}/sitemap.xml`,
+  };
+}
