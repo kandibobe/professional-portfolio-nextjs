@@ -1,8 +1,8 @@
-"use client";
+'use client';
 
-import { useLocale } from "next-intl";
-import { useRouter, usePathname } from "@/i18n/routing";
-import { motion } from "framer-motion";
+import { useLocale } from 'next-intl';
+import { useRouter, usePathname } from '@/i18n/routing';
+import { motion } from 'framer-motion';
 
 export function LanguageSwitcher() {
   const locale = useLocale();
@@ -16,7 +16,9 @@ export function LanguageSwitcher() {
 
   return (
     <div className="relative">
-      <label htmlFor="language-switcher" className="sr-only">Choose language</label>
+      <label htmlFor="language-switcher" className="sr-only">
+        Choose language
+      </label>
       <select
         id="language-switcher"
         value={locale}

@@ -1,16 +1,16 @@
-import NextAuth from "next-auth";
-import EmailProvider from "next-auth/providers/email";
-import GoogleProvider from "next-auth/providers/google";
-import { PrismaAdapter } from "@auth/prisma-adapter";
-import { prisma } from "@/lib/db";
-import { AuthOptions } from "next-auth";
+import NextAuth from 'next-auth';
+import EmailProvider from 'next-auth/providers/email';
+import GoogleProvider from 'next-auth/providers/google';
+import { PrismaAdapter } from '@auth/prisma-adapter';
+import { prisma } from '@/lib/db';
+import { AuthOptions } from 'next-auth';
 
 export const authOptions: AuthOptions = {
   adapter: PrismaAdapter(prisma),
   providers: [
     GoogleProvider({
-      clientId: process.env.GOOGLE_CLIENT_ID || "",
-      clientSecret: process.env.GOOGLE_CLIENT_SECRET || "",
+      clientId: process.env.GOOGLE_CLIENT_ID || '',
+      clientSecret: process.env.GOOGLE_CLIENT_SECRET || '',
     }),
     EmailProvider({
       server: {
@@ -25,10 +25,10 @@ export const authOptions: AuthOptions = {
     }),
   ],
   pages: {
-    signIn: "/login",
+    signIn: '/login',
     // signOut: '/auth/signout',
-    // error: '/auth/error', 
-    verifyRequest: "/login/verify-request", // (used for check email message)
+    // error: '/auth/error',
+    verifyRequest: '/login/verify-request', // (used for check email message)
     // newUser: '/auth/new-user'
   },
 };

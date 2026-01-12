@@ -1,52 +1,75 @@
-"use client";
+'use client';
 
-import { useState, useEffect } from "react";
-import { Link } from "@/i18n/routing";
-import { useTranslations } from "next-intl";
-import { motion, AnimatePresence } from "framer-motion";
-import { cn } from "@/lib/utils";
-import { Menu, X } from "lucide-react";
-import { siteConfig } from "@/lib/config";
-import { LanguageSwitcher } from "./LanguageSwitcher";
-import { UserNav } from "./UserNav";
+import { useState, useEffect } from 'react';
+import { Link } from '@/i18n/routing';
+import { useTranslations } from 'next-intl';
+import { motion, AnimatePresence } from 'framer-motion';
+import { cn } from '@/lib/utils';
+import { Menu, X } from 'lucide-react';
+import { siteConfig } from '@/lib/config';
+import { LanguageSwitcher } from './LanguageSwitcher';
+import { UserNav } from './UserNav';
+import { ThemeToggle } from './theme-toggle';
+import { useUIStore } from '@/lib/store';
 
 export function Header() {
-  const t = useTranslations("Header");
+  const t = useTranslations('Header');
   const [scrolled, setScrolled] = useState(false);
-  const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
+  const [mounted, setMounted] = useState(false);
+
+  // Use a local state for mobileMenuOpen until mounted to avoid hydration mismatch
+  const [localMobileMenuOpen, setLocalMobileMenuOpen] = useState(false);
+
+  // Get store values
+  const storeMobileMenuOpen = useUIStore((state) => state.mobileMenuOpen);
+  const setStoreMobileMenuOpen = useUIStore((state) => state.setMobileMenuOpen);
+  const toggleStoreMobileMenu = useUIStore((state) => state.toggleMobileMenu);
+
+  // Sync store with local state after mounting
+  useEffect(() => {
+    setMounted(true);
+  }, []);
 
   useEffect(() => {
     const handleScroll = () => {
       setScrolled(window.scrollY > 50);
     };
-    window.addEventListener("scroll", handleScroll);
-    return () => window.removeEventListener("scroll", handleScroll);
+    window.addEventListener('scroll', handleScroll);
+    return () => window.removeEventListener('scroll', handleScroll);
   }, []);
 
   const navLinks = [
-    { href: "/portfolio", label: t("portfolio") },
-    { href: "/about", label: t("about") },
-    { href: "/services", label: t("services") },
-    { href: "/clients", label: t("clients") },
-    { href: "/contact", label: t("contacts") },
+    { href: '/portfolio', label: t('portfolio') },
+    { href: '/about', label: t('about') },
+    { href: '/services', label: t('services') },
+    { href: '/clients', label: t('clients') },
+    { href: '/contact', label: t('contacts') },
   ];
+
+  const mobileMenuOpen = mounted ? storeMobileMenuOpen : localMobileMenuOpen;
+  const toggleMobileMenu = mounted
+    ? toggleStoreMobileMenu
+    : () => setLocalMobileMenuOpen(!localMobileMenuOpen);
+  const setMobileMenuOpen = mounted ? setStoreMobileMenuOpen : setLocalMobileMenuOpen;
 
   return (
     <motion.header
       initial={{ opacity: 0 }}
       animate={{ opacity: 1 }}
       className={cn(
-        "fixed top-0 left-0 right-0 z-50 transition-all duration-700",
-        scrolled
-          ? "bg-background/95 py-6 border-b border-border"
-          : "bg-transparent py-10"
+        'fixed top-0 left-0 right-0 z-50 transition-all duration-700',
+        scrolled ? 'bg-background/95 py-6 border-b border-border' : 'bg-transparent py-10'
       )}
     >
       <div className="container mx-auto px-6 md:px-12 flex justify-between items-center">
         <Link href="/" className="z-50 group">
           <div className="flex flex-col">
-            <span className="text-lg font-bold tracking-[0.5em] uppercase leading-none mb-1">{siteConfig.name}</span>
-            <span className="text-[7px] font-bold tracking-[0.8em] text-foreground/40 uppercase leading-none">Visual Arts & Creative Direction</span>
+            <span className="text-lg font-bold tracking-[0.5em] uppercase leading-none mb-1">
+              {siteConfig.name}
+            </span>
+            <span className="text-[7px] font-bold tracking-[0.8em] text-foreground/40 uppercase leading-none">
+              Visual Arts & Creative Direction
+            </span>
           </div>
         </Link>
 
@@ -65,27 +88,32 @@ export function Header() {
 
         {/* Action - Clean Link */}
         <div className="flex items-center gap-4">
-           <div className="hidden md:flex items-center gap-4">
+          <div className="hidden md:flex items-center gap-4">
+            <ThemeToggle />
+            <div className="w-px h-6 bg-border" />
             <LanguageSwitcher />
             <div className="w-px h-6 bg-border" />
             <UserNav />
-           </div>
-           <Link href="/contact" className="hidden md:block text-[10px] font-bold uppercase tracking-[0.2em] border-b border-foreground pb-1 hover:opacity-50 transition-opacity">
-              {t("book")}
-           </Link>
-           <button 
-             className="md:hidden z-50 p-2"
-             onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
-             aria-label="Toggle menu"
-           >
-             {mobileMenuOpen ? <X size={20} /> : <Menu size={20} />}
-           </button>
+          </div>
+          <Link
+            href="/contact"
+            className="hidden md:block text-[10px] font-bold uppercase tracking-[0.2em] border-b border-foreground pb-1 hover:opacity-50 transition-opacity"
+          >
+            {t('book')}
+          </Link>
+          <button
+            className="md:hidden z-50 p-2"
+            onClick={toggleMobileMenu}
+            aria-label="Toggle menu"
+          >
+            {mobileMenuOpen ? <X size={20} /> : <Menu size={20} />}
+          </button>
         </div>
       </div>
 
       {/* Mobile Navigation */}
       <AnimatePresence>
-        {mobileMenuOpen && (
+        {mounted && mobileMenuOpen && (
           <motion.div
             initial={{ opacity: 0, y: -20 }}
             animate={{ opacity: 1, y: 0 }}
@@ -107,7 +135,7 @@ export function Header() {
               onClick={() => setMobileMenuOpen(false)}
               className="mt-4 text-sm font-bold uppercase tracking-[0.2em] border border-foreground px-8 py-4"
             >
-              {t("book")}
+              {t('book')}
             </Link>
             <div className="mt-8">
               <LanguageSwitcher />

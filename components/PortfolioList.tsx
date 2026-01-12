@@ -1,11 +1,11 @@
 'use client';
 
 import { useState } from 'react';
-import { Gallery } from "@/components/gallery";
+import { Gallery } from '@/components/gallery';
 import { useTranslations } from 'next-intl';
-import { cn } from "@/lib/utils";
-import { motion } from "framer-motion";
-import { projects as staticProjects, Project } from "@/lib/projects";
+import { cn } from '@/lib/utils';
+import { motion } from 'framer-motion';
+import { projects as staticProjects, Project } from '@/lib/projects';
 
 interface PortfolioListProps {
   initialProjects?: Project[];
@@ -22,7 +22,7 @@ export function PortfolioList({ initialProjects }: PortfolioListProps) {
     { id: 'lovestory', name: t('categories.lovestory') },
   ];
 
-  const translatedProjects = projects.map(project => ({
+  const translatedProjects = projects.map((project) => ({
     ...project,
     title: t(`projects.${project.titleKey}.title`),
     category: t(project.categoryKey),
@@ -30,12 +30,13 @@ export function PortfolioList({ initialProjects }: PortfolioListProps) {
 
   const [activeCategory, setActiveCategory] = useState('all');
 
-  const filteredProjects = activeCategory === 'all' 
-    ? translatedProjects 
-    : translatedProjects.filter(project => {
-        const cat = categories.find(c => c.id === activeCategory);
-        return project.category === cat?.name;
-    });
+  const filteredProjects =
+    activeCategory === 'all'
+      ? translatedProjects
+      : translatedProjects.filter((project) => {
+          const cat = categories.find((c) => c.id === activeCategory);
+          return project.category === cat?.name;
+        });
 
   return (
     <div className="container mx-auto px-4 md:px-8 py-32 md:py-48">
@@ -52,10 +53,10 @@ export function PortfolioList({ initialProjects }: PortfolioListProps) {
         <motion.h1
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.8, ease: "easeOut" }}
+          transition={{ duration: 0.8, ease: 'easeOut' }}
           className="text-6xl md:text-[8rem] font-black tracking-tighter mb-12 leading-[0.85] text-gradient"
         >
-          {t("title")}
+          {t('title')}
         </motion.h1>
 
         {/* Categorie */}
@@ -65,18 +66,22 @@ export function PortfolioList({ initialProjects }: PortfolioListProps) {
               key={cat.id}
               onClick={() => setActiveCategory(cat.id)}
               className={cn(
-                "relative px-8 py-3 rounded-2xl md:rounded-full text-sm font-black tracking-tight transition-all duration-500 whitespace-nowrap overflow-hidden",
-                activeCategory === cat.id ? "text-primary-foreground" : "text-muted-foreground hover:text-foreground"
+                'relative px-8 py-3 rounded-2xl md:rounded-full text-sm font-black tracking-tight transition-all duration-500 whitespace-nowrap overflow-hidden',
+                activeCategory === cat.id
+                  ? 'text-primary-foreground'
+                  : 'text-muted-foreground hover:text-foreground'
               )}
             >
               {activeCategory === cat.id && (
                 <motion.div
                   layoutId="activeCategory"
                   className="absolute inset-0 bg-primary"
-                  transition={{ type: "spring", bounce: 0.2, duration: 0.6 }}
+                  transition={{ type: 'spring', bounce: 0.2, duration: 0.6 }}
                 />
               )}
-              <span className="relative z-10 uppercase tracking-widest text-[10px]">{cat.name}</span>
+              <span className="relative z-10 uppercase tracking-widest text-[10px]">
+                {cat.name}
+              </span>
             </button>
           ))}
         </div>

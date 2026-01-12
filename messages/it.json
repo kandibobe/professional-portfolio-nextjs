@@ -10,7 +10,7 @@
   },
   "Footer": {
     "rights": "Tutti i diritti riservati",
-    "description": "Cattura i tuoi momenti unici attraverso l'obiettivo della fotografia professionale. Disponibile per servizi in tutto il mondo.",
+    "description": "Cattura i tuoi momenti unici con eleganza e precisione. Servizi fotografici di alto livello disponibili in tutto il mondo.",
     "navigation": "Navigazione",
     "connect": "Social",
     "privacy": "Informativa sulla Privacy",
@@ -21,11 +21,11 @@
       "select": "Seleziona"
     },
     "meta": {
-      "title": "Fotografo [Nome Cognome] | Fotografia Professionale",
-      "description": "Fotografo professionista specializzato in matrimoni, ritratti e eventi. Cattura i tuoi momenti più preziosi con stile ed eleganза."
+      "title": "Vlad Photography | Fotografo di Matrimoni e Ritratti di Lusso in Italia",
+      "description": "Fotografo professionista pluripremiato specializzato in matrimoni esclusivi, ritratti editoriali ed eventi di lusso. Racconti senza tempo con eleganza."
     },
-    "title": "Fotografo [Nome Cognome]",
-    "subtitle": "Fotografia professionale per aziende e privati",
+    "title": "Vlad Photography",
+    "subtitle": "Raccontiamo Storie Senza Tempo con Eleganza e Precisione",
     "viewPortfolio": "Vedi Portfolio",
     "contact": "Contattami",
     "aboutSection": {
@@ -68,37 +68,37 @@
       "lovestory": "Love Story"
     },
     "projects": {
-      "annaIgorWedding": { 
-        "title": "Matrimonio di Anna e Igor", 
-        "description": "Una giornata indimenticabile piena di emozioni e stile." 
+      "annaIgorWedding": {
+        "title": "Matrimonio di Anna e Igor",
+        "description": "Una giornata indimenticabile piena di emozioni e stile."
       },
-      "studioPortrait": { 
-        "title": "Ritratto in studio", 
-        "description": "Scatti minimalisti che catturano la vera essenza." 
+      "studioPortrait": {
+        "title": "Ritratto in studio",
+        "description": "Scatti minimalisti che catturano la vera essenza."
       },
-      "parkWalk": { 
-        "title": "Passeggiata nel parco", 
-        "description": "Momenti spontanei immersi nella natura." 
+      "parkWalk": {
+        "title": "Passeggiata nel parco",
+        "description": "Momenti spontanei immersi nella natura."
       },
-      "businessPortrait": { 
-        "title": "Ritratto Business", 
-        "description": "Professionalità ed eleganza per il tuo personal brand." 
+      "businessPortrait": {
+        "title": "Ritratto Business",
+        "description": "Professionalità ed eleganza per il tuo personal brand."
       },
-      "elenaDmitryWedding": { 
-        "title": "Matrimonio di Elena e Dmitry", 
-        "description": "Eleganza classica e momenti commoventi." 
+      "elenaDmitryWedding": {
+        "title": "Matrimonio di Elena e Dmitry",
+        "description": "Eleganza classica e momenti commoventi."
       },
-      "morningBride": { 
-        "title": "Mattina della sposa", 
-        "description": "La delicatezza e l'attesa prima del grande sì." 
+      "morningBride": {
+        "title": "Mattina della sposa",
+        "description": "La delicatezza e l'attesa prima del grande sì."
       },
-      "rooftopLovestory": { 
-        "title": "Love Story sul tetto", 
-        "description": "Amore ad alta quota con vista sulla città." 
+      "rooftopLovestory": {
+        "title": "Love Story sul tetto",
+        "description": "Amore ad alta quota con vista sulla città."
       },
-      "familySession": { 
-        "title": "Servizio fotografico di famiglia", 
-        "description": "Ricordi preziosi che dureranno per sempre." 
+      "familySession": {
+        "title": "Servizio fotografico di famiglia",
+        "description": "Ricordi preziosi che dureranno per sempre."
       }
     }
   },
@@ -141,17 +141,34 @@
       "mini": {
         "title": "Mini",
         "price": "150 €",
-        "features": ["1 ora di riprese", "30 foto ritoccate", "Consegna in 1 settimana", "Galleria online"]
+        "features": [
+          "1 ora di riprese",
+          "30 foto ritoccate",
+          "Consegna in 1 settimana",
+          "Galleria online"
+        ]
       },
       "standard": {
         "title": "Standard",
         "price": "350 €",
-        "features": ["3 ore di riprese", "100 foto ritoccate", "Consegna in 2 settimane", "Galleria online", "Chiavetta USB in confezione"]
+        "features": [
+          "3 ore di riprese",
+          "100 foto ritoccate",
+          "Consegna in 2 settimane",
+          "Galleria online",
+          "Chiavetta USB in confezione"
+        ]
       },
       "premium": {
         "title": "Premium",
         "price": "700 €",
-        "features": ["Giornata intera (fino a 10 ore)", "400+ foto ritoccate", "Consegna in 3 settimane", "Fotolibro", "Assistente"]
+        "features": [
+          "Giornata intera (fino a 10 ore)",
+          "400+ foto ritoccate",
+          "Consegna in 3 settimane",
+          "Fotolibro",
+          "Assistente"
+        ]
       }
     },
     "popular": "Popolare",

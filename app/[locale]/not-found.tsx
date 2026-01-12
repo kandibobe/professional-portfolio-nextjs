@@ -1,9 +1,9 @@
-"use client";
+'use client';
 
-import { motion } from "framer-motion";
-import { Link } from "@/i18n/routing";
-import { Button } from "@/components/ui/button";
-import { Home, Camera } from "lucide-react";
+import { motion } from 'framer-motion';
+import { Link } from '@/i18n/routing';
+import { Button } from '@/components/ui/button';
+import { Home, Camera } from 'lucide-react';
 
 export default function NotFound() {
   return (
@@ -19,11 +19,11 @@ export default function NotFound() {
           </h1>
           <div className="absolute inset-0 flex flex-col items-center justify-center">
             <motion.div
-              animate={{ 
+              animate={{
                 y: [0, -10, 0],
-                rotate: [0, 5, -5, 0]
+                rotate: [0, 5, -5, 0],
               }}
-              transition={{ duration: 4, repeat: Infinity, ease: "easeInOut" }}
+              transition={{ duration: 4, repeat: Infinity, ease: 'easeInOut' }}
               className="text-primary mb-6"
             >
               <Camera size={80} strokeWidth={1} />
@@ -32,7 +32,7 @@ export default function NotFound() {
           </div>
         </motion.div>
 
-        <motion.p 
+        <motion.p
           initial={{ opacity: 0, y: 10 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ delay: 0.2 }}
@@ -41,7 +41,7 @@ export default function NotFound() {
           The page you are looking for has been moved or doesn't exist. Let's get you back in focus.
         </motion.p>
 
-        <motion.div 
+        <motion.div
           initial={{ opacity: 0, y: 10 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ delay: 0.4 }}
