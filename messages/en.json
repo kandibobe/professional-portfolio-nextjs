@@ -14,17 +14,30 @@
     "navigation": "Navigation",
     "connect": "Social",
     "privacy": "Privacy Policy",
+    "cookiePolicy": "Cookie Policy",
     "terms": "Terms of Service"
+  },
+  "CookieBanner": {
+    "title": "We value your privacy",
+    "description": "We use cookies to enhance your browsing experience, serve personalized ads or content, and analyze our traffic. By clicking \"Accept All\", you consent to our use of cookies.",
+    "accept": "Accept All",
+    "decline": "Reject All",
+    "customize": "Customize"
+  },
+  "Privacy": {
+    "title": "Privacy Policy",
+    "lastUpdated": "Last updated",
+    "contactConsent": "I have read the privacy policy and I consent to the processing of my personal data."
   },
   "HomePage": {
     "services": {
       "select": "Select"
     },
     "meta": {
-      "title": "Vlad Photography | Luxury Wedding & Portrait Photographer in Italy",
+      "title": "[Name] Photography | Luxury Wedding & Portrait Photographer in Italy",
       "description": "Award-winning professional photographer specializing in high-end weddings, editorial portraits, and exclusive events. Capturing timeless stories with elegance."
     },
-    "title": "Vlad Photography",
+    "title": "[Name] Photography",
     "subtitle": "Capturing Timeless Stories with Elegance & Precision",
     "viewPortfolio": "View Portfolio",
     "contact": "Contact Me",
@@ -43,15 +56,15 @@
       "title": "What clients say",
       "1": {
         "text": "The photos are wonderful! You managed to capture every emotion of our wedding.",
-        "author": "Giulia and Marco"
+        "author": "Client Name"
       },
       "2": {
         "text": "Professional, discreet, and creative. The best photographer we could have chosen.",
-        "author": "Alessandro B."
+        "author": "Client Name"
       },
       "3": {
         "text": "A fun and relaxed experience, and the result was beyond expectations.",
-        "author": "Laura P."
+        "author": "Client Name"
       }
     }
   },
@@ -69,7 +82,7 @@
     },
     "projects": {
       "annaIgorWedding": {
-        "title": "Anna and Igor's Wedding",
+        "title": "Wedding Gallery",
         "description": "An unforgettable day full of emotion and style."
       },
       "studioPortrait": {
@@ -77,7 +90,7 @@
         "description": "Minimalist shots that capture the true essence."
       },
       "parkWalk": {
-        "title": "Walk in the park",
+        "title": "Outdoor Session",
         "description": "Spontaneous moments immersed in nature."
       },
       "businessPortrait": {
@@ -85,7 +98,7 @@
         "description": "Professionalism and elegance for your personal brand."
       },
       "elenaDmitryWedding": {
-        "title": "Elena and Dmitry's Wedding",
+        "title": "Wedding Story",
         "description": "Classic elegance and touching moments."
       },
       "morningBride": {
@@ -93,7 +106,7 @@
         "description": "The delicacy and anticipation before the big 'I do'."
       },
       "rooftopLovestory": {
-        "title": "Rooftop Love Story",
+        "title": "Rooftop Session",
         "description": "High-altitude love with a city view."
       },
       "familySession": {
@@ -104,30 +117,30 @@
   },
   "AboutPage": {
     "meta": {
-      "title": "About | Vlad Photography - Award-Winning Photographer",
-      "description": "Discover the vision behind the lens. Learn about Vlad's journey, editorial style, and commitment to capturing life's most significant moments."
+      "title": "About | [Name] Photography - Professional Photographer",
+      "description": "Discover the vision behind the lens. Learn about our journey, editorial style, and commitment to capturing life's most significant moments."
     },
     "title": "Capturing the Essence of Life",
-    "intro": "I am Vlad, a professional photographer dedicated to the art of visual storytelling. For over 10 years, I've been helping clients preserve their most cherished memories through high-end photography.",
+    "intro": "I am [Name], a professional photographer dedicated to the art of visual storytelling. For years, I've been helping clients preserve their most cherished memories through high-end photography.",
     "description": "Specializing in luxury weddings and editorial portraits, my style is a sophisticated blend of timeless elegance and modern reportage.",
     "stats": {
       "weddings": "Weddings",
       "experience": "Years of experience"
     },
-    "photoAlt": "Author's photo",
+    "photoAlt": "Photographer photo",
     "faq": {
       "title": "Frequently Asked Questions",
       "1": {
         "q": "How can I book a session?",
-        "a": "You can write to me via the contact form or on WhatsApp. I will reply within 24 hours to discuss the details and confirm the date."
+        "a": "You can write to me via the contact form. I will reply within 24 hours to discuss the details and confirm the date."
       },
       "2": {
         "q": "How long will it take to receive the photos?",
-        "a": "For portraits, delivery is in 1-2 weeks. For weddings, within 3-4 weeks. You will receive a link to a private gallery."
+        "a": "Delivery times vary by service. You will receive a link to a private gallery once the editing is complete."
       },
       "3": {
         "q": "Do you also work outside the city?",
-        "a": "Yes, I am available for travel throughout Italy and abroad. Travel costs will be agreed upon based on the distance."
+        "a": "Yes, I am available for travel. Travel costs will be agreed upon based on the distance."
       }
     }
   },
@@ -140,35 +153,35 @@
     "packages": {
       "mini": {
         "title": "Essential Collection",
-        "price": "250 €",
+        "price": "--- €",
         "features": [
           "90-minute session",
-          "50 high-resolution edited images",
+          "High-resolution edited images",
           "Style consultation",
           "Private online gallery",
-          "Delivery in 7 days"
+          "Standard delivery"
         ]
       },
       "standard": {
         "title": "Signature Story",
-        "price": "550 €",
+        "price": "--- €",
         "features": [
-          "4 hours of coverage",
-          "150 premium retouched images",
+          "Extended coverage",
+          "Premium retouched images",
           "Fine art editing",
-          "Sneak peek in 48 hours",
-          "Premium keepsake box"
+          "Sneak peek available",
+          "Premium delivery"
         ]
       },
       "premium": {
         "title": "Heritage Full Day",
-        "price": "1200 €",
+        "price": "--- €",
         "features": [
-          "Full day coverage (up to 12 hours)",
+          "Full day coverage",
           "Unlimited images",
           "Artisan photobook",
           "Second photographer",
-          "Same-day edit slideshow"
+          "Custom edit"
         ]
       }
     },
@@ -184,9 +197,9 @@
     "description": "Fill out the form below or write to me on social media. I will reply within 24 hours.",
     "form": {
       "name": "Name",
-      "namePlaceholder": "Mario Rossi",
+      "namePlaceholder": "Your Name",
       "email": "Email",
-      "emailPlaceholder": "mario@example.com",
+      "emailPlaceholder": "your@email.com",
       "type": "Type of service",
       "types": {
         "wedding": "Wedding",

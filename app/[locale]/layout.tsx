@@ -7,6 +7,7 @@ import { Geist, Geist_Mono } from 'next/font/google';
 import '../globals.css';
 import { Header } from '@/components/header';
 import { Footer } from '@/components/footer';
+import { CookieBanner } from '@/components/CookieBanner';
 import { ThemeProvider } from '@/components/theme-provider';
 import { getTranslations } from 'next-intl/server';
 import { siteConfig } from '@/lib/config';
@@ -174,6 +175,7 @@ export default async function LocaleLayout({
                 <Header />
                 <main className="flex-1 flex flex-col">{children}</main>
                 <Footer />
+                <CookieBanner />
               </NextIntlClientProvider>
             </ErrorBoundary>
           </AuthSessionProvider>

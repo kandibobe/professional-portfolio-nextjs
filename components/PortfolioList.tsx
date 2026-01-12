@@ -1,19 +1,50 @@
 'use client';
 
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { Gallery } from '@/components/gallery';
+import { PortfolioSkeleton } from '@/components/ui/skeleton';
 import { useTranslations } from 'next-intl';
 import { cn } from '@/lib/utils';
 import { motion } from 'framer-motion';
-import { projects as staticProjects, Project } from '@/lib/projects';
+import { projects as mockProjects, Project } from '@/lib/projects';
 
-interface PortfolioListProps {
-  initialProjects?: Project[];
-}
-
-export function PortfolioList({ initialProjects }: PortfolioListProps) {
-  const projects = initialProjects || staticProjects;
+export function PortfolioList() {
   const t = useTranslations('PortfolioPage');
+  const [projects, setProjects] = useState<Project[]>([]);
+  const [isLoading, setIsLoading] = useState(true);
+  const [activeCategory, setActiveCategory] = useState('all');
+
+  useEffect(() => {
+    async function fetchProjects() {
+      try {
+        const res = await fetch('/api/projects');
+        if (!res.ok) throw new Error('Failed to fetch');
+        const data = await res.json();
+
+        // If API returns empty (no DB), use mocks
+        if (Array.isArray(data) && data.length === 0) {
+          setProjects(mockProjects);
+        } else {
+          setProjects(
+            // eslint-disable-next-line @typescript-eslint/no-explicit-any
+            data.map((p: any) => ({
+              id: p.id,
+              slug: p.slug,
+              title: p.title,
+              src: p.imageUrl,
+              category: 'Portfolio',
+              date: new Date(p.createdAt).toLocaleDateString(),
+            }))
+          );
+        }
+      } catch {
+        setProjects(mockProjects);
+      } finally {
+        setIsLoading(false);
+      }
+    }
+    fetchProjects();
+  }, []);
 
   const categories = [
     { id: 'all', name: t('categories.all') },
@@ -24,11 +55,9 @@ export function PortfolioList({ initialProjects }: PortfolioListProps) {
 
   const translatedProjects = projects.map((project) => ({
     ...project,
-    title: t(`projects.${project.titleKey}.title`),
-    category: t(project.categoryKey),
+    title: project.titleKey ? t(`projects.${project.titleKey}.title`) : project.title || '',
+    category: project.categoryKey ? t(project.categoryKey) : project.category || 'Portfolio',
   }));
-
-  const [activeCategory, setActiveCategory] = useState('all');
 
   const filteredProjects =
     activeCategory === 'all'
@@ -88,7 +117,7 @@ export function PortfolioList({ initialProjects }: PortfolioListProps) {
       </div>
 
       {/* Galleria */}
-      <Gallery items={filteredProjects} />
+      {isLoading ? <PortfolioSkeleton /> : <Gallery items={filteredProjects} />}
     </div>
   );
 }

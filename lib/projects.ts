@@ -1,11 +1,14 @@
 export interface Project {
-  id: number;
+  id: number | string;
   slug: string;
-  titleKey: string;
-  categoryKey: string;
+  titleKey?: string;
+  title?: string;
+  categoryKey?: string;
+  category?: string;
   src: string;
   date: string;
   descriptionKey?: string;
+  description?: string;
 }
 
 export const projects: Project[] = [
@@ -14,7 +17,7 @@ export const projects: Project[] = [
     slug: 'anna-igor-wedding',
     titleKey: 'annaIgorWedding',
     categoryKey: 'categories.wedding',
-    src: 'bg-secondary',
+    src: 'https://placehold.co/600x800/png?text=Anna+Igor',
     date: 'Giugno 2024',
     descriptionKey: 'annaIgorDescription',
   },
@@ -23,7 +26,7 @@ export const projects: Project[] = [
     slug: 'studio-portrait',
     titleKey: 'studioPortrait',
     categoryKey: 'categories.portrait',
-    src: 'bg-secondary/80',
+    src: 'https://placehold.co/600x800/png?text=Studio+Portrait',
     date: 'Maggio 2024',
     descriptionKey: 'studioPortraitDescription',
   },
@@ -32,7 +35,7 @@ export const projects: Project[] = [
     slug: 'park-walk',
     titleKey: 'parkWalk',
     categoryKey: 'categories.lovestory',
-    src: 'bg-secondary/60',
+    src: 'https://placehold.co/600x800/png?text=Park+Walk',
     date: 'Aprile 2024',
     descriptionKey: 'parkWalkDescription',
   },
@@ -41,7 +44,7 @@ export const projects: Project[] = [
     slug: 'business-portrait',
     titleKey: 'businessPortrait',
     categoryKey: 'categories.portrait',
-    src: 'bg-secondary',
+    src: 'https://placehold.co/600x800/png?text=Business+Portrait',
     date: 'Marzo 2024',
     descriptionKey: 'businessPortraitDescription',
   },
@@ -50,7 +53,7 @@ export const projects: Project[] = [
     slug: 'elena-dmitry-wedding',
     titleKey: 'elenaDmitryWedding',
     categoryKey: 'categories.wedding',
-    src: 'bg-secondary/80',
+    src: 'https://placehold.co/600x800/png?text=Elena+Dmitry',
     date: 'Febbraio 2024',
     descriptionKey: 'elenaDmitryDescription',
   },
@@ -59,7 +62,7 @@ export const projects: Project[] = [
     slug: 'morning-bride',
     titleKey: 'morningBride',
     categoryKey: 'categories.wedding',
-    src: 'bg-secondary/60',
+    src: 'https://placehold.co/600x800/png?text=Morning+Bride',
     date: 'Gennaio 2024',
     descriptionKey: 'morningBrideDescription',
   },
@@ -68,7 +71,7 @@ export const projects: Project[] = [
     slug: 'rooftop-lovestory',
     titleKey: 'rooftopLovestory',
     categoryKey: 'categories.lovestory',
-    src: 'bg-secondary/80',
+    src: 'https://placehold.co/600x800/png?text=Rooftop+Lovestory',
     date: 'Dicembre 2023',
     descriptionKey: 'rooftopLovestoryDescription',
   },
@@ -77,7 +80,7 @@ export const projects: Project[] = [
     slug: 'family-session',
     titleKey: 'familySession',
     categoryKey: 'categories.portrait',
-    src: 'bg-secondary',
+    src: 'https://placehold.co/600x800/png?text=Family+Session',
     date: 'Dicembre 2023',
     descriptionKey: 'familySessionDescription',
   },

@@ -81,12 +81,27 @@ export function Footer() {
         </div>
 
         <div className="border-t border-border pt-8 flex flex-col md:flex-row justify-between items-center gap-6 text-[10px] font-bold uppercase tracking-[0.2em] text-muted-foreground">
-          <p>
-            © {new Date().getFullYear()} {siteConfig.name}. {t('rights')}
-          </p>
+          <div className="flex flex-col gap-2">
+            <p>
+              © {new Date().getFullYear()} {siteConfig.name}. {t('rights')}
+            </p>
+            <div className="flex flex-wrap gap-x-4 gap-y-1 opacity-60">
+              <span>P.IVA: {siteConfig.contact.piva}</span>
+              <span>C.F.: {siteConfig.contact.cf}</span>
+              <span>REA: {siteConfig.contact.rea}</span>
+            </div>
+            <p className="opacity-60">
+              {siteConfig.contact.address.street}, {siteConfig.contact.address.zip}{' '}
+              {siteConfig.contact.address.city} ({siteConfig.contact.address.region}),{' '}
+              {siteConfig.contact.address.country}
+            </p>
+          </div>
           <div className="flex gap-8">
             <Link href="/privacy" className="hover:text-foreground transition-colors">
               {t('privacy')}
+            </Link>
+            <Link href="/cookie-policy" className="hover:text-foreground transition-colors">
+              {t('cookiePolicy')}
             </Link>
             <Link href="/terms" className="hover:text-foreground transition-colors">
               {t('terms')}

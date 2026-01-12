@@ -13,24 +13,37 @@
     "description": "Cattura i tuoi momenti unici con eleganza e precisione. Servizi fotografici di alto livello disponibili in tutto il mondo.",
     "navigation": "Navigazione",
     "connect": "Social",
-    "privacy": "Informativa sulla Privacy",
-    "terms": "Termini di Servizio"
+    "privacy": "Privacy Policy",
+    "cookiePolicy": "Cookie Policy",
+    "terms": "Termini di servizio"
+  },
+  "CookieBanner": {
+    "title": "La tua privacy è importante",
+    "description": "Utilizziamo i cookie per migliorare la tua esperienza di navigazione, servire contenuti personalizzati e analizzare il nostro traffico. Cliccando su \"Accetta tutti\", acconsenti al nostro utilizzo dei cookie.",
+    "accept": "Accetta tutti",
+    "decline": "Rifiuta tutti",
+    "customize": "Personalizza"
+  },
+  "Privacy": {
+    "title": "Privacy Policy",
+    "lastUpdated": "Ultimo aggiornamento",
+    "contactConsent": "Ho letto l'informativa privacy e acconsento al trattamento dei dati personali."
   },
   "HomePage": {
     "services": {
       "select": "Seleziona"
     },
     "meta": {
-      "title": "Vlad Photography | Fotografo di Matrimoni e Ritratti di Lusso in Italia",
+      "title": "[Nome] Photography | Fotografo di Matrimoni e Ritratti di Lusso in Italia",
       "description": "Fotografo professionista pluripremiato specializzato in matrimoni esclusivi, ritratti editoriali ed eventi di lusso. Racconti senza tempo con eleganza."
     },
-    "title": "Vlad Photography",
+    "title": "[Nome] Photography",
     "subtitle": "Raccontiamo Storie Senza Tempo con Eleganza e Precisione",
     "viewPortfolio": "Vedi Portfolio",
     "contact": "Contattami",
     "aboutSection": {
       "title": "Chi Sono",
-      "description": "La fotografia non è solo il mio lavoro, è il mio modo di vedere il mondo. Con oltre 5 anni di esperienza, mi dedico a catturare la bellezza autentica e le emozioni sincere dei miei soggetti.",
+      "description": "La fotografia non è solo il mio lavoro, è il mio modo di vedere el mondo. Con anni di esperienza, mi dedico a catturare la bellezza autentica e le emozioni sincere dei miei soggetti.",
       "link": "Scopri la mia storia"
     },
     "servicesPreview": {
@@ -43,15 +56,15 @@
       "title": "Cosa dicono i clienti",
       "1": {
         "text": "Le foto sono meravigliose! Hai saputo cogliere ogni emozione del nostro matrimonio.",
-        "author": "Giulia e Marco"
+        "author": "Nome Cliente"
       },
       "2": {
         "text": "Professionale, discreto e creativo. Il miglior fotografo che potessimo scegliere.",
-        "author": "Alessandro B."
+        "author": "Nome Cliente"
       },
       "3": {
         "text": "Un'esperienza divertente e rilassata, e il risultato è stato oltre le aspettative.",
-        "author": "Laura P."
+        "author": "Nome Cliente"
       }
     }
   },
@@ -69,7 +82,7 @@
     },
     "projects": {
       "annaIgorWedding": {
-        "title": "Matrimonio di Anna e Igor",
+        "title": "Galleria Matrimonio",
         "description": "Una giornata indimenticabile piena di emozioni e stile."
       },
       "studioPortrait": {
@@ -77,7 +90,7 @@
         "description": "Scatti minimalisti che catturano la vera essenza."
       },
       "parkWalk": {
-        "title": "Passeggiata nel parco",
+        "title": "Sessione all'aperto",
         "description": "Momenti spontanei immersi nella natura."
       },
       "businessPortrait": {
@@ -85,7 +98,7 @@
         "description": "Professionalità ed eleganza per il tuo personal brand."
       },
       "elenaDmitryWedding": {
-        "title": "Matrimonio di Elena e Dmitry",
+        "title": "Storia di Matrimonio",
         "description": "Eleganza classica e momenti commoventi."
       },
       "morningBride": {
@@ -93,22 +106,22 @@
         "description": "La delicatezza e l'attesa prima del grande sì."
       },
       "rooftopLovestory": {
-        "title": "Love Story sul tetto",
+        "title": "Sessione sul tetto",
         "description": "Amore ad alta quota con vista sulla città."
       },
       "familySession": {
-        "title": "Servizio fotografico di famiglia",
+        "title": "Servizio di famiglia",
         "description": "Ricordi preziosi che dureranno per sempre."
       }
     }
   },
   "AboutPage": {
     "meta": {
-      "title": "Chi Sono | Fotografo [Nome Cognome]",
+      "title": "Chi Sono | [Nome] Photography - Fotografo Professionista",
       "description": "Scopri di più sul mio percorso, la mia filosofia e la mia esperienza nel mondo della fotografia."
     },
     "title": "Ciao, mi chiamo [Nome]",
-    "intro": "Sono un fotografo professionista con oltre 5 anni di esperienza. La mia passione è catturare emozioni sincere e momenti importanti della tua vita.",
+    "intro": "Sono un fotografo professionista con anni di esperienza. La mia passione è catturare emozioni sincere e momenti importanti della tua vita.",
     "description": "Specializzato in matrimoni e ritratti. Il mio stile combina l'eleganza classica con la vivacità del reportage.",
     "stats": {
       "weddings": "Matrimoni",
@@ -119,15 +132,15 @@
       "title": "Domande Frequenti",
       "1": {
         "q": "Come posso prenotare una sessione?",
-        "a": "Puoi scrivermi tramite il modulo di contatto o su WhatsApp. Ti risponderò entro 24 ore per discutere i dettagli e confermare la data."
+        "a": "Puoi scrivermi tramite il modulo di contatto. Ti risponderò entro 24 ore per discutere i dettagli e confermare la data."
       },
       "2": {
         "q": "In quanto tempo riceverò le foto?",
-        "a": "Per i ritratti la consegna è in 1-2 settimane. Per i matrimoni entro 3-4 settimane. Riceverai un link a una galleria privata."
+        "a": "I tempi di consegna variano in base al servizio. Riceverai un link a una galleria privata una volta completata la post-produzione."
       },
       "3": {
         "q": "Lavori anche fuori città?",
-        "a": "Sì, sono disponibile per trasferte in tutta Italia e all'estero. I costi di viaggio verranno concordati in base alla distanza."
+        "a": "Sì, sono disponibile per trasferte. I costi di viaggio verranno concordati in base alla distanza."
       }
     }
   },
@@ -139,35 +152,36 @@
     "title": "Servizi e Prezzi",
     "packages": {
       "mini": {
-        "title": "Mini",
-        "price": "150 €",
+        "title": "Essenziale",
+        "price": "--- €",
         "features": [
-          "1 ora di riprese",
-          "30 foto ritoccate",
-          "Consegna in 1 settimana",
-          "Galleria online"
+          "Sessione di 90 minuti",
+          "Immagini post-prodotte",
+          "Consulenza di stile",
+          "Galleria online privata",
+          "Consegna standard"
         ]
       },
       "standard": {
-        "title": "Standard",
-        "price": "350 €",
+        "title": "Signature",
+        "price": "--- €",
         "features": [
-          "3 ore di riprese",
-          "100 foto ritoccate",
-          "Consegna in 2 settimane",
-          "Galleria online",
-          "Chiavetta USB in confezione"
+          "Copertura estesa",
+          "Immagini premium",
+          "Editing fine art",
+          "Anteprima disponibile",
+          "Consegna premium"
         ]
       },
       "premium": {
-        "title": "Premium",
-        "price": "700 €",
+        "title": "Heritage",
+        "price": "--- €",
         "features": [
-          "Giornata intera (fino a 10 ore)",
-          "400+ foto ritoccate",
-          "Consegna in 3 settimane",
-          "Fotolibro",
-          "Assistente"
+          "Copertura giornata intera",
+          "Immagini illimitate",
+          "Fotolibro artigianale",
+          "Secondo fotografo",
+          "Editing personalizzato"
         ]
       }
     },
@@ -183,9 +197,9 @@
     "description": "Compila il modulo qui sotto o scrivimi sui social. Risponderò entro 24 ore.",
     "form": {
       "name": "Nome",
-      "namePlaceholder": "Mario Rossi",
+      "namePlaceholder": "Il Tuo Nome",
       "email": "Email",
-      "emailPlaceholder": "mario@example.com",
+      "emailPlaceholder": "tua@email.com",
       "type": "Tipo di servizio",
       "types": {
         "wedding": "Matrimonio",
@@ -210,10 +224,10 @@
       "title": "Area Clienti | Fotografo [Nome Cognome]",
       "description": "Accedi alla tua galleria privata per visualizzare e scaricare le foto."
     },
-    "title": "Area Clienti",
+    "title": "Client Area",
     "description": "Inserisci il codice di accesso o la password per visualizzare la tua galleria",
     "passwordPlaceholder": "La tua password",
     "submit": "Accedi alla galleria",
-    "forgotPassword": "Hai dimenticato la password? Contattami per riприistinare l'accesso."
+    "forgotPassword": "Hai dimenticato la password? Contattami per ripristinare l'accesso."
   }
 }
