@@ -5,15 +5,24 @@
     "services": "Servizi",
     "clients": "Clienti",
     "contacts": "Contatti",
-    "book": "Prenota servizio"
+    "book": "Prenota servizio",
+    "title": "Portfolio"
   },
   "Footer": {
-    "rights": "Tutti i diritti riservati"
+    "rights": "Tutti i diritti riservati",
+    "description": "Cattura i tuoi momenti unici attraverso l'obiettivo della fotografia professionale. Disponibile per servizi in tutto il mondo.",
+    "navigation": "Navigazione",
+    "connect": "Social",
+    "privacy": "Informativa sulla Privacy",
+    "terms": "Termini di Servizio"
   },
   "HomePage": {
+    "services": {
+      "select": "Seleziona"
+    },
     "meta": {
       "title": "Fotografo [Nome Cognome] | Fotografia Professionale",
-      "description": "Fotografo professionista specializzato in matrimoni, ritratti e eventi. Cattura i tuoi momenti più preziosi con stile ed eleganza."
+      "description": "Fotografo professionista specializzato in matrimoni, ritratti e eventi. Cattura i tuoi momenti più preziosi con stile ed eleganза."
     },
     "title": "Fotografo [Nome Cognome]",
     "subtitle": "Fotografia professionale per aziende e privati",
@@ -57,6 +66,40 @@
       "wedding": "Matrimoni",
       "portrait": "Ritratti",
       "lovestory": "Love Story"
+    },
+    "projects": {
+      "annaIgorWedding": { 
+        "title": "Matrimonio di Anna e Igor", 
+        "description": "Una giornata indimenticabile piena di emozioni e stile." 
+      },
+      "studioPortrait": { 
+        "title": "Ritratto in studio", 
+        "description": "Scatti minimalisti che catturano la vera essenza." 
+      },
+      "parkWalk": { 
+        "title": "Passeggiata nel parco", 
+        "description": "Momenti spontanei immersi nella natura." 
+      },
+      "businessPortrait": { 
+        "title": "Ritratto Business", 
+        "description": "Professionalità ed eleganza per il tuo personal brand." 
+      },
+      "elenaDmitryWedding": { 
+        "title": "Matrimonio di Elena e Dmitry", 
+        "description": "Eleganza classica e momenti commoventi." 
+      },
+      "morningBride": { 
+        "title": "Mattina della sposa", 
+        "description": "La delicatezza e l'attesa prima del grande sì." 
+      },
+      "rooftopLovestory": { 
+        "title": "Love Story sul tetto", 
+        "description": "Amore ad alta quota con vista sulla città." 
+      },
+      "familySession": { 
+        "title": "Servizio fotografico di famiglia", 
+        "description": "Ricordi preziosi che dureranno per sempre." 
+      }
     }
   },
   "AboutPage": {
@@ -154,6 +197,6 @@
     "description": "Inserisci il codice di accesso o la password per visualizzare la tua galleria",
     "passwordPlaceholder": "La tua password",
     "submit": "Accedi alla galleria",
-    "forgotPassword": "Hai dimenticato la password? Contattami per ripristinare l'accesso."
+    "forgotPassword": "Hai dimenticato la password? Contattami per riприistinare l'accesso."
   }
 }

@@ -48,7 +48,7 @@ export function ContactForm() {
       } else {
         setStatus('error');
       }
-    } catch (_) {
+    } catch {
       setStatus('error');
     } finally {
       setLoading(false);

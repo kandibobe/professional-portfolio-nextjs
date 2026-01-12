@@ -1,0 +1,202 @@
+{
+  "Header": {
+    "portfolio": "Portfolio",
+    "about": "About Me",
+    "services": "Services",
+    "clients": "Clients",
+    "contacts": "Contacts",
+    "book": "Book a service",
+    "title": "Portfolio"
+  },
+  "Footer": {
+    "rights": "All rights reserved",
+    "description": "Capture your unique moments through the lens of professional photography. Available for services worldwide.",
+    "navigation": "Navigation",
+    "connect": "Social",
+    "privacy": "Privacy Policy",
+    "terms": "Terms of Service"
+  },
+  "HomePage": {
+    "services": {
+      "select": "Select"
+    },
+    "meta": {
+      "title": "Photographer [Name Surname] | Professional Photography",
+      "description": "Professional photographer specializing in weddings, portraits, and events. Capture your most precious moments with style and elegance."
+    },
+    "title": "Photographer [Name Surname]",
+    "subtitle": "Professional photography for businesses and individuals",
+    "viewPortfolio": "View Portfolio",
+    "contact": "Contact Me",
+    "aboutSection": {
+      "title": "About Me",
+      "description": "Photography is not just my job, it's my way of seeing the world. With over 5 years of experience, I am dedicated to capturing the authentic beauty and sincere emotions of my subjects.",
+      "link": "Discover my story"
+    },
+    "servicesPreview": {
+      "title": "My Services",
+      "wedding": "Weddings",
+      "portrait": "Portraits",
+      "events": "Events"
+    },
+    "testimonials": {
+      "title": "What clients say",
+      "1": {
+        "text": "The photos are wonderful! You managed to capture every emotion of our wedding.",
+        "author": "Giulia and Marco"
+      },
+      "2": {
+        "text": "Professional, discreet, and creative. The best photographer we could have chosen.",
+        "author": "Alessandro B."
+      },
+      "3": {
+        "text": "A fun and relaxed experience, and the result was beyond expectations.",
+        "author": "Laura P."
+      }
+    }
+  },
+  "PortfolioPage": {
+    "meta": {
+      "title": "Portfolio | Photographer [Name Surname]",
+      "description": "Explore the gallery of my best shots: weddings, portraits, love stories, and much more."
+    },
+    "title": "Portfolio",
+    "categories": {
+      "all": "All",
+      "wedding": "Weddings",
+      "portrait": "Portraits",
+      "lovestory": "Love Story"
+    },
+    "projects": {
+      "annaIgorWedding": {
+        "title": "Anna and Igor's Wedding",
+        "description": "An unforgettable day full of emotion and style."
+      },
+      "studioPortrait": {
+        "title": "Studio Portrait",
+        "description": "Minimalist shots that capture the true essence."
+      },
+      "parkWalk": {
+        "title": "Walk in the park",
+        "description": "Spontaneous moments immersed in nature."
+      },
+      "businessPortrait": {
+        "title": "Business Portrait",
+        "description": "Professionalism and elegance for your personal brand."
+      },
+      "elenaDmitryWedding": {
+        "title": "Elena and Dmitry's Wedding",
+        "description": "Classic elegance and touching moments."
+      },
+      "morningBride": {
+        "title": "The Bride's Morning",
+        "description": "The delicacy and anticipation before the big 'I do'."
+      },
+      "rooftopLovestory": {
+        "title": "Rooftop Love Story",
+        "description": "High-altitude love with a city view."
+      },
+      "familySession": {
+        "title": "Family Photoshoot",
+        "description": "Precious memories that will last forever."
+      }
+    }
+  },
+  "AboutPage": {
+    "meta": {
+      "title": "About Me | Photographer [Name Surname]",
+      "description": "Learn more about my journey, my philosophy, and my experience in the world of photography."
+    },
+    "title": "Hi, my name is [Name]",
+    "intro": "I am a professional photographer with over 5 years of experience. My passion is to capture sincere emotions and important moments of your life.",
+    "description": "Specializing in weddings and portraits. My style combines classic elegance with the vibrancy of reportage.",
+    "stats": {
+      "weddings": "Weddings",
+      "experience": "Years of experience"
+    },
+    "photoAlt": "Author's photo",
+    "faq": {
+      "title": "Frequently Asked Questions",
+      "1": {
+        "q": "How can I book a session?",
+        "a": "You can write to me via the contact form or on WhatsApp. I will reply within 24 hours to discuss the details and confirm the date."
+      },
+      "2": {
+        "q": "How long will it take to receive the photos?",
+        "a": "For portraits, delivery is in 1-2 weeks. For weddings, within 3-4 weeks. You will receive a link to a private gallery."
+      },
+      "3": {
+        "q": "Do you also work outside the city?",
+        "a": "Yes, I am available for travel throughout Italy and abroad. Travel costs will be agreed upon based on the distance."
+      }
+    }
+  },
+  "ServicesPage": {
+    "meta": {
+      "title": "Services and Prices | Photographer [Name Surname]",
+      "description": "Discover the packages and prices for wedding, portrait, and other photography services."
+    },
+    "title": "Services and Prices",
+    "packages": {
+      "mini": {
+        "title": "Mini",
+        "price": "150 €",
+        "features": ["1 hour of shooting", "30 retouched photos", "Delivery in 1 week", "Online gallery"]
+      },
+      "standard": {
+        "title": "Standard",
+        "price": "350 €",
+        "features": ["3 hours of shooting", "100 retouched photos", "Delivery in 2 weeks", "Online gallery", "USB stick in a package"]
+      },
+      "premium": {
+        "title": "Premium",
+        "price": "700 €",
+        "features": ["Full day (up to 10 hours)", "400+ retouched photos", "Delivery in 3 weeks", "Photobook", "Assistant"]
+      }
+    },
+    "popular": "Popular",
+    "select": "Select"
+  },
+  "ContactPage": {
+    "meta": {
+      "title": "Contacts | Photographer [Name Surname]",
+      "description": "Contact me to book a photoshoot or request information."
+    },
+    "title": "Contact Me",
+    "description": "Fill out the form below or write to me on social media. I will reply within 24 hours.",
+    "form": {
+      "name": "Name",
+      "namePlaceholder": "Mario Rossi",
+      "email": "Email",
+      "emailPlaceholder": "mario@example.com",
+      "type": "Type of service",
+      "types": {
+        "wedding": "Wedding",
+        "portrait": "Portrait",
+        "lovestory": "Love Story",
+        "reportage": "Reportage",
+        "other": "Other"
+      },
+      "message": "Message",
+      "messagePlaceholder": "Tell me about your event...",
+      "submit": "Send",
+      "error": "Something went wrong. Please try again later.",
+      "success": {
+        "title": "Message Sent!",
+        "description": "Thank you for contacting me. I will reply to you within 24 hours.",
+        "button": "Send another message"
+      }
+    }
+  },
+  "ClientsPage": {
+    "meta": {
+      "title": "Client Area | Photographer [Name Surname]",
+      "description": "Access your private gallery to view and download your photos."
+    },
+    "title": "Client Area",
+    "description": "Enter the access code or password to view your gallery",
+    "passwordPlaceholder": "Your password",
+    "submit": "Access gallery",
+    "forgotPassword": "Forgot your password? Contact me to restore access."
+  }
+}

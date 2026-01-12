@@ -7,60 +7,52 @@
 
 @layer base {
   :root {
-    /* Base Colors */
+    /* High-Fashion Editorial Palette - Light */
     --background: #ffffff;
-    --foreground: #020617;
+    --foreground: #000000;
     
-    /* Primary Brand Colors - Deep Indigo/Navy */
-    --primary: #0f172a; 
-    --primary-foreground: #f8fafc;
+    --primary: #000000; 
+    --primary-foreground: #ffffff;
 
-    /* Secondary/Muted Colors */
-    --secondary: #f1f5f9;
-    --secondary-foreground: #0f172a;
+    --secondary: #f7f7f7;
+    --secondary-foreground: #000000;
     
-    --muted: #f8fafc;
-    --muted-foreground: #475569;
+    --muted: #f7f7f7;
+    --muted-foreground: #666666;
 
-    /* Accent Colors - Elegant Gold/Bronze */
-    --accent: #fefce8;
-    --accent-foreground: #854d0e;
+    --accent: #e5e5e5;
+    --accent-foreground: #000000;
 
-    /* Destructive */
-    --destructive: #ef4444;
+    --destructive: #000000;
     --destructive-foreground: #ffffff;
 
-    /* UI Elements */
-    --border: #e2e8f0;
-    --input: #e2e8f0;
-    --ring: #94a3b8;
+    --border: #eeeeee;
+    --input: #eeeeee;
+    --ring: #000000;
     
-    /* Radii */
-    --radius: 0.75rem;
+    --radius: 0rem; /* Editorial look prefers sharp corners or very subtle radii */
   }
 
   .dark {
-    --background: #020617;
-    --foreground: #f8fafc;
+    /* High-Fashion Editorial Palette - Dark */
+    --background: #000000;
+    --foreground: #ffffff;
     
-    --primary: #f8fafc;
-    --primary-foreground: #020617;
+    --primary: #ffffff;
+    --primary-foreground: #000000;
     
-    --secondary: #0f172a;
-    --secondary-foreground: #f8fafc;
+    --secondary: #111111;
+    --secondary-foreground: #ffffff;
     
-    --muted: #0f172a;
-    --muted-foreground: #94a3b8;
+    --muted: #111111;
+    --muted-foreground: #888888;
     
-    --accent: #1e1b4b;
-    --accent-foreground: #e0e7ff;
+    --accent: #222222;
+    --accent-foreground: #ffffff;
     
-    --destructive: #991b1b;
-    --destructive-foreground: #f8fafc;
-    
-    --border: #1e293b;
-    --input: #1e293b;
-    --ring: #334155;
+    --border: #111111;
+    --input: #111111;
+    --ring: #ffffff;
   }
 }
 
@@ -91,8 +83,8 @@
   --font-mono: var(--font-geist-mono);
   
   --radius-lg: var(--radius);
-  --radius-md: calc(var(--radius) - 2px);
-  --radius-sm: calc(var(--radius) - 4px);
+  --radius-md: calc(var(--radius));
+  --radius-sm: calc(var(--radius));
 }
 
 @layer base {
@@ -102,13 +94,20 @@
     font-family: var(--font-sans), Arial, Helvetica, sans-serif;
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
+    letter-spacing: -0.02em;
+  }
+
+  h1, h2, h3, h4, h5, h6 {
+    font-weight: 700;
+    letter-spacing: -0.04em;
+    text-transform: uppercase;
   }
 }
 
 /* Custom Utilities */
 .scrollbar-hide {
-  -ms-overflow-style: none;  /* IE and Edge */
-  scrollbar-width: none;  /* Firefox */
+  -ms-overflow-style: none;
+  scrollbar-width: none;
 }
 .scrollbar-hide::-webkit-scrollbar {
   display: none;
@@ -120,20 +119,13 @@
   }
   
   .glass {
-    @apply bg-background/60 backdrop-blur-xl border border-border/50;
-  }
-  
-  .glass-dark {
-    @apply bg-black/20 backdrop-blur-xl border border-white/10;
+    @apply bg-background/80 backdrop-blur-md border border-border;
   }
 
-  .hero-gradient {
-    background: radial-gradient(circle at 50% 50%, var(--primary) 0%, transparent 70%);
-    opacity: 0.05;
-  }
-
-  .text-gradient {
-    @apply bg-clip-text text-transparent bg-gradient-to-br from-foreground via-foreground/90 to-foreground/70;
+  .editorial-grid {
+    display: grid;
+    grid-template-columns: repeat(12, 1fr);
+    gap: 2rem;
   }
 }
 
@@ -144,6 +136,11 @@ html {
 
 /* Custom Selection */
 ::selection {
-  background: var(--primary);
-  color: var(--primary-foreground);
+  background: var(--foreground);
+  color: var(--background);
+}
+
+/* Editorial Button Reset */
+.btn-editorial {
+  @apply px-8 py-4 border border-foreground text-foreground uppercase text-xs font-bold tracking-[0.2em] hover:bg-foreground hover:text-background transition-all duration-500;
 }
