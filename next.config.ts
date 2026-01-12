@@ -1,13 +1,21 @@
-import createNextIntlPlugin from 'next-intl/plugin';
- 
-const withNextIntl = createNextIntlPlugin();
- 
-/** @type {import('next').NextConfig} */
-const nextConfig = {
+import type { NextConfig } from 'next';
+import createIntlPlugin from 'next-intl/plugin';
+
+const withNextIntl = createIntlPlugin('./i18n/request.ts');
+
+const nextConfig: NextConfig = {
+  output: 'standalone',
+  turbopack: {},
+  experimental: {
+    optimizePackageImports: ['lucide-react', 'framer-motion'],
+  },
   images: {
-    formats: ['image/avif' as const, 'image/webp' as const],
-    deviceSizes: [640, 750, 828, 1080, 1200, 1920, 2048, 3840],
-    imageSizes: [16, 32, 48, 64, 96, 128, 256, 384],
+    remotePatterns: [
+      {
+        protocol: 'https',
+        hostname: 'cdn.sanity.io',
+      },
+    ],
   },
 };
 

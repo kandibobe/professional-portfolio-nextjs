@@ -3,14 +3,17 @@
 import { useState } from 'react';
 import Image from 'next/image';
 import { motion, AnimatePresence, LayoutGroup } from 'framer-motion';
-import { X, Maximize2 } from 'lucide-react';
+import { X, Maximize2, ArrowRight } from 'lucide-react';
 import { cn } from "@/lib/utils";
+import { Link } from "@/i18n/routing";
 
 interface GalleryItem {
   id: number;
+  slug: string;
   title: string;
   category: string;
   src: string;
+  blurDataURL?: string;
   width?: number;
   height?: number;
 }
@@ -61,6 +64,8 @@ export function Gallery({ items }: GalleryProps) {
                     src={item.src}
                     alt={item.title}
                     fill
+                    placeholder={item.blurDataURL ? "blur" : "empty"}
+                    blurDataURL={item.blurDataURL}
                     className={cn(
                       "object-cover transition-all duration-1000 ease-out group-hover:scale-110",
                       loadedImages[item.id] ? "opacity-100 blur-0" : "opacity-0 blur-lg"
@@ -78,13 +83,28 @@ export function Gallery({ items }: GalleryProps) {
                     </p>
                     <h3 className="text-3xl font-black tracking-tight leading-tight">{item.title}</h3>
                     <div className="h-px w-12 bg-white/30 my-6 transition-all duration-700 group-hover:w-full" />
-                    <motion.div
-                      initial={{ opacity: 0, x: -10 }}
-                      whileHover={{ opacity: 1, x: 0 }}
-                      className="flex items-center gap-2 text-[10px] font-black uppercase tracking-[0.2em] text-white/40 group-hover:text-white/100 transition-colors"
-                    >
-                      View Project <Maximize2 size={12} />
-                    </motion.div>
+                    <div className="flex items-center gap-6">
+                      <motion.div
+                        initial={{ opacity: 0, x: -10 }}
+                        whileHover={{ opacity: 1, x: 0 }}
+                        className="flex items-center gap-2 text-[10px] font-black uppercase tracking-[0.2em] text-white/40 group-hover:text-white/100 transition-colors"
+                      >
+                        Quick View <Maximize2 size={12} />
+                      </motion.div>
+                      
+                      <Link 
+                        href={`/portfolio/${item.slug}`}
+                        onClick={(e) => e.stopPropagation()}
+                      >
+                        <motion.div
+                          initial={{ opacity: 0, x: -10 }}
+                          whileHover={{ opacity: 1, x: 0 }}
+                          className="flex items-center gap-2 text-[10px] font-black uppercase tracking-[0.2em] text-white/40 hover:text-white transition-colors"
+                        >
+                          Read Case Study <ArrowRight size={12} />
+                        </motion.div>
+                      </Link>
+                    </div>
                   </div>
                 </div>
               </div>

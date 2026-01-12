@@ -15,6 +15,29 @@ export async function generateMetadata({
   };
 }
 
-export default function PortfolioPage() {
-  return <PortfolioList />;
+import { client } from "@/lib/sanity";
+
+async function getProjects() {
+  // This query is a placeholder and assumes a Sanity schema
+  // You will need to replace this with your actual query
+  const query = `*[_type == "project"]{
+    "id": _id,
+    "slug": slug.current,
+    title,
+    "category": category->title,
+    "src": image.asset->url,
+    date
+  }`;
+  try {
+    const data = await client.fetch(query);
+    return data;
+  } catch (error) {
+    console.error("Failed to fetch projects:", error);
+    return []; // Return empty array on error
+  }
+}
+
+export default async function PortfolioPage() {
+  const projects = await getProjects();
+  return <PortfolioList initialProjects={projects} />;
 }

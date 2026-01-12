@@ -36,7 +36,7 @@ export default function NotFound() {
           initial={{ opacity: 0, y: 10 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ delay: 0.2 }}
-          className="text-xl text-muted-foreground mb-12 max-w-md mx-auto font-light"
+          className="text-xl text-muted-foreground mb-12 max-w-md mx-auto font-light text-balance"
         >
           The page you are looking for has been moved or doesn't exist. Let's get you back in focus.
         </motion.p>

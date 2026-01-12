@@ -4,19 +4,20 @@ import { useState, useEffect } from "react";
 import { Link } from "@/i18n/routing";
 import { useTranslations } from "next-intl";
 import { motion, AnimatePresence } from "framer-motion";
-import { Menu, X } from "lucide-react";
-import { Button } from "@/components/ui/button";
 import { cn } from "@/lib/utils";
-import { ThemeToggle } from "@/components/theme-toggle";
+import { Menu, X } from "lucide-react";
+import { siteConfig } from "@/lib/config";
+import { LanguageSwitcher } from "./LanguageSwitcher";
+import { UserNav } from "./UserNav";
 
 export function Header() {
   const t = useTranslations("Header");
-  const [isOpen, setIsOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
+  const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
 
   useEffect(() => {
     const handleScroll = () => {
-      setScrolled(window.scrollY > 20);
+      setScrolled(window.scrollY > 50);
     };
     window.addEventListener("scroll", handleScroll);
     return () => window.removeEventListener("scroll", handleScroll);
@@ -32,82 +33,88 @@ export function Header() {
 
   return (
     <motion.header
-      initial={{ y: -100 }}
-      animate={{ y: 0 }}
+      initial={{ opacity: 0 }}
+      animate={{ opacity: 1 }}
       className={cn(
-        "fixed top-0 left-0 right-0 z-50 transition-all duration-500",
+        "fixed top-0 left-0 right-0 z-50 transition-all duration-700",
         scrolled
-          ? "bg-background/70 backdrop-blur-xl border-b border-border/50 py-3"
-          : "bg-transparent border-b border-transparent py-6"
+          ? "bg-background/95 py-6 border-b border-border"
+          : "bg-transparent py-10"
       )}
     >
-      <div className="container mx-auto px-4 md:px-8 flex justify-between items-center">
-        <Link href="/" className="group flex items-center gap-2 z-50">
-          <div className="w-8 h-8 bg-primary rounded-lg flex items-center justify-center text-primary-foreground group-hover:rotate-12 transition-transform duration-300">
-            <span className="font-black text-xl">P</span>
+      <div className="container mx-auto px-6 md:px-12 flex justify-between items-center">
+        <Link href="/" className="z-50 group">
+          <div className="flex flex-col">
+            <span className="text-lg font-bold tracking-[0.5em] uppercase leading-none mb-1">{siteConfig.name}</span>
+            <span className="text-[7px] font-bold tracking-[0.8em] text-foreground/40 uppercase leading-none">Visual Arts & Creative Direction</span>
           </div>
-          <span className="text-xl font-black tracking-tighter uppercase">Photo<span className="text-primary/50">.</span></span>
         </Link>
 
-        {/* Desktop Navigation */}
-        <nav className="hidden md:flex gap-1 items-center">
+        {/* Desktop Navigation - Minimalist Editorial */}
+        <nav className="hidden md:flex gap-10 items-center">
           {navLinks.map((link) => (
             <Link
               key={link.href}
               href={link.href}
-              className="px-4 py-2 text-muted-foreground hover:text-foreground hover:bg-secondary/50 rounded-full transition-all text-sm font-semibold tracking-tight"
+              className="text-[10px] font-bold uppercase tracking-[0.2em] text-foreground/60 hover:text-foreground transition-colors"
             >
               {link.label}
             </Link>
           ))}
-          <div className="w-px h-4 bg-border mx-2" />
-          <ThemeToggle />
-          <Link href="/contact" className="ml-2">
-            <Button size="sm" className="rounded-full px-6 font-bold shadow-lg shadow-primary/20 hover:scale-105 transition-transform active:scale-95">
-              {t("book")}
-            </Button>
-          </Link>
         </nav>
 
-        {/* Mobile Menu Button */}
-        <div className="flex items-center gap-2 md:hidden z-50">
-          <ThemeToggle />
-          <button
-            className="p-2 text-foreground"
-            onClick={() => setIsOpen(!isOpen)}
-          >
-            {isOpen ? <X size={24} /> : <Menu size={24} />}
-          </button>
+        {/* Action - Clean Link */}
+        <div className="flex items-center gap-4">
+           <div className="hidden md:flex items-center gap-4">
+            <LanguageSwitcher />
+            <div className="w-px h-6 bg-border" />
+            <UserNav />
+           </div>
+           <Link href="/contact" className="hidden md:block text-[10px] font-bold uppercase tracking-[0.2em] border-b border-foreground pb-1 hover:opacity-50 transition-opacity">
+              {t("book")}
+           </Link>
+           <button 
+             className="md:hidden z-50 p-2"
+             onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
+             aria-label="Toggle menu"
+           >
+             {mobileMenuOpen ? <X size={20} /> : <Menu size={20} />}
+           </button>
         </div>
-
-        {/* Mobile Navigation */}
-        <AnimatePresence>
-          {isOpen && (
-            <motion.div
-              initial={{ opacity: 0, y: -20 }}
-              animate={{ opacity: 1, y: 0 }}
-              exit={{ opacity: 0, y: -20 }}
-              className="absolute top-0 left-0 right-0 bg-background border-b border-border shadow-lg p-4 pt-24 md:hidden flex flex-col gap-4"
-            >
-              {navLinks.map((link) => (
-                <Link
-                  key={link.href}
-                  href={link.href}
-                  className="text-lg font-medium text-foreground py-2 border-b border-border/50"
-                  onClick={() => setIsOpen(false)}
-                >
-                  {link.label}
-                </Link>
-              ))}
-              <Link href="/contact" onClick={() => setIsOpen(false)} className="mt-2">
-                <Button className="w-full rounded-full">
-                  {t("book")}
-                </Button>
-              </Link>
-            </motion.div>
-          )}
-        </AnimatePresence>
       </div>
+
+      {/* Mobile Navigation */}
+      <AnimatePresence>
+        {mobileMenuOpen && (
+          <motion.div
+            initial={{ opacity: 0, y: -20 }}
+            animate={{ opacity: 1, y: 0 }}
+            exit={{ opacity: 0, y: -20 }}
+            className="fixed inset-0 bg-background z-40 flex flex-col items-center justify-center gap-8 md:hidden"
+          >
+            {navLinks.map((link) => (
+              <Link
+                key={link.href}
+                href={link.href}
+                onClick={() => setMobileMenuOpen(false)}
+                className="text-2xl font-bold uppercase tracking-[0.3em] hover:text-foreground/60 transition-colors"
+              >
+                {link.label}
+              </Link>
+            ))}
+            <Link
+              href="/contact"
+              onClick={() => setMobileMenuOpen(false)}
+              className="mt-4 text-sm font-bold uppercase tracking-[0.2em] border border-foreground px-8 py-4"
+            >
+              {t("book")}
+            </Link>
+            <div className="mt-8">
+              <LanguageSwitcher />
+            </div>
+          </motion.div>
+        )}
+      </AnimatePresence>
     </motion.header>
   );
 }

@@ -9,6 +9,9 @@ import { Header } from "@/components/header";
 import { Footer } from "@/components/footer";
 import { ThemeProvider } from "@/components/theme-provider";
 import { getTranslations } from 'next-intl/server';
+import { siteConfig } from '@/lib/config';
+import { ScrollProgress } from "@/components/ScrollProgress";
+import AuthSessionProvider from "@/components/AuthSessionProvider";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -29,9 +32,9 @@ export async function generateMetadata({
   const t = await getTranslations({ locale, namespace: 'HomePage.meta' });
 
   return {
-    metadataBase: new URL(process.env.NEXT_PUBLIC_BASE_URL || 'https://your-portfolio.com'),
+    metadataBase: new URL(siteConfig.url),
     title: {
-      template: '%s | Professional Photographer',
+      template: `%s | ${siteConfig.name}`,
       default: t('title'),
     },
     description: t('description'),
@@ -41,19 +44,21 @@ export async function generateMetadata({
       'portrait photography',
       'professional photographer',
       'event photography',
+      'fine art photography',
+      'commercial photography',
     ],
-    authors: [{ name: 'Professional Photographer' }],
+    authors: [{ name: siteConfig.name }],
     openGraph: {
       type: 'website',
       locale: locale,
       url: './',
-      siteName: 'Photography Portfolio',
+      siteName: siteConfig.name,
       images: [
         {
-          url: '/og-image.jpg',
+          url: siteConfig.ogImage,
           width: 1200,
           height: 630,
-          alt: 'Photography Portfolio',
+          alt: siteConfig.name,
         },
       ],
     },
@@ -61,7 +66,7 @@ export async function generateMetadata({
       card: 'summary_large_image',
       title: t('title'),
       description: t('description'),
-      images: ['/og-image.jpg'],
+      images: [siteConfig.ogImage],
     },
     robots: {
       index: true,
@@ -94,18 +99,19 @@ export default async function LocaleLayout({
   const jsonLd = {
     "@context": "https://schema.org",
     "@type": "PhotographyBusiness",
-    "name": "Professional Photographer",
-    "image": "https://your-portfolio.com/og-image.jpg",
-    "url": "https://your-portfolio.com",
-    "telephone": "+1234567890",
+    "name": siteConfig.name,
+    "image": `${siteConfig.url}${siteConfig.ogImage}`,
+    "url": siteConfig.url,
+    "telephone": siteConfig.contact.phone,
     "address": {
       "@type": "PostalAddress",
-      "streetAddress": "123 Photographer St",
-      "addressLocality": "Milan",
-      "addressRegion": "MI",
-      "postalCode": "20100",
-      "addressCountry": "IT"
+      "streetAddress": siteConfig.contact.address.street,
+      "addressLocality": siteConfig.contact.address.city,
+      "addressRegion": siteConfig.contact.address.region,
+      "postalCode": siteConfig.contact.address.zip,
+      "addressCountry": siteConfig.contact.address.country
     },
+    "sameAs": Object.values(siteConfig.links),
     "priceRange": "$$$",
     "openingHoursSpecification": {
       "@type": "OpeningHoursSpecification",
@@ -137,13 +143,16 @@ export default async function LocaleLayout({
           enableSystem
           disableTransitionOnChange
         >
-          <NextIntlClientProvider messages={messages}>
-            <Header />
-            <main className="flex-1">
-              {children}
-            </main>
-            <Footer />
-          </NextIntlClientProvider>
+          <AuthSessionProvider>
+            <NextIntlClientProvider messages={messages}>
+              <ScrollProgress />
+              <Header />
+              <main className="flex-1 flex flex-col">
+                {children}
+              </main>
+              <Footer />
+            </NextIntlClientProvider>
+          </AuthSessionProvider>
         </ThemeProvider>
       </body>
     </html>

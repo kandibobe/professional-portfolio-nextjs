@@ -5,8 +5,14 @@ import { Gallery } from "@/components/gallery";
 import { useTranslations } from 'next-intl';
 import { cn } from "@/lib/utils";
 import { motion } from "framer-motion";
+import { projects as staticProjects, Project } from "@/lib/projects";
 
-export function PortfolioList() {
+interface PortfolioListProps {
+  initialProjects?: Project[];
+}
+
+export function PortfolioList({ initialProjects }: PortfolioListProps) {
+  const projects = initialProjects || staticProjects;
   const t = useTranslations('PortfolioPage');
 
   const categories = [
@@ -16,70 +22,17 @@ export function PortfolioList() {
     { id: 'lovestory', name: t('categories.lovestory') },
   ];
 
-  const projects = [
-    {
-      id: 1,
-      title: "Matrimonio di Anna e Igor",
-      category: t('categories.wedding'),
-      src: "bg-secondary", 
-      date: "Giugno 2024"
-    },
-    {
-      id: 2,
-      title: "Ritratto in studio",
-      category: t('categories.portrait'),
-      src: "bg-secondary/80",
-      date: "Maggio 2024"
-    },
-    {
-      id: 3,
-      title: "Passeggiata nel parco",
-      category: t('categories.lovestory'),
-      src: "bg-secondary/60",
-      date: "Aprile 2024"
-    },
-    {
-      id: 4,
-      title: "Ritratto Business",
-      category: t('categories.portrait'),
-      src: "bg-secondary",
-      date: "Marzo 2024"
-    },
-    {
-      id: 5,
-      title: "Matrimonio di Elena e Dmitry",
-      category: t('categories.wedding'),
-      src: "bg-secondary/80",
-      date: "Febbraio 2024"
-    },
-    {
-      id: 6,
-      title: "Mattina della sposa",
-      category: t('categories.wedding'),
-      src: "bg-secondary/60",
-      date: "Gennaio 2024"
-    },
-    {
-      id: 7,
-      title: "Love Story sul tetto",
-      category: t('categories.lovestory'),
-      src: "bg-secondary/80",
-      date: "Dicembre 2023"
-    },
-    {
-      id: 8,
-      title: "Servizio fotografico di famiglia",
-      category: t('categories.portrait'),
-      src: "bg-secondary",
-      date: "Dicembre 2023"
-    },
-  ];
+  const translatedProjects = projects.map(project => ({
+    ...project,
+    title: t(`projects.${project.titleKey}.title`),
+    category: t(project.categoryKey),
+  }));
 
   const [activeCategory, setActiveCategory] = useState('all');
 
   const filteredProjects = activeCategory === 'all' 
-    ? projects 
-    : projects.filter(project => {
+    ? translatedProjects 
+    : translatedProjects.filter(project => {
         const cat = categories.find(c => c.id === activeCategory);
         return project.category === cat?.name;
     });

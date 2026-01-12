@@ -1,38 +1,58 @@
-import { useTranslations } from 'next-intl';
-import { Instagram, Send, Globe } from 'lucide-react';
-import { Link } from '@/i18n/routing';
+import { useTranslations } from "next-intl";
+import { Instagram, Send, Globe } from "lucide-react";
+import { Link } from "@/i18n/routing";
+import { siteConfig } from "@/lib/config";
 
 export function Footer() {
   const t = useTranslations("Footer");
+  const navT = useTranslations("Header");
+
+  const navigationItems = [
+    { name: navT("portfolio"), href: "/portfolio" },
+    { name: navT("about"), href: "/about" },
+    { name: navT("services"), href: "/services" },
+    { name: navT("clients"), href: "/clients" },
+    { name: navT("contacts"), href: "/contact" },
+  ];
+
+  const socialLinks = [
+    { icon: Instagram, label: "Instagram", href: siteConfig.links.instagram },
+    { icon: Send, label: "Telegram", href: siteConfig.links.telegram },
+    { icon: Globe, label: "VK", href: siteConfig.links.vk },
+  ];
 
   return (
     <footer className="w-full py-24 px-4 md:px-8 bg-secondary/30 border-t border-border mt-auto">
       <div className="container mx-auto">
         <div className="grid grid-cols-1 lg:grid-cols-4 gap-12 mb-16">
           <div className="lg:col-span-2">
-            <Link href="/" className="group flex items-center gap-2 mb-6">
-              <div className="w-8 h-8 bg-primary rounded-lg flex items-center justify-center text-primary-foreground group-hover:rotate-12 transition-transform duration-300">
-                <span className="font-black text-xl">P</span>
+            <Link href="/" className="z-50 group inline-block mb-6">
+              <div className="flex flex-col">
+                <span className="text-lg font-bold tracking-[0.5em] uppercase leading-none mb-1">
+                  {siteConfig.name}
+                </span>
+                <span className="text-[7px] font-bold tracking-[0.8em] text-foreground/40 uppercase leading-none">
+                  Visual Arts & Creative Direction
+                </span>
               </div>
-              <span className="text-xl font-black tracking-tighter uppercase">
-                Photo<span className="text-primary/50">.</span>
-              </span>
             </Link>
             <p className="text-muted-foreground max-w-sm text-lg font-light leading-relaxed">
-              Capturing moments that tell your unique story through the lens of professional photography. Available for worldwide bookings.
+              {t("description")}
             </p>
           </div>
 
           <div>
-            <h4 className="font-bold uppercase tracking-widest text-xs mb-6 text-primary/50">Navigation</h4>
+            <h4 className="font-bold uppercase tracking-widest text-xs mb-6 text-primary/50">
+              {t("navigation")}
+            </h4>
             <ul className="space-y-4">
-              {["Portfolio", "About", "Services", "Clients", "Contact"].map((item) => (
-                <li key={item}>
+              {navigationItems.map((item) => (
+                <li key={item.href}>
                   <Link
-                    href={`/${item.toLowerCase()}`}
-                    className="text-foreground/80 hover:text-primary transition-colors font-medium"
+                    href={item.href}
+                    className="text-[10px] font-bold uppercase tracking-[0.2em] text-foreground/60 hover:text-foreground transition-colors"
                   >
-                    {item}
+                    {item.name}
                   </Link>
                 </li>
               ))}
@@ -40,19 +60,22 @@ export function Footer() {
           </div>
 
           <div>
-            <h4 className="font-bold uppercase tracking-widest text-xs mb-6 text-primary/50">Connect</h4>
+            <h4 className="font-bold uppercase tracking-widest text-xs mb-6 text-primary/50">
+              {t("connect")}
+            </h4>
             <div className="flex flex-wrap gap-4">
-              {[
-                { icon: Instagram, label: "Instagram" },
-                { icon: Send, label: "Telegram" },
-                { icon: Globe, label: "VK" },
-              ].map((social) => (
+              {socialLinks.map((social) => (
                 <a
                   key={social.label}
-                  href="#"
-                  className="w-12 h-12 rounded-2xl bg-background border border-border flex items-center justify-center hover:border-primary hover:bg-primary hover:text-primary-foreground transition-all duration-300 group"
+                  href={social.href}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="w-12 h-12 rounded-none bg-background border border-border flex items-center justify-center hover:border-primary hover:bg-primary hover:text-primary-foreground transition-all duration-300 group"
                 >
-                  <social.icon size={20} className="group-hover:scale-110 transition-transform" />
+                  <social.icon
+                    size={20}
+                    className="group-hover:scale-110 transition-transform"
+                  />
                   <span className="sr-only">{social.label}</span>
                 </a>
               ))}
@@ -60,16 +83,22 @@ export function Footer() {
           </div>
         </div>
 
-        <div className="border-t border-border pt-8 flex flex-col md:flex-row justify-between items-center gap-6 text-sm text-muted-foreground">
-          <p className="font-medium">
-            © {new Date().getFullYear()} PHOTO. {t("rights")}
+        <div className="border-t border-border pt-8 flex flex-col md:flex-row justify-between items-center gap-6 text-[10px] font-bold uppercase tracking-[0.2em] text-muted-foreground">
+          <p>
+            © {new Date().getFullYear()} {siteConfig.name}. {t("rights")}
           </p>
           <div className="flex gap-8">
-            <Link href="/privacy" className="hover:text-foreground transition-colors">
-              Privacy Policy
+            <Link
+              href="/privacy"
+              className="hover:text-foreground transition-colors"
+            >
+              {t("privacy")}
             </Link>
-            <Link href="/terms" className="hover:text-foreground transition-colors">
-              Terms of Service
+            <Link
+              href="/terms"
+              className="hover:text-foreground transition-colors"
+            >
+              {t("terms")}
             </Link>
           </div>
         </div>
