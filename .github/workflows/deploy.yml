@@ -1,0 +1,42 @@
+name: Build and Deploy
+
+on:
+  push:
+    branches: ["main"]
+  pull_request:
+    branches: ["main"]
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: "20"
+          cache: "npm"
+          cache-dependency-path: portfolio-site/package-lock.json
+          
+      - name: Install dependencies
+        run: cd portfolio-site && npm ci
+        
+      - name: Lint
+        run: cd portfolio-site && npm run lint
+        
+      - name: Run tests
+        run: cd portfolio-site && npm test
+        
+      - name: Generate Prisma Client
+        run: cd portfolio-site && npx prisma generate
+        env:
+          DATABASE_URL: ${{ secrets.DATABASE_URL }}
+        
+      - name: Build
+        run: cd portfolio-site && npm run build
+        env:
+          DATABASE_URL: ${{ secrets.DATABASE_URL }}
+          NEXTAUTH_SECRET: ${{ secrets.NEXTAUTH_SECRET }}
+          NEXT_PUBLIC_SANITY_PROJECT_ID: ${{ secrets.NEXT_PUBLIC_SANITY_PROJECT_ID }}
+          NEXT_PUBLIC_SANITY_DATASET: ${{ secrets.NEXT_PUBLIC_SANITY_DATASET }}
