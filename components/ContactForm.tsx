@@ -2,8 +2,8 @@
 
 import { useTranslations } from 'next-intl';
 import { useState } from 'react';
-import { Button } from "@/components/ui/button";
-import { cn } from "@/lib/utils";
+import { Button } from '@/components/ui/button';
+import { cn } from '@/lib/utils';
 import { CheckCircle2, AlertCircle, Send, Loader2 } from 'lucide-react';
 import { motion, AnimatePresence } from 'framer-motion';
 
@@ -55,7 +55,8 @@ export function ContactForm() {
     }
   }
 
-  const inputClasses = "flex w-full rounded-[1.5rem] border border-border/50 bg-secondary/30 backdrop-blur-md px-8 py-5 text-lg font-medium tracking-tight ring-offset-background transition-all duration-500 focus-visible:outline-none focus-visible:ring-4 focus-visible:ring-primary/5 focus-visible:border-primary/30 disabled:cursor-not-allowed disabled:opacity-50 placeholder:text-muted-foreground/40";
+  const inputClasses =
+    'flex w-full rounded-[1.5rem] border border-border/50 bg-secondary/30 backdrop-blur-md px-8 py-5 text-lg font-medium tracking-tight ring-offset-background transition-all duration-500 focus-visible:outline-none focus-visible:ring-4 focus-visible:ring-primary/5 focus-visible:border-primary/30 disabled:cursor-not-allowed disabled:opacity-50 placeholder:text-muted-foreground/40';
 
   return (
     <div className="max-w-5xl mx-auto px-4 py-32 md:py-48">
@@ -67,17 +68,19 @@ export function ContactForm() {
       >
         <span className="inline-flex items-center gap-2 px-6 py-2 text-[10px] font-black tracking-[0.3em] text-primary uppercase border border-primary/10 rounded-full bg-primary/5 backdrop-blur-md mb-8">
           <span className="w-1.5 h-1.5 rounded-full bg-primary animate-pulse" />
-          {t("title")}
+          {t('title')}
         </span>
-        <h1 className="text-6xl md:text-[8rem] font-black tracking-tighter mb-12 leading-[0.85] text-gradient">{t("title")}</h1>
+        <h1 className="text-6xl md:text-[8rem] font-black tracking-tighter mb-12 leading-[0.85] text-gradient">
+          {t('title')}
+        </h1>
         <p className="text-xl md:text-3xl text-muted-foreground max-w-2xl mx-auto font-medium tracking-tight leading-snug text-balance">
-          {t("description")}
+          {t('description')}
         </p>
       </motion.div>
 
       <AnimatePresence mode="wait">
         {status === 'success' ? (
-          <motion.div 
+          <motion.div
             key="success"
             initial={{ opacity: 0, scale: 0.9 }}
             animate={{ opacity: 1, scale: 1 }}
@@ -130,9 +133,14 @@ export function ContactForm() {
               </div>
               <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
                 <div className="space-y-3">
-                  <label htmlFor="name" className="text-sm font-bold uppercase tracking-widest text-foreground/70 ml-2">{t('form.name')}</label>
-                  <input 
-                    type="text" 
+                  <label
+                    htmlFor="name"
+                    className="text-sm font-bold uppercase tracking-widest text-foreground/70 ml-2"
+                  >
+                    {t('form.name')}
+                  </label>
+                  <input
+                    type="text"
                     id="name"
                     name="name"
                     required
@@ -141,9 +149,14 @@ export function ContactForm() {
                   />
                 </div>
                 <div className="space-y-3">
-                  <label htmlFor="email" className="text-sm font-bold uppercase tracking-widest text-foreground/70 ml-2">{t('form.email')}</label>
-                  <input 
-                    type="email" 
+                  <label
+                    htmlFor="email"
+                    className="text-sm font-bold uppercase tracking-widest text-foreground/70 ml-2"
+                  >
+                    {t('form.email')}
+                  </label>
+                  <input
+                    type="email"
                     id="email"
                     name="email"
                     required
@@ -154,12 +167,17 @@ export function ContactForm() {
               </div>
 
               <div className="space-y-3">
-                <label htmlFor="type" className="text-sm font-bold uppercase tracking-widest text-foreground/70 ml-2">{t('form.type')}</label>
+                <label
+                  htmlFor="type"
+                  className="text-sm font-bold uppercase tracking-widest text-foreground/70 ml-2"
+                >
+                  {t('form.type')}
+                </label>
                 <div className="relative">
-                  <select 
+                  <select
                     id="type"
                     name="type"
-                    className={cn(inputClasses, "appearance-none cursor-pointer")}
+                    className={cn(inputClasses, 'appearance-none cursor-pointer')}
                   >
                     <option value="wedding">{t('form.types.wedding')}</option>
                     <option value="portrait">{t('form.types.portrait')}</option>
@@ -168,19 +186,30 @@ export function ContactForm() {
                     <option value="other">{t('form.types.other')}</option>
                   </select>
                   <div className="pointer-events-none absolute inset-y-0 right-6 flex items-center text-muted-foreground">
-                    <svg className="h-5 w-5 fill-current" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20"><path d="M9.293 12.95l.707.707L15.657 8l-1.414-1.414L10 10.828 5.757 6.586 4.343 8z"/></svg>
+                    <svg
+                      className="h-5 w-5 fill-current"
+                      xmlns="http://www.w3.org/2000/svg"
+                      viewBox="0 0 20 20"
+                    >
+                      <path d="M9.293 12.95l.707.707L15.657 8l-1.414-1.414L10 10.828 5.757 6.586 4.343 8z" />
+                    </svg>
                   </div>
                 </div>
               </div>
 
               <div className="space-y-3">
-                <label htmlFor="message" className="text-sm font-bold uppercase tracking-widest text-foreground/70 ml-2">{t('form.message')}</label>
-                <textarea 
+                <label
+                  htmlFor="message"
+                  className="text-sm font-bold uppercase tracking-widest text-foreground/70 ml-2"
+                >
+                  {t('form.message')}
+                </label>
+                <textarea
                   id="message"
                   name="message"
                   required
                   rows={6}
-                  className={cn(inputClasses, "h-auto min-h-[150px] resize-none")}
+                  className={cn(inputClasses, 'h-auto min-h-[150px] resize-none')}
                   placeholder={t('form.messagePlaceholder')}
                 />
               </div>
@@ -195,7 +224,7 @@ export function ContactForm() {
                   <Loader2 className="animate-spin h-8 w-8 text-primary-foreground" />
                 ) : (
                   <span className="relative z-10 flex items-center gap-4 uppercase tracking-widest text-xs">
-                    {t("form.submit")}
+                    {t('form.submit')}
                     <Send
                       size={20}
                       className="transition-transform duration-500 group-hover:translate-x-2 group-hover:-translate-y-2"

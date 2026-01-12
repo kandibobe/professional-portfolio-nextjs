@@ -3,9 +3,9 @@ import { projects } from '@/lib/projects';
 
 export default function sitemap() {
   const baseUrl = process.env.NEXT_PUBLIC_BASE_URL || 'https://your-portfolio.com';
-  
+
   const pages = ['', '/about', '/services', '/portfolio', '/contact', '/clients'];
-  
+
   const sitemapEntries = [];
 
   for (const locale of routing.locales) {

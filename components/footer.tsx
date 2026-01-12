@@ -1,24 +1,24 @@
-import { useTranslations } from "next-intl";
-import { Instagram, Send, Globe } from "lucide-react";
-import { Link } from "@/i18n/routing";
-import { siteConfig } from "@/lib/config";
+import { useTranslations } from 'next-intl';
+import { Instagram, Send, Globe } from 'lucide-react';
+import { Link } from '@/i18n/routing';
+import { siteConfig } from '@/lib/config';
 
 export function Footer() {
-  const t = useTranslations("Footer");
-  const navT = useTranslations("Header");
+  const t = useTranslations('Footer');
+  const navT = useTranslations('Header');
 
   const navigationItems = [
-    { name: navT("portfolio"), href: "/portfolio" },
-    { name: navT("about"), href: "/about" },
-    { name: navT("services"), href: "/services" },
-    { name: navT("clients"), href: "/clients" },
-    { name: navT("contacts"), href: "/contact" },
+    { name: navT('portfolio'), href: '/portfolio' },
+    { name: navT('about'), href: '/about' },
+    { name: navT('services'), href: '/services' },
+    { name: navT('clients'), href: '/clients' },
+    { name: navT('contacts'), href: '/contact' },
   ];
 
   const socialLinks = [
-    { icon: Instagram, label: "Instagram", href: siteConfig.links.instagram },
-    { icon: Send, label: "Telegram", href: siteConfig.links.telegram },
-    { icon: Globe, label: "VK", href: siteConfig.links.vk },
+    { icon: Instagram, label: 'Instagram', href: siteConfig.links.instagram },
+    { icon: Send, label: 'Telegram', href: siteConfig.links.telegram },
+    { icon: Globe, label: 'VK', href: siteConfig.links.vk },
   ];
 
   return (
@@ -37,13 +37,13 @@ export function Footer() {
               </div>
             </Link>
             <p className="text-muted-foreground max-w-sm text-lg font-light leading-relaxed">
-              {t("description")}
+              {t('description')}
             </p>
           </div>
 
           <div>
             <h4 className="font-bold uppercase tracking-widest text-xs mb-6 text-primary/50">
-              {t("navigation")}
+              {t('navigation')}
             </h4>
             <ul className="space-y-4">
               {navigationItems.map((item) => (
@@ -61,7 +61,7 @@ export function Footer() {
 
           <div>
             <h4 className="font-bold uppercase tracking-widest text-xs mb-6 text-primary/50">
-              {t("connect")}
+              {t('connect')}
             </h4>
             <div className="flex flex-wrap gap-4">
               {socialLinks.map((social) => (
@@ -72,10 +72,7 @@ export function Footer() {
                   rel="noopener noreferrer"
                   className="w-12 h-12 rounded-none bg-background border border-border flex items-center justify-center hover:border-primary hover:bg-primary hover:text-primary-foreground transition-all duration-300 group"
                 >
-                  <social.icon
-                    size={20}
-                    className="group-hover:scale-110 transition-transform"
-                  />
+                  <social.icon size={20} className="group-hover:scale-110 transition-transform" />
                   <span className="sr-only">{social.label}</span>
                 </a>
               ))}
@@ -85,20 +82,14 @@ export function Footer() {
 
         <div className="border-t border-border pt-8 flex flex-col md:flex-row justify-between items-center gap-6 text-[10px] font-bold uppercase tracking-[0.2em] text-muted-foreground">
           <p>
-            © {new Date().getFullYear()} {siteConfig.name}. {t("rights")}
+            © {new Date().getFullYear()} {siteConfig.name}. {t('rights')}
           </p>
           <div className="flex gap-8">
-            <Link
-              href="/privacy"
-              className="hover:text-foreground transition-colors"
-            >
-              {t("privacy")}
+            <Link href="/privacy" className="hover:text-foreground transition-colors">
+              {t('privacy')}
             </Link>
-            <Link
-              href="/terms"
-              className="hover:text-foreground transition-colors"
-            >
-              {t("terms")}
+            <Link href="/terms" className="hover:text-foreground transition-colors">
+              {t('terms')}
             </Link>
           </div>
         </div>

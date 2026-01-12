@@ -21,17 +21,17 @@
       "select": "Select"
     },
     "meta": {
-      "title": "Photographer [Name Surname] | Professional Photography",
-      "description": "Professional photographer specializing in weddings, portraits, and events. Capture your most precious moments with style and elegance."
+      "title": "Vlad Photography | Luxury Wedding & Portrait Photographer in Italy",
+      "description": "Award-winning professional photographer specializing in high-end weddings, editorial portraits, and exclusive events. Capturing timeless stories with elegance."
     },
-    "title": "Photographer [Name Surname]",
-    "subtitle": "Professional photography for businesses and individuals",
+    "title": "Vlad Photography",
+    "subtitle": "Capturing Timeless Stories with Elegance & Precision",
     "viewPortfolio": "View Portfolio",
     "contact": "Contact Me",
     "aboutSection": {
-      "title": "About Me",
-      "description": "Photography is not just my job, it's my way of seeing the world. With over 5 years of experience, I am dedicated to capturing the authentic beauty and sincere emotions of my subjects.",
-      "link": "Discover my story"
+      "title": "The Art of Seeing",
+      "description": "With a decade of experience behind the lens, I specialize in capturing the raw, authentic emotions that make your story unique. My approach blends cinematic storytelling with classic elegance.",
+      "link": "Discover the Artist"
     },
     "servicesPreview": {
       "title": "My Services",
@@ -104,12 +104,12 @@
   },
   "AboutPage": {
     "meta": {
-      "title": "About Me | Photographer [Name Surname]",
-      "description": "Learn more about my journey, my philosophy, and my experience in the world of photography."
+      "title": "About | Vlad Photography - Award-Winning Photographer",
+      "description": "Discover the vision behind the lens. Learn about Vlad's journey, editorial style, and commitment to capturing life's most significant moments."
     },
-    "title": "Hi, my name is [Name]",
-    "intro": "I am a professional photographer with over 5 years of experience. My passion is to capture sincere emotions and important moments of your life.",
-    "description": "Specializing in weddings and portraits. My style combines classic elegance with the vibrancy of reportage.",
+    "title": "Capturing the Essence of Life",
+    "intro": "I am Vlad, a professional photographer dedicated to the art of visual storytelling. For over 10 years, I've been helping clients preserve their most cherished memories through high-end photography.",
+    "description": "Specializing in luxury weddings and editorial portraits, my style is a sophisticated blend of timeless elegance and modern reportage.",
     "stats": {
       "weddings": "Weddings",
       "experience": "Years of experience"
@@ -139,19 +139,37 @@
     "title": "Services and Prices",
     "packages": {
       "mini": {
-        "title": "Mini",
-        "price": "150 €",
-        "features": ["1 hour of shooting", "30 retouched photos", "Delivery in 1 week", "Online gallery"]
+        "title": "Essential Collection",
+        "price": "250 €",
+        "features": [
+          "90-minute session",
+          "50 high-resolution edited images",
+          "Style consultation",
+          "Private online gallery",
+          "Delivery in 7 days"
+        ]
       },
       "standard": {
-        "title": "Standard",
-        "price": "350 €",
-        "features": ["3 hours of shooting", "100 retouched photos", "Delivery in 2 weeks", "Online gallery", "USB stick in a package"]
+        "title": "Signature Story",
+        "price": "550 €",
+        "features": [
+          "4 hours of coverage",
+          "150 premium retouched images",
+          "Fine art editing",
+          "Sneak peek in 48 hours",
+          "Premium keepsake box"
+        ]
       },
       "premium": {
-        "title": "Premium",
-        "price": "700 €",
-        "features": ["Full day (up to 10 hours)", "400+ retouched photos", "Delivery in 3 weeks", "Photobook", "Assistant"]
+        "title": "Heritage Full Day",
+        "price": "1200 €",
+        "features": [
+          "Full day coverage (up to 12 hours)",
+          "Unlimited images",
+          "Artisan photobook",
+          "Second photographer",
+          "Same-day edit slideshow"
+        ]
       }
     },
     "popular": "Popular",

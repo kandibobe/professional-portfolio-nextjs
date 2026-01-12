@@ -1,4 +1,4 @@
-@import "tailwindcss";
+@import 'tailwindcss';
 
 @theme {
   --font-sans: var(--font-geist-sans);
@@ -10,26 +10,26 @@
     /* High-Fashion Editorial Palette - Light */
     --background: #ffffff;
     --foreground: #000000;
-    
-    --primary: #000000; 
+
+    --primary: #000000;
     --primary-foreground: #ffffff;
 
     --secondary: #f7f7f7;
     --secondary-foreground: #000000;
-    
+
     --muted: #f7f7f7;
     --muted-foreground: #666666;
 
     --accent: #e5e5e5;
     --accent-foreground: #000000;
 
-    --destructive: #000000;
+    --destructive: #ef4444;
     --destructive-foreground: #ffffff;
 
     --border: #eeeeee;
     --input: #eeeeee;
     --ring: #000000;
-    
+
     --radius: 0rem; /* Editorial look prefers sharp corners or very subtle radii */
   }
 
@@ -37,19 +37,22 @@
     /* High-Fashion Editorial Palette - Dark */
     --background: #000000;
     --foreground: #ffffff;
-    
+
     --primary: #ffffff;
     --primary-foreground: #000000;
-    
+
     --secondary: #111111;
     --secondary-foreground: #ffffff;
-    
+
     --muted: #111111;
     --muted-foreground: #888888;
-    
+
     --accent: #222222;
     --accent-foreground: #ffffff;
-    
+
+    --destructive: #7f1d1d;
+    --destructive-foreground: #ffffff;
+
     --border: #111111;
     --input: #111111;
     --ring: #ffffff;
@@ -59,29 +62,29 @@
 @theme inline {
   --color-background: var(--background);
   --color-foreground: var(--foreground);
-  
+
   --color-primary: var(--primary);
   --color-primary-foreground: var(--primary-foreground);
-  
+
   --color-secondary: var(--secondary);
   --color-secondary-foreground: var(--secondary-foreground);
-  
+
   --color-muted: var(--muted);
   --color-muted-foreground: var(--muted-foreground);
-  
+
   --color-accent: var(--accent);
   --color-accent-foreground: var(--accent-foreground);
-  
+
   --color-destructive: var(--destructive);
   --color-destructive-foreground: var(--destructive-foreground);
-  
+
   --color-border: var(--border);
   --color-input: var(--input);
   --color-ring: var(--ring);
 
   --font-sans: var(--font-geist-sans);
   --font-mono: var(--font-geist-mono);
-  
+
   --radius-lg: var(--radius);
   --radius-md: calc(var(--radius));
   --radius-sm: calc(var(--radius));
@@ -97,7 +100,12 @@
     letter-spacing: -0.02em;
   }
 
-  h1, h2, h3, h4, h5, h6 {
+  h1,
+  h2,
+  h3,
+  h4,
+  h5,
+  h6 {
     font-weight: 700;
     letter-spacing: -0.04em;
     text-transform: uppercase;
@@ -117,7 +125,7 @@
   .text-balance {
     text-wrap: balance;
   }
-  
+
   .glass {
     @apply bg-background/80 backdrop-blur-md border border-border;
   }
