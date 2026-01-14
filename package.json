@@ -1,0 +1,11 @@
+{
+  "dependencies": {
+    "fslightbox-react": "^2.0.2",
+    "sonner": "^2.0.7"
+  },
+  "devDependencies": {
+    "@axe-core/playwright": "^4.11.0",
+    "@vitejs/plugin-react": "^5.1.2",
+    "@vitest/coverage-v8": "^4.0.17"
+  }
+}
