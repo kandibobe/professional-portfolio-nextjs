@@ -1,34 +1,34 @@
-"use client";
+'use client';
 
-import { useTranslations } from "next-intl";
-import { Github, Linkedin, Twitter, Send, MessageCircle, Instagram, ExternalLink } from "lucide-react";
-import { Link } from "@/i18n/routing";
-import { siteConfig } from "@/lib/config";
-import Image from "next/image";
-import { motion } from "framer-motion";
+import { useTranslations } from 'next-intl';
+import { Github, Send, MessageCircle, Instagram, ExternalLink } from 'lucide-react';
+import { Link } from '@/i18n/routing';
+import { siteConfig } from '@/lib/config';
+import Image from 'next/image';
+import { motion } from 'framer-motion';
 
 export function Footer() {
-  const t = useTranslations("Footer");
-  const navT = useTranslations("Header");
+  const t = useTranslations('Footer');
+  const navT = useTranslations('Header');
 
   const navigationItems = [
-    { name: navT("portfolio"), href: "/portfolio" },
-    { name: navT("about"), href: "/about" },
-    { name: navT("contacts"), href: "/contact" },
+    { name: navT('portfolio'), href: '/portfolio' },
+    { name: navT('about'), href: '/about' },
+    { name: navT('contacts'), href: '/contact' },
   ];
 
   const socialLinks = [
-    { icon: Github, label: "GitHub", href: siteConfig.links.github },
-    { icon: Send, label: "Telegram", href: siteConfig.links.telegram },
-    { icon: Instagram, label: "Instagram", href: siteConfig.links.instagram },
-    { icon: MessageCircle, label: "WhatsApp", href: siteConfig.links.whatsapp },
+    { icon: Github, label: 'GitHub', href: siteConfig.links.github },
+    { icon: Send, label: 'Telegram', href: siteConfig.links.telegram },
+    { icon: Instagram, label: 'Instagram', href: siteConfig.links.instagram },
+    { icon: MessageCircle, label: 'WhatsApp', href: siteConfig.links.whatsapp },
   ];
 
   return (
     <footer className="relative w-full py-24 px-6 md:px-12 bg-slate-950 border-t border-white/5 text-foreground overflow-hidden">
       {/* Background Glow */}
       <div className="absolute bottom-0 left-1/2 -translate-x-1/2 w-full h-[500px] bg-primary/10 blur-[150px] -z-10" />
-      
+
       <div className="container mx-auto">
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-16 mb-20">
           <div className="lg:col-span-2 space-y-8">
@@ -40,9 +40,7 @@ export function Footer() {
                 {siteConfig.name}
               </span>
             </Link>
-            <p className="text-slate-400 max-w-sm leading-relaxed text-base">
-              {t("description")}
-            </p>
+            <p className="text-slate-400 max-w-sm leading-relaxed text-base">{t('description')}</p>
             <div className="flex gap-4">
               {socialLinks.map((social) => (
                 <motion.a
@@ -53,9 +51,7 @@ export function Footer() {
                   rel="noopener noreferrer"
                   className="w-12 h-12 rounded-2xl bg-white/[0.03] border border-white/10 flex items-center justify-center hover:border-primary hover:text-primary transition-colors group backdrop-blur-sm"
                 >
-                  <social.icon
-                    size={20}
-                  />
+                  <social.icon size={20} />
                   <span className="sr-only">{social.label}</span>
                 </motion.a>
               ))}
@@ -89,8 +85,8 @@ export function Footer() {
               <p className="text-sm text-slate-400 font-medium leading-relaxed">
                 Interested in starting a project or just want to say hi?
               </p>
-              <Link 
-                href="/contact" 
+              <Link
+                href="/contact"
                 className="inline-flex items-center gap-2 text-sm font-black text-white hover:text-primary transition-colors uppercase tracking-widest"
               >
                 Let's talk <ExternalLink size={14} />
@@ -105,10 +101,13 @@ export function Footer() {
           </p>
           <div className="flex gap-8">
             <Link href="/privacy" className="hover:text-white transition-colors">
-              Privacy
+              {t('privacy')}
+            </Link>
+            <Link href="/impressum" className="hover:text-white transition-colors">
+              {t('impressum')}
             </Link>
             <Link href="/terms" className="hover:text-white transition-colors">
-              Terms
+              {t('terms')}
             </Link>
           </div>
         </div>

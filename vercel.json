@@ -1,0 +1,8 @@
+{
+  "version": 2,
+  "framework": "nextjs",
+  "regions": ["fra1"],
+  "cleanUrls": true,
+  "buildCommand": "npx prisma generate && next build",
+  "installCommand": "npm install"
+}

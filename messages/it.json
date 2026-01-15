@@ -7,13 +7,20 @@
     "book": "Assumimi",
     "title": "Kobiakov.dev"
   },
+  "CookieConsent": {
+    "message": "Utilizziamo i cookie per migliorare la tua esperienza. Continuando a visitare questo sito, accetti il nostro utilizzo dei cookie.",
+    "accept": "Accetta",
+    "decline": "Rifiuta",
+    "privacy": "Informativa sulla Privacy"
+  },
   "Footer": {
     "rights": "Tutti i diritti riservati",
-    "description": "Sviluppatore AI & Algo-Trading che costruisce soluzioni intelligenti. Bot e app web di precisione.",
+    "description": "Sviluppatore AI & Algo-Trading che crea soluzioni intelligenti. Bot e applicazioni web ingegnerizzati con precisione.",
     "navigation": "Navigazione",
     "connect": "Social",
-    "privacy": "Privacy Policy",
-    "terms": "Termini di Servizio"
+    "privacy": "Informativa sulla Privacy",
+    "terms": "Termini di Servizio",
+    "impressum": "Impressum"
   },
   "HomePage": {
     "meta": {
@@ -175,6 +182,25 @@
       "forgotPassword": "Resetta Accesso",
       "loading": "Verifica in corso..."
     }
+  },
+  "PrivacyPage": {
+    "meta": {
+      "title": "Informativa sulla Privacy | Kobiakov.dev",
+      "description": "Informazioni su come gestiamo i tuoi dati."
+    },
+    "title": "Informativa sulla Privacy",
+    "lastUpdated": "Ultimo aggiornamento: Gennaio 2026",
+    "content": "Questa Informativa sulla Privacy descrive come le tue informazioni personali vengono raccolte, utilizzate e condivise quando visiti Kobiakov.dev. Ci impegniamo a proteggere la tua privacy in conformità con il GDPR/DSGVO."
+  },
+  "ImpressumPage": {
+    "meta": {
+      "title": "Impressum | Kobiakov.dev",
+      "description": "Note legali e informazioni di contatto."
+    },
+    "title": "Impressum",
+    "operator": "Operatore di questo sito web",
+    "contact": "Informazioni di Contatto",
+    "disclaimer": "Esclusione di Responsabilità"
   },
   "ContactPage": {
     "meta": {

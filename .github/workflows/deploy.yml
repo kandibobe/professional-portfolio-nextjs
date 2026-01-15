@@ -16,24 +16,23 @@ jobs:
         with:
           node-version: "20"
           cache: "npm"
-          cache-dependency-path: portfolio-site/package-lock.json
 
       - name: Install dependencies
-        run: cd portfolio-site && npm ci
+        run: npm ci
 
       - name: Lint
-        run: cd portfolio-site && npm run lint
+        run: npm run lint
 
       - name: Run tests
-        run: cd portfolio-site && npm test
+        run: npm test
 
       - name: Generate Prisma Client
-        run: cd portfolio-site && npx prisma generate
+        run: npx prisma generate
         env:
           DATABASE_URL: ${{ secrets.DATABASE_URL }}
 
       - name: Build
-        run: cd portfolio-site && npm run build
+        run: npm run build
         env:
           DATABASE_URL: ${{ secrets.DATABASE_URL }}
           NEXTAUTH_SECRET: ${{ secrets.NEXTAUTH_SECRET }}
@@ -43,6 +42,14 @@ jobs:
   deploy:
     runs-on: ubuntu-latest
     needs: build
+    if: github.ref == 'refs/heads/main'
     steps:
-      - name: Deploy to production
-        run: echo "Deploying to production..."
+      - uses: actions/checkout@v4
+      - name: Install Vercel CLI
+        run: npm install --global vercel@latest
+      - name: Pull Vercel Environment Information
+        run: vercel pull --yes --environment=production --token=${{ secrets.VERCEL_TOKEN }}
+      - name: Build Project Artifacts
+        run: vercel build --prod --token=${{ secrets.VERCEL_TOKEN }}
+      - name: Deploy Project Artifacts to Vercel
+        run: vercel deploy --prebuilt --prod --token=${{ secrets.VERCEL_TOKEN }}

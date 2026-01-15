@@ -24,17 +24,17 @@ Built with **Next.js 15**, **React 19**, **Tailwind CSS v4**, and **Framer Motio
 
 ## 🛠️ Technology Stack
 
-| Category            | Technology                                                              |
-| ------------------- | ----------------------------------------------------------------------- |
-| **Core**            | [Next.js 15](https://nextjs.org/), [React 19](https://react.dev/)        |
-| **Language**        | [TypeScript 5](https://www.typescriptlang.org/)                         |
-| **Styling**         | [Tailwind CSS v4](https://tailwindcss.com/), [Framer Motion](https://www.framer.com/motion/) |
-| **UI Components**   | Custom + [Radix UI](https://www.radix-ui.com/)                          |
-| **3D Graphics**     | [Three.js](https://threejs.org/), [React Three Fiber](https://docs.pmnd.rs/react-three-fiber/) |
-| **i18n**            | [next-intl](https://next-intl-docs.vercel.app/)                         |
-| **Testing**         | [Jest](https://jestjs.io/), [Playwright](https://playwright.dev/)        |
-| **Linting**         | [ESLint](https://eslint.org/), [Prettier](https://prettier.io/)          |
-| **DevOps**          | [Docker](https://www.docker.com/), [Husky](https://typicode.github.io/husky/) |
+| Category          | Technology                                                                                     |
+| ----------------- | ---------------------------------------------------------------------------------------------- |
+| **Core**          | [Next.js 15](https://nextjs.org/), [React 19](https://react.dev/)                              |
+| **Language**      | [TypeScript 5](https://www.typescriptlang.org/)                                                |
+| **Styling**       | [Tailwind CSS v4](https://tailwindcss.com/), [Framer Motion](https://www.framer.com/motion/)   |
+| **UI Components** | Custom + [Radix UI](https://www.radix-ui.com/)                                                 |
+| **3D Graphics**   | [Three.js](https://threejs.org/), [React Three Fiber](https://docs.pmnd.rs/react-three-fiber/) |
+| **i18n**          | [next-intl](https://next-intl-docs.vercel.app/)                                                |
+| **Testing**       | [Jest](https://jestjs.io/), [Playwright](https://playwright.dev/)                              |
+| **Linting**       | [ESLint](https://eslint.org/), [Prettier](https://prettier.io/)                                |
+| **DevOps**        | [Docker](https://www.docker.com/), [Husky](https://typicode.github.io/husky/)                  |
 
 ## 📂 Architecture
 
@@ -69,12 +69,14 @@ The project follows the standard Next.js App Router structure with localized rou
 ### Installation
 
 1.  **Clone the repository:**
+
     ```bash
     git clone https://github.com/kandibobe/professional-portfolio-nextjs.git
     cd professional-portfolio-nextjs
     ```
 
 2.  **Install dependencies:**
+
     ```bash
     npm install
     ```
@@ -105,29 +107,29 @@ docker run -p 3000:3000 portfolio-site
 
 ## ⚙️ Available Scripts
 
-| Script                | Description                                     |
-| --------------------- | ----------------------------------------------- |
-| `npm run dev`         | Starts the development server.                  |
-| `npm run build`       | Builds the application for production.          |
-| `npm run start`       | Starts a production server.                     |
-| `npm run lint`        | Lints the codebase.                             |
-| `npm run format`      | Formats the code with Prettier.                 |
-| `npm test`            | Runs unit tests with Jest.                      |
-| `npm run test:watch`  | Runs tests in watch mode.                       |
-| `npm run storybook`   | Starts the Storybook development server.        |
-| `npm run build-storybook` | Builds Storybook for deployment.            |
-| `npm run analyze`     | Analyzes the bundle size after a build.         |
+| Script                    | Description                              |
+| ------------------------- | ---------------------------------------- |
+| `npm run dev`             | Starts the development server.           |
+| `npm run build`           | Builds the application for production.   |
+| `npm run start`           | Starts a production server.              |
+| `npm run lint`            | Lints the codebase.                      |
+| `npm run format`          | Formats the code with Prettier.          |
+| `npm test`                | Runs unit tests with Jest.               |
+| `npm run test:watch`      | Runs tests in watch mode.                |
+| `npm run storybook`       | Starts the Storybook development server. |
+| `npm run build-storybook` | Builds Storybook for deployment.         |
+| `npm run analyze`         | Analyzes the bundle size after a build.  |
 
 ## 📝 Environment Variables
 
-| Variable              | Description                                      |
-| --------------------- | ------------------------------------------------ |
-| `NEXT_PUBLIC_APP_URL` | The public URL of the application.               |
-| `NEXTAUTH_SECRET`     | A secret for NextAuth.js.                        |
-| `NEXTAUTH_URL`        | The URL for NextAuth.js callbacks.               |
-| `GITHUB_ID`           | Your GitHub application ID.                      |
-| `GITHUB_SECRET`       | Your GitHub application secret.                  |
-| `RESEND_API_KEY`      | Your Resend API key for sending emails.          |
+| Variable              | Description                             |
+| --------------------- | --------------------------------------- |
+| `NEXT_PUBLIC_APP_URL` | The public URL of the application.      |
+| `NEXTAUTH_SECRET`     | A secret for NextAuth.js.               |
+| `NEXTAUTH_URL`        | The URL for NextAuth.js callbacks.      |
+| `GITHUB_ID`           | Your GitHub application ID.             |
+| `GITHUB_SECRET`       | Your GitHub application secret.         |
+| `RESEND_API_KEY`      | Your Resend API key for sending emails. |
 
 ## 🧪 Testing
 
@@ -141,3 +143,50 @@ Contributions are welcome! Please see the [CONTRIBUTING.md](CONTRIBUTING.md) fil
 ## 📄 License
 
 This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
+
+---
+
+## 🚀 Deployment (Professional Vercel Setup)
+
+This project is optimized for Vercel deployment with a robust CI/CD pipeline.
+
+### Prerequisites
+
+- Vercel Account
+- PostgreSQL Database (e.g., Vercel Postgres or Neon)
+- Upstash Redis (for Rate Limiting)
+- Resend API Key (for Contact Form)
+
+### Vercel Configuration
+
+The project includes a `vercel.json` for optimal regional performance (default: `fra1` - Frankfurt).
+
+### GitHub Actions
+
+A professional CI/CD pipeline is configured in `.github/workflows/deploy.yml`:
+
+1. **Lint & Test**: Ensures code quality.
+2. **Build**: Verifies the build process.
+3. **Deploy**: Automatically deploys to Vercel production on push to `main`.
+
+**Required GitHub Secrets:**
+
+- `VERCEL_TOKEN`: Your Vercel API token.
+- `DATABASE_URL`: PostgreSQL connection string.
+- `NEXTAUTH_SECRET`: Secret for NextAuth.
+
+## 👥 Instructions for the Client
+
+### Accessing the Admin Panel
+
+To manage your portfolio, go to `/login` and use your GitHub account or provided credentials.
+
+### Updating Content
+
+- **Translations**: Text can be edited in the `messages/` folder (`en.json` and `it.json`).
+- **Projects**: Manage projects via the admin dashboard (ensure your database is connected).
+- **Images**: Use Cloudinary for high-performance image hosting.
+
+### Performance Monitoring
+
+Real-time insights are available in your Vercel Dashboard under **Analytics** and **Speed Insights**.

@@ -7,13 +7,20 @@
     "book": "Hire Me",
     "title": "Kobiakov.dev"
   },
+  "CookieConsent": {
+    "message": "We use cookies to enhance your experience. By continuing to visit this site you agree to our use of cookies.",
+    "accept": "Accept",
+    "decline": "Decline",
+    "privacy": "Privacy Policy"
+  },
   "Footer": {
     "rights": "All rights reserved",
     "description": "AI & Algo-Trading Developer building intelligent solutions. Precision-engineered bots and web apps.",
     "navigation": "Navigation",
     "connect": "Social",
     "privacy": "Privacy Policy",
-    "terms": "Terms of Service"
+    "terms": "Terms of Service",
+    "impressum": "Impressum"
   },
   "HomePage": {
     "meta": {
@@ -175,6 +182,25 @@
       "forgotPassword": "Reset Access",
       "loading": "Verifying..."
     }
+  },
+  "PrivacyPage": {
+    "meta": {
+      "title": "Privacy Policy | Kobiakov.dev",
+      "description": "Information about how we handle your data."
+    },
+    "title": "Privacy Policy",
+    "lastUpdated": "Last updated: January 2026",
+    "content": "This Privacy Policy describes how your personal information is collected, used, and shared when you visit Kobiakov.dev. We are committed to protecting your privacy in accordance with GDPR/DSGVO."
+  },
+  "ImpressumPage": {
+    "meta": {
+      "title": "Impressum | Kobiakov.dev",
+      "description": "Legal notice and contact information."
+    },
+    "title": "Impressum",
+    "operator": "Operator of this website",
+    "contact": "Contact Information",
+    "disclaimer": "Legal Disclaimer"
   },
   "ContactPage": {
     "meta": {
