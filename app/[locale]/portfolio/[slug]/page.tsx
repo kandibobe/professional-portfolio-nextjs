@@ -68,7 +68,7 @@ export default async function ProjectPage({ params }: ProjectPageProps) {
     description = t(`projects.${project.descriptionKey}`);
   }
   
-  const category = t(project.categoryKey);
+  const category = t(project.categoryKey || 'default');
 
   return (
     <article className="min-h-screen bg-slate-950 text-white overflow-hidden">

@@ -8,7 +8,7 @@ const meta: Meta<typeof Button> = {
   argTypes: {
     variant: {
       control: 'select',
-      options: ['default', 'destructive', 'outline', 'secondary', 'ghost', 'link', 'editorial'],
+      options: ['default', 'destructive', 'outline', 'secondary', 'ghost', 'link'],
     },
     size: {
       control: 'select',
@@ -27,10 +27,10 @@ export const Default: Story = {
   },
 };
 
-export const Editorial: Story = {
+export const Outline: Story = {
   args: {
-    children: 'Editorial Button',
-    variant: 'editorial',
+    children: 'Outline Button',
+    variant: 'outline',
   },
 };
 
@@ -41,10 +41,10 @@ export const Destructive: Story = {
   },
 };
 
-export const Outline: Story = {
+export const Secondary: Story = {
   args: {
-    children: 'Outline Button',
-    variant: 'outline',
+    children: 'Secondary Button',
+    variant: 'secondary',
   },
 };
 

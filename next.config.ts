@@ -1,5 +1,9 @@
-const withNextIntl = require('next-intl/plugin')();
-const withBundleAnalyzer = require('@next/bundle-analyzer')({
+import createNextIntlPlugin from 'next-intl/plugin';
+import withBundleAnalyzerFactory from '@next/bundle-analyzer';
+import { NextConfig } from 'next';
+
+const withNextIntl = createNextIntlPlugin();
+const withBundleAnalyzer = withBundleAnalyzerFactory({
   enabled: process.env.ANALYZE === 'true',
 });
 
@@ -27,7 +31,7 @@ const securityHeaders = [
 ];
 
 /** @type {import('next').NextConfig} */
-const nextConfig = {
+const nextConfig: NextConfig = {
   images: {
     formats: ['image/avif', 'image/webp'],
     remotePatterns: [
@@ -47,4 +51,4 @@ const nextConfig = {
   },
 };
 
-module.exports = withNextIntl(withBundleAnalyzer(nextConfig));
+export default withNextIntl(withBundleAnalyzer(nextConfig));

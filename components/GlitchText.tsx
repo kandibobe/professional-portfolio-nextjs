@@ -1,20 +1,22 @@
 "use client";
 
 import { motion } from "framer-motion";
-import { useState, ComponentType } from "react";
+import { useState, ElementType } from "react";
 
 interface GlitchTextProps {
   text: string;
-  as?: string | ComponentType<any>;
+  as?: ElementType;
   className?: string;
 }
 
-export function GlitchText({ text, as: Component = "span", className }: GlitchTextProps) {
+export function GlitchText({ text, as: Tag = "span", className }: GlitchTextProps) {
   const [isHovered, setIsHovered] = useState(false);
-  const Tag = Component as any;
+
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
+  const Component = Tag as any;
 
   return (
-    <Tag
+    <Component
       className={`relative inline-block ${className}`}
       onMouseEnter={() => setIsHovered(true)}
       onMouseLeave={() => setIsHovered(false)}
@@ -43,6 +45,6 @@ export function GlitchText({ text, as: Component = "span", className }: GlitchTe
           </motion.span>
         </>
       )}
-    </Tag>
+    </Component>
   );
 }

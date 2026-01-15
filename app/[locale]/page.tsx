@@ -1,5 +1,6 @@
 import { getTranslations } from 'next-intl/server';
 import { HomePageContent } from '@/components/HomePageContent';
+import { siteConfig } from '@/lib/config';
 
 export async function generateMetadata({ params }: { params: Promise<{ locale: string }> }) {
   const { locale } = await params;
@@ -53,7 +54,28 @@ export default async function Home() {
     },
   };
 
+  const jsonLd = {
+    "@context": "https://schema.org",
+    "@type": "Person",
+    "name": siteConfig.name,
+    "url": siteConfig.url,
+    "jobTitle": "AI & Algo-Trading Engineer",
+    "sameAs": [
+      siteConfig.links.github,
+      siteConfig.links.twitter,
+      siteConfig.links.linkedin
+    ],
+    "description": t("subtitle"),
+    "knowsAbout": ["AI", "Algorithmic Trading", "Web Development", "Next.js", "Python", "TensorFlow"]
+  };
+
   return (
-    <HomePageContent translations={translations} />
+    <>
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
+      />
+      <HomePageContent translations={translations} />
+    </>
   );
 }

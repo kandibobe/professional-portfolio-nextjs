@@ -84,7 +84,7 @@ function FluidPlane() {
       uMouse: { value: new THREE.Vector2(0.5, 0.5) },
       uResolution: { value: new THREE.Vector2(size.width, size.height) },
     }),
-    []
+    [size.width, size.height]
   );
 
   useEffect(() => {

@@ -3,21 +3,19 @@
 import { Link } from "@/i18n/routing";
 import { Button } from "@/components/ui/button";
 import { siteConfig } from "@/lib/config";
-import { Code2, Cpu, Globe, Send, Clock, Layers, Database, Box, Terminal, ArrowRight, Zap, Shield, Sparkles } from "lucide-react";
+import { Code2, Cpu, Globe, Clock, Layers, Database, Box, Terminal, ArrowRight, Zap, Sparkles } from "lucide-react";
 import { AnimatedHero, FadeInWhenInView, HeroItem, BackgroundEffects, CustomCursor } from "./HomeAnimations";
 import { motion } from "framer-motion";
 import { Magnetic } from "./Magnetic";
-import { Marquee } from "./Marquee";
 import dynamic from "next/dynamic";
 import Image from "next/image";
+import { HeroVisual } from "./HeroVisual";
+import { FeaturedProjects } from "./FeaturedProjects";
+import { Testimonials } from "./Testimonials";
 
 const Scene3D = dynamic(() => import("./Scene3D").then((mod) => mod.Scene), {
   ssr: false,
   loading: () => <div className="absolute inset-0 bg-slate-950/20" />
-});
-
-const HeroSearch = dynamic(() => import("./HeroSearch").then((mod) => mod.HeroSearch), {
-  ssr: false
 });
 
 interface HomePageContentProps {
@@ -62,7 +60,7 @@ const getIcon = (iconName: string) => {
 };
 
 export function HomePageContent({ translations }: HomePageContentProps) {
-  const { hero, subtitle, viewPortfolio, contact, techStack, aboutSection, testimonials, cta } = translations;
+  const { hero, subtitle, viewPortfolio, contact, techStack, aboutSection, testimonials } = translations;
 
   return (
     <div className="flex flex-col min-h-screen bg-background overflow-hidden text-foreground">
@@ -107,6 +105,7 @@ export function HomePageContent({ translations }: HomePageContentProps) {
                     <Link href="/portfolio">
                       <Button
                         size="lg"
+                        aria-label={viewPortfolio}
                         className="h-16 px-10 rounded-2xl text-lg font-black flex items-center gap-3 bg-primary hover:bg-primary/90 shadow-[0_0_20px_rgba(59,130,246,0.3)] transition-all active:scale-95 group"
                       >
                         {viewPortfolio}
@@ -119,6 +118,7 @@ export function HomePageContent({ translations }: HomePageContentProps) {
                       <Button
                         variant="outline"
                         size="lg"
+                        aria-label={contact}
                         className="h-16 px-10 rounded-2xl border-white/10 bg-white/5 hover:bg-white/10 text-lg font-black flex items-center gap-3 transition-all active:scale-95"
                       >
                         <Clock size={20} />
@@ -130,64 +130,15 @@ export function HomePageContent({ translations }: HomePageContentProps) {
               </HeroItem>
             </AnimatedHero>
 
-            {/* Hero Visual - Professional Glass Mockup */}
+            {/* Hero Visual */}
             <FadeInWhenInView delay={0.4}>
-              <div className="relative group lg:block hidden">
-                <div className="absolute -inset-10 bg-gradient-to-tr from-primary/20 via-blue-500/10 to-transparent rounded-full blur-[100px] opacity-50" />
-                <div className="relative p-2 bg-white/5 backdrop-blur-md border border-white/10 rounded-[3rem] shadow-2xl overflow-hidden aspect-[4/3]">
-                   {/* Recommendation: Replace this with a generated high-quality AI visual or professional photo */}
-                   <div className="absolute inset-0 flex items-center justify-center bg-slate-900">
-                      <div className="absolute inset-0 flex items-center justify-center text-white/10 text-9xl font-black select-none">AI</div>
-                      <Image 
-                        src="/hero-visual.jpg" 
-                        alt="AI Engineering Visual" 
-                        fill 
-                        className="object-cover opacity-60 group-hover:scale-105 transition-transform duration-700"
-                        onError={(e) => {
-                          const target = e.target as HTMLImageElement;
-                          target.style.display = 'none';
-                        }}
-                      />
-                      <div className="absolute inset-0 bg-gradient-to-t from-slate-950 via-transparent to-transparent" />
-                   </div>
-                   
-                   <div className="absolute top-8 left-8 flex gap-2">
-                      <div className="w-3 h-3 rounded-full bg-red-500/50" />
-                      <div className="w-3 h-3 rounded-full bg-yellow-500/50" />
-                      <div className="w-3 h-3 rounded-full bg-green-500/50" />
-                   </div>
-
-                   <div className="absolute inset-0 flex flex-col items-center justify-center text-center p-12">
-                      <motion.div 
-                        initial={{ opacity: 0, y: 20 }}
-                        animate={{ opacity: 1, y: 0 }}
-                        className="p-4 rounded-2xl bg-white/5 backdrop-blur-xl border border-white/10 shadow-2xl mb-6"
-                      >
-                        <Shield className="w-12 h-12 text-primary" />
-                      </motion.div>
-                      <h4 className="text-2xl font-black text-white uppercase tracking-widest mb-2">Neural Optimization</h4>
-                      <div className="w-32 h-1 bg-primary/50 rounded-full" />
-                   </div>
-                </div>
-              </div>
+              <HeroVisual />
             </FadeInWhenInView>
           </div>
         </section>
 
-        {/* Portfolio Quick Access */}
-        <section className="py-32 relative">
-           <div className="container mx-auto px-6 md:px-12">
-              <FadeInWhenInView>
-                <div className="flex flex-col items-center text-center mb-20">
-                   <h2 className="text-5xl md:text-7xl font-black mb-6 uppercase tracking-tighter italic">Portfolio</h2>
-                   <p className="text-xl text-muted-foreground max-w-2xl font-medium">Engineered for precision. Built for scale.</p>
-                   <div className="mt-12 w-full max-w-3xl">
-                     <HeroSearch />
-                   </div>
-                </div>
-              </FadeInWhenInView>
-           </div>
-        </section>
+        {/* Featured Projects */}
+        <FeaturedProjects />
 
         {/* Tech Stack - Clean Minimalist Grid */}
         <section className="py-32 relative">
@@ -199,31 +150,32 @@ export function HomePageContent({ translations }: HomePageContentProps) {
             <div className="grid grid-cols-2 md:grid-cols-4 gap-4 max-w-6xl mx-auto">
               {techStack.map((tech, idx) => (
                 <FadeInWhenInView key={idx} delay={idx * 0.05}>
-                  <div className="group flex items-center gap-4 p-6 bg-secondary/50 border border-border rounded-2xl hover:border-primary transition-all duration-300">
+                  <motion.div 
+                    whileHover={{ y: -5, scale: 1.02 }}
+                    className="group flex items-center gap-4 p-6 bg-secondary/50 border border-border rounded-2xl hover:border-primary transition-all duration-300 shadow-sm hover:shadow-xl hover:shadow-primary/10"
+                  >
                     <div className="w-12 h-12 flex items-center justify-center bg-background rounded-xl text-muted-foreground group-hover:text-primary group-hover:scale-110 transition-all">
                       {getIcon(tech.icon)}
                     </div>
                     <span className="font-bold text-lg">{tech.name}</span>
-                  </div>
+                  </motion.div>
                 </FadeInWhenInView>
               ))}
             </div>
           </div>
         </section>
 
-        {/* About Preview - Professional Profile Layout */}
+        {/* About Preview */}
         <section className="py-32 relative bg-secondary/30">
             <div className="container mx-auto px-6">
               <div className="grid grid-cols-1 lg:grid-cols-2 gap-20 items-center">
-                <div className="relative">
+                <div className="relative group">
                    <div className="aspect-[4/5] bg-slate-200 rounded-[2rem] overflow-hidden shadow-2xl relative flex items-center justify-center text-slate-400">
-                      <span className="text-sm font-bold uppercase tracking-widest">Photo Placeholder</span>
-                      {/* Recommendation: Replace with professional portrait */}
                       <Image 
                         src="/profile.jpg" 
                         alt={aboutSection.imageAlt} 
                         fill 
-                        className="object-cover grayscale hover:grayscale-0 transition-all duration-700" 
+                        className="object-cover grayscale group-hover:grayscale-0 transition-all duration-700" 
                         onError={(e) => {
                           const target = e.target as HTMLImageElement;
                           target.style.display = 'none';
@@ -270,6 +222,9 @@ export function HomePageContent({ translations }: HomePageContentProps) {
               </div>
             </div>
         </section>
+
+        {/* Testimonials */}
+        <Testimonials data={testimonials} />
 
         {/* CTA Section */}
         <section className="py-48 relative overflow-hidden">

@@ -34,7 +34,8 @@ export async function POST(request: Request) {
     const validatedData = contactFormSchema.parse(body);
 
     if (!process.env.RESEND_API_KEY || !resend) {
-      console.error('RESEND_API_KEY is not set');
+      const logger = (await import('@/lib/logger')).default;
+      logger.error('RESEND_API_KEY is not set');
       return NextResponse.json({ error: 'Email service not configured' }, { status: 500 });
     }
 
@@ -76,7 +77,8 @@ export async function POST(request: Request) {
     }
 
     if (error) {
-      console.error('Resend error:', error);
+      const logger = (await import('@/lib/logger')).default;
+      logger.error({ resendError: error }, 'Resend error');
       return NextResponse.json({ error: error.message }, { status: 400 });
     }
 
@@ -88,7 +90,8 @@ export async function POST(request: Request) {
         { status: 400 }
       );
     }
-    console.error('Contact form error:', err);
+    const logger = (await import('@/lib/logger')).default;
+    logger.error({ error: err }, 'Contact form error');
     return NextResponse.json({ error: 'Internal server error' }, { status: 500 });
   }
 }

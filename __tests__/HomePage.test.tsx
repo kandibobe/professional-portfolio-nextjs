@@ -17,6 +17,29 @@ jest.mock('@/i18n/routing', () => ({
   Link: ({ children, href }: { children: React.ReactNode; href: string }) => <a href={href}>{children}</a>,
 }));
 
+// Mock Scene3D
+jest.mock('../components/Scene3D', () => ({
+  __esModule: true,
+  Scene: () => <div data-testid="scene-3d" />,
+  default: () => <div data-testid="scene-3d" />,
+}));
+
+// Mock Magnetic
+jest.mock('../components/Magnetic', () => ({
+  Magnetic: ({ children }: any) => <div data-testid="magnetic">{children}</div>,
+}));
+
+// Mock Marquee
+jest.mock('../components/Marquee', () => ({
+  Marquee: ({ children }: any) => <div data-testid="marquee">{children}</div>,
+}));
+
+// Mock next/image
+jest.mock('next/image', () => ({
+  __esModule: true,
+  default: ({ fill, ...props }: any) => <img {...props} data-fill={fill ? "true" : "false"} />,
+}));
+
 // Mock framer-motion
 jest.mock('framer-motion', () => ({
   motion: {
@@ -40,6 +63,16 @@ jest.mock('lucide-react', () => ({
   Code2: () => <div data-testid="code-icon" />,
   Cpu: () => <div data-testid="cpu-icon" />,
   Globe: () => <div data-testid="globe-icon" />,
+  Send: () => <div data-testid="send-icon" />,
+  Clock: () => <div data-testid="clock-icon" />,
+  Layers: () => <div data-testid="layers-icon" />,
+  Database: () => <div data-testid="database-icon" />,
+  Box: () => <div data-testid="box-icon" />,
+  Terminal: () => <div data-testid="terminal-icon" />,
+  ArrowRight: () => <div data-testid="arrow-right-icon" />,
+  Zap: () => <div data-testid="zap-icon" />,
+  Shield: () => <div data-testid="shield-icon" />,
+  Sparkles: () => <div data-testid="sparkles-icon" />,
 }));
 
 // Mock HeroSearch
@@ -47,11 +80,28 @@ jest.mock('../components/HeroSearch', () => ({
   HeroSearch: () => <div data-testid="hero-search" />,
 }));
 
+// Mock HeroVisual
+jest.mock('../components/HeroVisual', () => ({
+  HeroVisual: () => <div data-testid="hero-visual" />,
+}));
+
+// Mock FeaturedProjects
+jest.mock('../components/FeaturedProjects', () => ({
+  FeaturedProjects: () => <div data-testid="featured-projects" />,
+}));
+
+// Mock Testimonials
+jest.mock('../components/Testimonials', () => ({
+  Testimonials: () => <div data-testid="testimonials" />,
+}));
+
 // Mock HomeAnimations
 jest.mock('../components/HomeAnimations', () => ({
   AnimatedHero: ({ children }: any) => <div data-testid="animated-hero">{children}</div>,
   FadeInWhenInView: ({ children }: any) => <div data-testid="fade-in">{children}</div>,
   HeroItem: ({ children }: any) => <div data-testid="hero-item">{children}</div>,
+  CustomCursor: () => <div data-testid="custom-cursor" />,
+  BackgroundEffects: () => <div data-testid="background-effects" />,
 }));
 
 // Mock UI Button

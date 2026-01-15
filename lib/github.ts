@@ -2,6 +2,20 @@ import { Project } from "./projects";
 
 const GITHUB_USERNAME = "kandibobe";
 
+interface GithubRepo {
+  id: number;
+  name: string;
+  description: string | null;
+  fork: boolean;
+  language: string | null;
+  topics?: string[];
+  created_at: string;
+  html_url: string;
+  homepage: string | null;
+  stargazers_count: number;
+  forks_count: number;
+}
+
 export async function getGithubProjects(): Promise<Project[]> {
   try {
     const response = await fetch(
@@ -19,11 +33,11 @@ export async function getGithubProjects(): Promise<Project[]> {
 
     if (!response.ok) return [];
 
-    const repos = await response.json();
+    const repos = await response.json() as GithubRepo[];
 
     return repos
-      .filter((repo: any) => !repo.fork && repo.name !== GITHUB_USERNAME) // Filter out forks and profile repo
-      .map((repo: any) => ({
+      .filter((repo) => !repo.fork && repo.name !== GITHUB_USERNAME) // Filter out forks and profile repo
+      .map((repo) => ({
         id: repo.id,
         slug: repo.name,
         title: repo.name.split("-").map((word: string) => word.charAt(0).toUpperCase() + word.slice(1)).join(" "),
@@ -33,7 +47,7 @@ export async function getGithubProjects(): Promise<Project[]> {
         src: `https://opengraph.githubassets.com/1/${GITHUB_USERNAME}/${repo.name}`,
         technologies: repo.topics && repo.topics.length > 0 
           ? repo.topics 
-          : [repo.language].filter(Boolean),
+          : [repo.language].filter((l): l is string => !!l),
         date: new Date(repo.created_at).getFullYear().toString(),
         githubUrl: repo.html_url,
         liveUrl: repo.homepage || undefined,
@@ -49,7 +63,7 @@ export async function getGithubProjects(): Promise<Project[]> {
 }
 
 // Keep old function for compatibility if needed, but update it to use the same logic
-export async function getGithubStats(username: string) {
+export async function getGithubStats(_username: string) {
   const projects = await getGithubProjects();
   return projects.map(p => ({
     name: p.slug,

@@ -4,13 +4,20 @@ import { useEffect, useState } from "react";
 import { motion } from "framer-motion";
 import { Activity, Zap } from "lucide-react";
 
+interface CommitActivity {
+  id: number;
+  repo: string;
+  msg: string;
+  time: string;
+}
+
 export function RealTimeMonitor() {
-  const [commits, setCommits] = useState<any[]>([]);
+  const [commits, setCommits] = useState<CommitActivity[]>([]);
 
   useEffect(() => {
     // In a real scenario, this would be a WebSocket connection
     const interval = setInterval(() => {
-      const newCommit = {
+      const newCommit: CommitActivity = {
         id: Math.random(),
         repo: "professional-portfolio",
         msg: "Optimizing WebGL Shaders...",

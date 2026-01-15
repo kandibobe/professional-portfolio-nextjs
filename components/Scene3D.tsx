@@ -1,8 +1,8 @@
 "use client";
 
-import { useRef, useState } from "react";
+import { useRef, useState, useMemo } from "react";
 import { Canvas, useFrame } from "@react-three/fiber";
-import { Sphere, MeshDistortMaterial, Float, MeshWobbleMaterial } from "@react-three/drei";
+import { Sphere, MeshDistortMaterial, Float } from "@react-three/drei";
 import * as THREE from "three";
 
 function AnimatedSphere() {
@@ -37,8 +37,24 @@ function AnimatedSphere() {
   );
 }
 
+const generateCubes = (count: number) => {
+  return Array.from({ length: count }).map(() => ({
+    position: [
+      Math.random() * 10 - 5,
+      Math.random() * 10 - 5,
+      Math.random() * 10 - 10,
+    ] as [number, number, number],
+    rotation: [
+      Math.random() * Math.PI,
+      Math.random() * Math.PI,
+      0,
+    ] as [number, number, number],
+  }));
+};
+
 function FloatingCubes() {
   const cubesRef = useRef<THREE.Group>(null);
+  const cubes = useMemo(() => generateCubes(20), []);
 
   useFrame((state) => {
     if (cubesRef.current) {
@@ -48,15 +64,11 @@ function FloatingCubes() {
 
   return (
     <group ref={cubesRef}>
-      {Array.from({ length: 20 }).map((_, i) => (
+      {cubes.map((cube, i) => (
         <Float key={i} speed={2} rotationIntensity={2} floatIntensity={1}>
           <mesh
-            position={[
-              Math.random() * 10 - 5,
-              Math.random() * 10 - 5,
-              Math.random() * 10 - 10,
-            ]}
-            rotation={[Math.random() * Math.PI, Math.random() * Math.PI, 0]}
+            position={cube.position}
+            rotation={cube.rotation}
           >
             <boxGeometry args={[0.2, 0.2, 0.2]} />
             <meshStandardMaterial color="#60A5FA" opacity={0.3} transparent />

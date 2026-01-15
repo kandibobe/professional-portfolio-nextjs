@@ -2,16 +2,24 @@
 
 import { useEffect, useState } from "react";
 import { motion } from "framer-motion";
-import { TrendingUp, DollarSign, BarChart3 } from "lucide-react";
+import { TrendingUp } from "lucide-react";
+
+interface CryptoPrice {
+  usd: number;
+}
+
+interface PriceData {
+  [key: string]: CryptoPrice;
+}
 
 export function LiveMarketData() {
-  const [prices, setPrices] = useState<any>(null);
+  const [prices, setPrices] = useState<PriceData | null>(null);
 
   useEffect(() => {
     const fetchPrices = async () => {
       try {
         const res = await fetch("https://api.coingecko.com/api/v3/simple/price?ids=bitcoin,ethereum,solana&vs_currencies=usd");
-        const data = await res.json();
+        const data = await res.json() as PriceData;
         setPrices(data);
       } catch (e) {
         console.error(e);
@@ -27,7 +35,7 @@ export function LiveMarketData() {
 
   return (
     <div className="flex gap-4 overflow-x-auto pb-4 no-scrollbar">
-      {Object.entries(prices).map(([id, data]: [string, any]) => (
+      {Object.entries(prices).map(([id, data]) => (
         <motion.div
           whileHover={{ y: -5 }}
           key={id}

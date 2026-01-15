@@ -14,7 +14,7 @@ export default function Error({
   reset: () => void;
 }) {
   useEffect(() => {
-    console.error(error);
+    import('@/lib/logger').then((mod) => mod.default.error(error));
   }, [error]);
 
   return (

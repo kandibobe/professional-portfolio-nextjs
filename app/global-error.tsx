@@ -11,7 +11,7 @@ export default function GlobalError({
 }) {
   useEffect(() => {
     // Log the error to an error reporting service
-    console.error(error);
+    import('@/lib/logger').then((mod) => mod.default.error(error));
   }, [error]);
 
   return (
