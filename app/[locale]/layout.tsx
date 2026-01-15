@@ -11,16 +11,31 @@ import { ThemeProvider } from "@/components/theme-provider";
 import { getTranslations } from 'next-intl/server';
 import { siteConfig } from '@/lib/config';
 import { ScrollProgress } from "@/components/ScrollProgress";
-import AuthSessionProvider from "@/components/AuthSessionProvider";
+import { PageTransition } from "@/components/PageTransition";
+import { CommandPalette } from "@/components/CommandPalette";
+import { BackgroundShader } from "@/components/BackgroundShader";
+import { AIChat } from "@/components/AIChat";
+import { Analytics } from "@vercel/analytics/react";
+import { SpeedInsights } from "@vercel/speed-insights/next";
+
+/** @type {import('next').Viewport} */
+export const viewport = {
+  themeColor: [
+    { media: '(prefers-color-scheme: light)', color: '#ffffff' },
+    { media: '(prefers-color-scheme: dark)', color: '#000000' },
+  ],
+};
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
   subsets: ["latin"],
+  display: 'swap',
 });
 
 const geistMono = Geist_Mono({
   variable: "--font-geist-mono",
   subsets: ["latin"],
+  display: 'swap',
 });
 
 export async function generateMetadata({
@@ -39,13 +54,13 @@ export async function generateMetadata({
     },
     description: t('description'),
     keywords: [
-      'photography',
-      'wedding photographer',
-      'portrait photography',
-      'professional photographer',
-      'event photography',
-      'fine art photography',
-      'commercial photography',
+      'Full-Stack Developer',
+      'Next.js',
+      'React',
+      'TypeScript',
+      'AI Enthusiast',
+      'Software Engineering',
+      'Web Development',
     ],
     authors: [{ name: siteConfig.name }],
     openGraph: {
@@ -72,6 +87,12 @@ export async function generateMetadata({
       index: true,
       follow: true,
     },
+    alternates: {
+      canonical: './',
+      languages: Object.fromEntries(
+        routing.locales.map((l) => [l, `/${l}`])
+      ),
+    },
     manifest: '/manifest.json',
   };
 }
@@ -89,8 +110,7 @@ export default async function LocaleLayout({
 }) {
   const {locale} = await params;
 
-  // eslint-disable-next-line @typescript-eslint/no-explicit-any
-  if (!routing.locales.includes(locale as any)) {
+  if (!routing.locales.includes(locale as typeof routing.locales[number])) {
     notFound();
   }
  
@@ -98,33 +118,18 @@ export default async function LocaleLayout({
  
   const jsonLd = {
     "@context": "https://schema.org",
-    "@type": "PhotographyBusiness",
+    "@type": "Person",
     "name": siteConfig.name,
+    "jobTitle": "Full-Stack Developer",
     "image": `${siteConfig.url}${siteConfig.ogImage}`,
     "url": siteConfig.url,
-    "telephone": siteConfig.contact.phone,
+    "sameAs": Object.values(siteConfig.links),
+    "description": siteConfig.description,
     "address": {
       "@type": "PostalAddress",
-      "streetAddress": siteConfig.contact.address.street,
       "addressLocality": siteConfig.contact.address.city,
       "addressRegion": siteConfig.contact.address.region,
-      "postalCode": siteConfig.contact.address.zip,
       "addressCountry": siteConfig.contact.address.country
-    },
-    "sameAs": Object.values(siteConfig.links),
-    "priceRange": "$$$",
-    "openingHoursSpecification": {
-      "@type": "OpeningHoursSpecification",
-      "dayOfWeek": [
-        "Monday",
-        "Tuesday",
-        "Wednesday",
-        "Thursday",
-        "Friday",
-        "Saturday"
-      ],
-      "opens": "09:00",
-      "closes": "18:00"
     }
   };
 
@@ -137,22 +142,34 @@ export default async function LocaleLayout({
         />
       </head>
       <body className={`${geistSans.variable} ${geistMono.variable} antialiased flex flex-col min-h-screen`}>
+        <a 
+          href="#main-content" 
+          className="sr-only focus:not-sr-only focus:fixed focus:top-4 focus:left-4 focus:z-[1000] focus:px-4 focus:py-2 focus:bg-primary focus:text-white focus:rounded-lg"
+        >
+          Skip to content
+        </a>
         <ThemeProvider
           attribute="class"
           defaultTheme="system"
           enableSystem
           disableTransitionOnChange
         >
-          <AuthSessionProvider>
-            <NextIntlClientProvider messages={messages}>
+          <NextIntlClientProvider messages={messages}>
+            <CommandPalette>
+              <BackgroundShader />
               <ScrollProgress />
               <Header />
-              <main className="flex-1 flex flex-col">
-                {children}
+              <main id="main-content" className="flex-1 flex flex-col outline-none" tabIndex={-1}>
+                <PageTransition>
+                  {children}
+                </PageTransition>
               </main>
               <Footer />
-            </NextIntlClientProvider>
-          </AuthSessionProvider>
+              <AIChat />
+            </CommandPalette>
+            <Analytics />
+            <SpeedInsights />
+          </NextIntlClientProvider>
         </ThemeProvider>
       </body>
     </html>

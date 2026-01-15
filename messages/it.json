@@ -1,202 +1,206 @@
 {
   "Header": {
-    "portfolio": "Portfolio",
-    "about": "Su di me",
+    "portfolio": "Progetti",
+    "about": "Chi Sono",
     "services": "Servizi",
-    "clients": "Clienti",
     "contacts": "Contatti",
-    "book": "Prenota servizio",
-    "title": "Portfolio"
+    "book": "Assumimi",
+    "title": "Kobiakov.dev"
   },
   "Footer": {
     "rights": "Tutti i diritti riservati",
-    "description": "Cattura i tuoi momenti unici attraverso l'obiettivo della fotografia professionale. Disponibile per servizi in tutto il mondo.",
+    "description": "Sviluppatore AI & Algo-Trading che costruisce soluzioni intelligenti. Bot e app web di precisione.",
     "navigation": "Navigazione",
     "connect": "Social",
-    "privacy": "Informativa sulla Privacy",
+    "privacy": "Privacy Policy",
     "terms": "Termini di Servizio"
   },
   "HomePage": {
-    "services": {
-      "select": "Seleziona"
-    },
     "meta": {
-      "title": "Fotografo [Nome Cognome] | Fotografia Professionale",
-      "description": "Fotografo professionista specializzato in matrimoni, ritratti e eventi. Cattura i tuoi momenti più preziosi con stile ed eleganза."
+      "title": "Kobiakov.dev | Sviluppatore AI & Algo-Trading",
+      "description": "Portfolio professionale di Vladyslav Kobiakov, specializzato in bot di trading guidati dall'AI, automazione Telegram e applicazioni web ad alte prestazioni."
     },
-    "title": "Fotografo [Nome Cognome]",
-    "subtitle": "Fotografia professionale per aziende e privati",
-    "viewPortfolio": "Vedi Portfolio",
+    "hero": {
+      "available": "Disponibile per Nuovi Progetti",
+      "greeting": "Ciao, sono "
+    },
+    "title": "Kobiakov.dev",
+    "subtitle": "Progetto sistemi di trading intelligenti e applicazioni web potenziate dall'AI. Dalla disciplina sportiva professionale al codice ad alta frequenza.",
+    "viewPortfolio": "Vedi il mio lavoro",
     "contact": "Contattami",
     "aboutSection": {
-      "title": "Chi Sono",
-      "description": "La fotografia non è solo il mio lavoro, è il mio modo di vedere il mondo. Con oltre 5 anni di esperienza, mi dedico a catturare la bellezza autentica e le emozioni sincere dei miei soggetti.",
-      "link": "Scopri la mia storia"
+      "title": "Esperienza",
+      "description": "Specializzato nell'intersezione tra AI, mercati finanziari ed ecosistemi web. Costruisco strumenti che non solo funzionano, ma performano con disciplina competitiva.",
+      "link": "La storia completa",
+      "imageAlt": "AI",
+      "heading": "Maestria <br /> del Codice <br /> Intelligente"
     },
-    "servicesPreview": {
-      "title": "I Miei Servizi",
-      "wedding": "Matrimoni",
-      "portrait": "Ritratti",
-      "events": "Eventi"
+    "cta": {
+      "heading": "Pronto ad <br /> accelerare?"
     },
     "testimonials": {
-      "title": "Cosa dicono i clienti",
+      "title": "Prove Sociali",
       "1": {
-        "text": "Le foto sono meravigliose! Hai saputo cogliere ogni emozione del nostro matrimonio.",
-        "author": "Giulia e Marco"
+        "text": "Vladyslav porta un livello unico di disciplina nel suo codice. I suoi bot di trading sono incredibilmente robusti.",
+        "author": "Trader @ Private Alpha"
       },
       "2": {
-        "text": "Professionale, discreto e creativo. Il miglior fotografo che potessimo scegliere.",
-        "author": "Alessandro B."
+        "text": "L'agente AI di Telegram che ha costruito per noi ha trasformato il nostro engagement con i clienti. L'esecuzione tecnica è impeccabile.",
+        "author": "COO @ TechFlow"
       },
       "3": {
-        "text": "Un'esperienza divertente e rilassata, e il risultato è stato oltre le aspettative.",
-        "author": "Laura P."
+        "text": "Uno sviluppatore raro che capisce la volatilità del mercato e come codificare intorno ad essa. Altamente raccomandato.",
+        "author": "Fund Manager"
       }
     }
   },
+  "TechStack": {
+    "nextjs": "Next.js 15",
+    "react": "React 19",
+    "typescript": "TypeScript",
+    "tailwind": "Tailwind CSS v4",
+    "python": "Python",
+    "tensorflow": "TensorFlow",
+    "pandas": "Pandas",
+    "docker": "Docker"
+  },
   "PortfolioPage": {
     "meta": {
-      "title": "Portfolio | Fotografo [Nome Cognome]",
-      "description": "Esplora la galleria dei miei migliori scatti: matrimoni, ritratti, love story e molto altro."
+      "title": "Progetti | Kobiakov.dev",
+      "description": "Esplora i miei ultimi progetti in AI, Algo-Trading e Sviluppo Web."
     },
     "title": "Portfolio",
+    "searchPlaceholder": "Cerca Progetti...",
     "categories": {
       "all": "Tutti",
-      "wedding": "Matrimoni",
-      "portrait": "Ritratti",
-      "lovestory": "Love Story"
+      "webdev": "App Web",
+      "ai": "AI & Algo",
+      "other": "Bot"
     },
     "projects": {
-      "annaIgorWedding": { 
-        "title": "Matrimonio di Anna e Igor", 
-        "description": "Una giornata indimenticabile piena di emozioni e stile." 
-      },
-      "studioPortrait": { 
-        "title": "Ritratto in studio", 
-        "description": "Scatti minimalisti che catturano la vera essenza." 
-      },
-      "parkWalk": { 
-        "title": "Passeggiata nel parco", 
-        "description": "Momenti spontanei immersi nella natura." 
-      },
-      "businessPortrait": { 
-        "title": "Ritratto Business", 
-        "description": "Professionalità ed eleganza per il tuo personal brand." 
-      },
-      "elenaDmitryWedding": { 
-        "title": "Matrimonio di Elena e Dmitry", 
-        "description": "Eleganza classica e momenti commoventi." 
-      },
-      "morningBride": { 
-        "title": "Mattina della sposa", 
-        "description": "La delicatezza e l'attesa prima del grande sì." 
-      },
-      "rooftopLovestory": { 
-        "title": "Love Story sul tetto", 
-        "description": "Amore ad alta quota con vista sulla città." 
-      },
-      "familySession": { 
-        "title": "Servizio fotografico di famiglia", 
-        "description": "Ricordi preziosi che dureranno per sempre." 
-      }
+      "mftAlgoBot": "MFT Algo-Trading Bot",
+      "mftAlgoBotDescription": "Bot di trading algoritmico avanzato con analisi di mercato guidata dall'AI ed esecuzione automatizzata.",
+      "personalPortfolio": "Portfolio Professionale",
+      "personalPortfolioDescription": "Portfolio moderno e ad alte prestazioni costruito con le ultime tecnologie web.",
+      "aiChatInterface": "Interfaccia Chat AI",
+      "aiChatInterfaceDescription": "Interfaccia AI conversazionale in tempo reale con risposte in streaming e memoria del contesto.",
+      "defiDashboard": "Dashboard Analytics DeFi",
+      "defiDashboardDescription": "Dashboard completa per monitorare le prestazioni del portfolio DeFi e le tendenze del mercato."
     }
   },
   "AboutPage": {
     "meta": {
-      "title": "Chi Sono | Fotografo [Nome Cognome]",
-      "description": "Scopri di più sul mio percorso, la mia filosofia e la mia esperienza nel mondo della fotografia."
+      "title": "Chi Sono | Kobiakov.dev",
+      "description": "Scopri la persona dietro il codice - Vladyslav Kobiakov."
     },
-    "title": "Ciao, mi chiamo [Nome]",
-    "intro": "Sono un fotografo professionista con oltre 5 anni di esperienza. La mia passione è catturare emozioni sincere e momenti importanti della tua vita.",
-    "description": "Specializzato in matrimoni e ritratti. Il mio stile combina l'eleganza classica con la vivacità del reportage.",
+    "title": "Ciao, sono Vladyslav Kobiakov",
+    "intro": "Ingegnere del Software & Appassionato di Algo-Trading con 4 anni di esperienza nel mercato.",
+    "description": "Colmo il divario tra i mercati finanziari e le moderne tecnologie web. Il mio background nel canottaggio competitivo (7 anni) ha instillato un livello di disciplina e resistenza che ora applico alla costruzione di complessi sistemi guidati dall'AI. Dall'elaborazione delle informazioni e l'ingegneria del software allo sviluppo di bot di trading ad alta frequenza, mi concentro su prestazioni, affidabilità e scala.",
     "stats": {
-      "weddings": "Matrimoni",
-      "experience": "Anni di esperienza"
+      "projects": "Progetti",
+      "experience": "Anni nel Mercato"
     },
-    "photoAlt": "Foto dell'autore",
     "faq": {
-      "title": "Domande Frequenti",
+      "title": "Domande Comuni",
       "1": {
-        "q": "Come posso prenotare una sessione?",
-        "a": "Puoi scrivermi tramite il modulo di contatto o su WhatsApp. Ti risponderò entro 24 ore per discutere i dettagli e confermare la data."
+        "q": "Che tipo di bot costruisci?",
+        "a": "Mi specializzo in agenti Telegram potenziati dall'AI, bot di trading ad alta frequenza per Crypto/Forex e script di elaborazione dati automatizzati."
       },
       "2": {
-        "q": "In quanto tempo riceverò le foto?",
-        "a": "Per i ritratti la consegna è in 1-2 settimane. Per i matrimoni entro 3-4 settimane. Riceverai un link a una galleria privata."
+        "q": "Lavori con team esistenti?",
+        "a": "Sì. Posso operare come sviluppatore solista o integrarmi nel tuo team tecnico per gestire componenti AI/Algo."
       },
       "3": {
-        "q": "Lavori anche fuori città?",
-        "a": "Sì, sono disponibile per trasferte in tutta Italia e all'estero. I costi di viaggio verranno concordati in base alla distanza."
+        "q": "Che lingue parli?",
+        "a": "Parlo correntemente inglese, tedesco, russo e ucraino, facilitando una comunicazione fluida per progetti internazionali."
       }
-    }
+    },
+    "photoAlt": "Foto profilo di Vladyslav Kobiakov"
   },
   "ServicesPage": {
     "meta": {
-      "title": "Servizi e Prezzi | Fotografo [Nome Cognome]",
-      "description": "Scopri i pacchetti e i prezzi per servizi fotografici di matrimonio, ritratti e altro ancora."
+      "title": "Servizi | Kobiakov.dev",
+      "description": "Servizi professionali di AI e Sviluppo offerti da Kobiakov.dev"
     },
-    "title": "Servizi e Prezzi",
+    "title": "Servizi",
+    "description": "Da script a scopo singolo a complessi ecosistemi AI.",
+    "popular": "Scelta Migliore",
+    "select": "Prenota Ora",
     "packages": {
       "mini": {
-        "title": "Mini",
-        "price": "150 €",
-        "features": ["1 ora di riprese", "30 foto ritoccate", "Consegna in 1 settimana", "Galleria online"]
+        "title": "MVP / Script",
+        "price": "$1,000",
+        "features": [
+          "Bot TG a Scopo Singolo",
+          "Web Scraping / Script",
+          "Landing Page",
+          "1 Mese di Supporto"
+        ]
       },
       "standard": {
-        "title": "Standard",
-        "price": "350 €",
-        "features": ["3 ore di riprese", "100 foto ritoccate", "Consegna in 2 settimane", "Galleria online", "Chiavetta USB in confezione"]
+        "title": "Professionale",
+        "price": "$3,500",
+        "features": [
+          "Applicazione Web AI Completa",
+          "Sistema di Algo-Trading",
+          "Integrazione Agente AI Personalizzato",
+          "Dashboard Admin",
+          "3 Mesi di Supporto"
+        ]
       },
       "premium": {
-        "title": "Premium",
-        "price": "700 €",
-        "features": ["Giornata intera (fino a 10 ore)", "400+ foto ritoccate", "Consegna in 3 settimane", "Fotolibro", "Assistente"]
-      }
-    },
-    "popular": "Popolare",
-    "select": "Seleziona"
-  },
-  "ContactPage": {
-    "meta": {
-      "title": "Contatti | Fotografo [Nome Cognome]",
-      "description": "Contattami per prenotare un servizio fotografico o richiedere informazioni."
-    },
-    "title": "Contattami",
-    "description": "Compila il modulo qui sotto o scrivimi sui social. Risponderò entro 24 ore.",
-    "form": {
-      "name": "Nome",
-      "namePlaceholder": "Mario Rossi",
-      "email": "Email",
-      "emailPlaceholder": "mario@example.com",
-      "type": "Tipo di servizio",
-      "types": {
-        "wedding": "Matrimonio",
-        "portrait": "Ritratto",
-        "lovestory": "Love Story",
-        "reportage": "Reportage",
-        "other": "Altro"
-      },
-      "message": "Messaggio",
-      "messagePlaceholder": "Raccontami del tuo evento...",
-      "submit": "Invia",
-      "error": "Qualcosa è andato storto. Per favore riprova più tardi.",
-      "success": {
-        "title": "Messaggio Inviato!",
-        "description": "Grazie per avermi contattato. Ti risponderò entro 24 ore.",
-        "button": "Invia un altro messaggio"
+        "title": "Enterprise / Custom",
+        "price": "Personalizzato",
+        "features": [
+          "Architettura SaaS Scalabile",
+          "Motore di Trading HFT",
+          "Automazione Multi-Piattaforma",
+          "Monitoraggio Dedicato 24/7",
+          "Supporto a Vita"
+        ]
       }
     }
   },
   "ClientsPage": {
     "meta": {
-      "title": "Area Clienti | Fotografo [Nome Cognome]",
-      "description": "Accedi alla tua galleria privata per visualizzare e scaricare le foto."
+      "title": "Portale | Kobiakov.dev",
+      "description": "Accesso sicuro al portale clienti."
     },
-    "title": "Area Clienti",
-    "description": "Inserisci il codice di accesso o la password per visualizzare la tua galleria",
-    "passwordPlaceholder": "La tua password",
-    "submit": "Accedi alla galleria",
-    "forgotPassword": "Hai dimenticato la password? Contattami per riприistinare l'accesso."
+    "title": "Portale Clienti",
+    "description": "Accedi alle analytics e alla documentazione del tuo progetto.",
+    "form": {
+      "email": "Email",
+      "password": "Password",
+      "submit": "Entra nel Portale",
+      "forgotPassword": "Resetta Accesso",
+      "loading": "Verifica in corso..."
+    }
+  },
+  "ContactPage": {
+    "meta": {
+      "title": "Contatti | Kobiakov.dev",
+      "description": "Mettiti in contatto per il tuo prossimo progetto AI o di Trading."
+    },
+    "title": "Costruiamo Insieme",
+    "description": "Pronto a trasformare la tua visione in codice ad alte prestazioni? Contattami sotto.",
+    "emailLabel": "Email",
+    "locationLabel": "Base",
+    "locationValue": "Berlino / Remoto",
+    "form": {
+      "name": "Nome",
+      "namePlaceholder": "Il Tuo Nome",
+      "email": "Email",
+      "emailPlaceholder": "tua@email.com",
+      "subject": "Richiesta",
+      "subjectPlaceholder": "Cosa stiamo costruendo?",
+      "message": "Dettagli del Progetto",
+      "messagePlaceholder": "Parlami dei tuoi obiettivi...",
+      "submit": "Invia Richiesta",
+      "sending": "Invio in corso...",
+      "successTitle": "Ricevuto!",
+      "successMessage": "Esaminerò i dettagli e risponderò entro 24 ore.",
+      "sendAnother": "Nuovo Messaggio",
+      "error": "Invio fallito. Riprova."
+    }
   }
 }

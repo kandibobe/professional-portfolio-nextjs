@@ -7,52 +7,52 @@
 
 @layer base {
   :root {
-    /* High-Fashion Editorial Palette - Light */
     --background: #ffffff;
-    --foreground: #000000;
+    --foreground: #0f172a;
     
-    --primary: #000000; 
+    --primary: #0f172a; 
     --primary-foreground: #ffffff;
 
-    --secondary: #f7f7f7;
-    --secondary-foreground: #000000;
+    --secondary: #f1f5f9;
+    --secondary-foreground: #0f172a;
     
-    --muted: #f7f7f7;
-    --muted-foreground: #666666;
+    --muted: #f1f5f9;
+    --muted-foreground: #64748b;
 
-    --accent: #e5e5e5;
-    --accent-foreground: #000000;
+    --accent: #3b82f6;
+    --accent-foreground: #ffffff;
 
-    --destructive: #000000;
+    --destructive: #ef4444;
     --destructive-foreground: #ffffff;
 
-    --border: #eeeeee;
-    --input: #eeeeee;
-    --ring: #000000;
+    --border: #e2e8f0;
+    --input: #e2e8f0;
+    --ring: #0f172a;
     
-    --radius: 0rem; /* Editorial look prefers sharp corners or very subtle radii */
+    --radius: 0.75rem;
   }
 
   .dark {
-    /* High-Fashion Editorial Palette - Dark */
-    --background: #000000;
-    --foreground: #ffffff;
+    --background: #020617;
+    --foreground: #f8fafc;
     
-    --primary: #ffffff;
-    --primary-foreground: #000000;
+    --primary: #38bdf8;
+    --primary-foreground: #020617;
     
-    --secondary: #111111;
-    --secondary-foreground: #ffffff;
+    --secondary: #0f172a;
+    --secondary-foreground: #f8fafc;
     
-    --muted: #111111;
-    --muted-foreground: #888888;
+    --muted: #1e293b;
+    --muted-foreground: #94a3b8;
     
-    --accent: #222222;
+    --accent: #3b82f6;
     --accent-foreground: #ffffff;
     
-    --border: #111111;
-    --input: #111111;
-    --ring: #ffffff;
+    --border: #1e293b;
+    --input: #1e293b;
+    --ring: #38bdf8;
+    
+    --radius: 0.75rem;
   }
 }
 
@@ -94,13 +94,13 @@
     font-family: var(--font-sans), Arial, Helvetica, sans-serif;
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
-    letter-spacing: -0.02em;
+    letter-spacing: -0.01em;
   }
 
   h1, h2, h3, h4, h5, h6 {
-    font-weight: 700;
-    letter-spacing: -0.04em;
-    text-transform: uppercase;
+    font-weight: 800;
+    letter-spacing: -0.03em;
+    /* Removing force uppercase for more professional look, can be applied selectively */
   }
 }
 
@@ -119,13 +119,19 @@
   }
   
   .glass {
-    @apply bg-background/80 backdrop-blur-md border border-border;
+    @apply bg-background/40 backdrop-blur-xl border border-white/10 shadow-[0_8px_32px_0_rgba(0,0,0,0.37)];
   }
 
-  .editorial-grid {
-    display: grid;
-    grid-template-columns: repeat(12, 1fr);
-    gap: 2rem;
+  .glass-dark {
+    @apply bg-slate-900/60 backdrop-blur-xl border border-white/5 shadow-2xl;
+  }
+
+  .text-glow {
+    text-shadow: 0 0 10px rgba(56, 189, 248, 0.5);
+  }
+
+  .border-glow {
+    box-shadow: 0 0 15px rgba(56, 189, 248, 0.2);
   }
 }
 

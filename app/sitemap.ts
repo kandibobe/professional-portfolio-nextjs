@@ -1,10 +1,11 @@
 import { routing } from '@/i18n/routing';
 import { projects } from '@/lib/projects';
+import { siteConfig } from '@/lib/config';
 
 export default function sitemap() {
-  const baseUrl = process.env.NEXT_PUBLIC_BASE_URL || 'https://your-portfolio.com';
+  const baseUrl = siteConfig.url;
   
-  const pages = ['', '/about', '/services', '/portfolio', '/contact', '/clients'];
+  const pages = ['', '/about', '/portfolio', '/contact'];
   
   const sitemapEntries = [];
 

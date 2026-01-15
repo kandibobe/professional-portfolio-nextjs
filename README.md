@@ -1,97 +1,143 @@
-# Professional Portfolio Site
+# Kandibobe.ai | Professional Portfolio & AI Solutions
 
-A modern, high-performance, and fully responsive portfolio website built with **Next.js 15**, **TypeScript**, and **Tailand CSS**. This project features internationalization (i18n), dark/light mode support, and a clean, professional design.
+![Kandibobe.ai Preview](public/og-image.jpg)
 
-## 🚀 Features
+**Kandibobe.ai** is a high-performance, professional portfolio and service platform for **Vladyslav Kobiakov**, an AI & Algo-Trading Developer. This project showcases advanced web development practices, real-time AI integration, and a modern, high-fashion aesthetic.
 
-- **Framework**: [Next.js 15 (App Router)](https://nextjs.org/)
-- **Styling**: [Tailwind CSS](https://tailwindcss.com/)
-- **Components**: [Shadcn UI](https://ui.shadcn.com/)
-- **Language Support**: Multi-language support (English, Italian, etc.) using `next-intl`.
-- **Theme**: Dark and Light mode support with `next-themes`.
-- **Testing**: Integrated with **Jest** and **React Testing Library**.
-- **SEO**: Optimized with `sitemap.xml` and `robots.txt` generation.
-- **Form Handling**: Contact form with validation and API route integration.
-- **Architecture**: Clean component-based architecture for scalability.
+Built with **Next.js 15**, **React 19**, **Tailwind CSS v4**, and **Framer Motion**, it features a fully responsive, bilingual (English/Italian) interface with smooth page transitions and interactive 3D elements.
 
-## 🛠️ Tech Stack
+---
 
-- **Frontend**: Next.js, React, TypeScript
-- **Styling**: Tailwind CSS, Lucide Icons, Framer Motion
-- **Internationalization**: `next-intl`
-- **Testing**: Jest, React Testing Library
-- **Deployment**: Optimized for Vercel
+## 🚀 Key Features
 
-## 📦 Getting Started
+- **Modern & Minimalist Design**: A "High-Fashion Editorial" aesthetic with stark typography and glassmorphism effects.
+- **Internationalization (i18n)**: Full support for English and Italian using `next-intl`.
+- **Interactive UI**:
+  - Smooth page transitions and scroll animations via `framer-motion`.
+  - Custom magnetic buttons and 3D scenes using `@react-three/fiber`.
+  - Glitch text effects and real-time data visualization components.
+- **Client Portal**: A secure-looking client login interface with custom animations.
+- **Project Showcase**: A dynamic, filterable portfolio grid with detailed project modals.
+- **Performance Optimized**: Built on Next.js 15 App Router with server components and optimized assets.
+- **Robust Error Handling**: Global error boundaries to prevent application crashes.
+- **Accessibility**: Enhanced for screen readers and keyboard navigation.
+
+## 🛠️ Technology Stack
+
+| Category            | Technology                                                              |
+| ------------------- | ----------------------------------------------------------------------- |
+| **Core**            | [Next.js 15](https://nextjs.org/), [React 19](https://react.dev/)        |
+| **Language**        | [TypeScript 5](https://www.typescriptlang.org/)                         |
+| **Styling**         | [Tailwind CSS v4](https://tailwindcss.com/), [Framer Motion](https://www.framer.com/motion/) |
+| **UI Components**   | Custom + [Radix UI](https://www.radix-ui.com/)                          |
+| **3D Graphics**     | [Three.js](https://threejs.org/), [React Three Fiber](https://docs.pmnd.rs/react-three-fiber/) |
+| **i18n**            | [next-intl](https://next-intl-docs.vercel.app/)                         |
+| **Testing**         | [Jest](https://jestjs.io/), [Playwright](https://playwright.dev/)        |
+| **Linting**         | [ESLint](https://eslint.org/), [Prettier](https://prettier.io/)          |
+| **DevOps**          | [Docker](https://www.docker.com/), [Husky](https://typicode.github.io/husky/) |
+
+## 📂 Architecture
+
+The project follows the standard Next.js App Router structure with localized routes.
+
+```text
+├── app/
+│   ├── [locale]/             # Localized routes (e.g., /en/about)
+│   ├── api/                  # API routes (Auth, Contact)
+│   └── global-error.tsx      # Global error boundary
+├── components/
+│   ├── ui/                   # Reusable base components
+│   └── ...                   # Feature-specific components
+├── lib/
+│   ├── config.ts             # Site-wide configuration
+│   └── projects.ts           # Portfolio data
+├── messages/
+│   ├── en.json               # English translations
+│   └── it.json               # Italian translations
+├── public/                   # Static assets
+└── i18n/                     # Localization configuration
+```
+
+## 🏁 Getting Started
 
 ### Prerequisites
 
-- Node.js 18.x or later
-- npm, yarn, or pnpm
+- Node.js 20.x or higher
+- npm or yarn
+- Docker (optional)
 
 ### Installation
 
-1. Clone the repository:
-   ```bash
-   git clone https://github.com/YOUR_USERNAME/professional-portfolio-nextjs.git
-   ```
-2. Navigate to the project directory:
-   ```bash
-   cd professional-portfolio-nextjs
-   ```
-3. Install dependencies:
-   ```bash
-   npm install
-   ```
+1.  **Clone the repository:**
+    ```bash
+    git clone https://github.com/kandibobe/professional-portfolio-nextjs.git
+    cd professional-portfolio-nextjs
+    ```
 
-### Running Locally
+2.  **Install dependencies:**
+    ```bash
+    npm install
+    ```
 
-To start the development server:
+3.  **Environment Setup:**
+    Create a `.env.local` file from the example:
+    ```bash
+    cp .env.example .env.local
+    ```
+    Update the variables in `.env.local` as needed.
+
+### Running the Development Server
 
 ```bash
 npm run dev
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+Open [http://localhost:3000](http://localhost:3000) to view the site.
 
-### Building for Production
+### Running with Docker
 
-To build the project for production:
-
-```bash
-npm run build
-```
-
-To start the production server:
+Build and run the Docker container:
 
 ```bash
-npm run start
+docker build -t portfolio-site .
+docker run -p 3000:3000 portfolio-site
 ```
 
-## 🧪 Running Tests
+## ⚙️ Available Scripts
 
-This project uses Jest for unit testing. To run the tests:
+| Script                | Description                                     |
+| --------------------- | ----------------------------------------------- |
+| `npm run dev`         | Starts the development server.                  |
+| `npm run build`       | Builds the application for production.          |
+| `npm run start`       | Starts a production server.                     |
+| `npm run lint`        | Lints the codebase.                             |
+| `npm run format`      | Formats the code with Prettier.                 |
+| `npm test`            | Runs unit tests with Jest.                      |
+| `npm run test:watch`  | Runs tests in watch mode.                       |
+| `npm run storybook`   | Starts the Storybook development server.        |
+| `npm run build-storybook` | Builds Storybook for deployment.            |
+| `npm run analyze`     | Analyzes the bundle size after a build.         |
 
-```bash
-npm test
-```
+## 📝 Environment Variables
 
-## 📁 Project Structure
+| Variable              | Description                                      |
+| --------------------- | ------------------------------------------------ |
+| `NEXT_PUBLIC_APP_URL` | The public URL of the application.               |
+| `NEXTAUTH_SECRET`     | A secret for NextAuth.js.                        |
+| `NEXTAUTH_URL`        | The URL for NextAuth.js callbacks.               |
+| `GITHUB_ID`           | Your GitHub application ID.                      |
+| `GITHUB_SECRET`       | Your GitHub application secret.                  |
+| `RESEND_API_KEY`      | Your Resend API key for sending emails.          |
 
-```text
-portfolio-site/
-├── app/                # Next.js App Router (Pages & Layouts)
-├── components/         # Reusable React Components
-├── i18n/               # Internationalization Configuration
-├── lib/                # Utility Functions & Shared Logic
-├── messages/           # Translation JSON Files
-├── public/             # Static Assets
-└── __tests__/          # Unit and Integration Tests
-```
+## 🧪 Testing
+
+- **Unit Tests**: Run `npm test` to execute Jest tests.
+- **E2E Tests**: Run `npx playwright test` to execute Playwright tests.
+
+## 🤝 Contributing
+
+Contributions are welcome! Please see the [CONTRIBUTING.md](CONTRIBUTING.md) file for details on how to contribute.
 
 ## 📄 License
 
 This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
-
----
-Built with ❤️ by [Cline](https://github.com/cline/cline)

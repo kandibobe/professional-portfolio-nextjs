@@ -1,212 +1,167 @@
-'use client';
+"use client";
 
-import { useTranslations } from 'next-intl';
-import { useState } from 'react';
+import { WorldMap } from "@/components/WorldMap";
+import { Link } from "@/i18n/routing";
+import { useTranslations } from "next-intl";
+import { Mail, MapPin, Phone, Github, Linkedin, Send } from "lucide-react";
 import { Button } from "@/components/ui/button";
-import { cn } from "@/lib/utils";
-import { CheckCircle2, AlertCircle, Send, Loader2 } from 'lucide-react';
-import { motion, AnimatePresence } from 'framer-motion';
+import { Input } from "@/components/ui/input";
+import { Textarea } from "@/components/ui/textarea";
+import { useState } from "react";
+import { motion } from "framer-motion";
+import { siteConfig } from "@/lib/config";
 
 export function ContactForm() {
-  const t = useTranslations('ContactPage');
-  const [loading, setLoading] = useState(false);
-  const [status, setStatus] = useState<'idle' | 'success' | 'error'>('idle');
+  const t = useTranslations("ContactPage");
+  const [isSubmitting, setIsSubmitting] = useState(false);
+  const [isSuccess, setIsSuccess] = useState(false);
+  const [error, setError] = useState<string | null>(null);
 
-  async function handleSubmit(e: React.FormEvent<HTMLFormElement>) {
+  const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-    setLoading(true);
-    setStatus('idle');
+    setIsSubmitting(true);
+    setError(null);
 
     const formData = new FormData(e.currentTarget);
     const data = {
-      name: formData.get('name'),
-      email: formData.get('email'),
-      subject: formData.get('type'), // Map 'type' to 'subject' as expected by the API
-      message: formData.get('message'),
-      _honeypot: formData.get('_honeypot'), // Basic spam protection
+      name: formData.get("name"),
+      email: formData.get("email"),
+      subject: formData.get("subject"),
+      message: formData.get("message"),
     };
 
-    // Honeypot check
-    if (data._honeypot) {
-      console.warn('Spam detected');
-      setStatus('success'); // Pretend it succeeded
-      return;
-    }
-
     try {
-      const response = await fetch('/api/contact', {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-        },
+      const response = await fetch("/api/contact", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
         body: JSON.stringify(data),
       });
 
-      if (response.ok) {
-        setStatus('success');
-        (e.target as HTMLFormElement).reset();
-      } else {
-        setStatus('error');
-      }
-    } catch {
-      setStatus('error');
-    } finally {
-      setLoading(false);
-    }
-  }
+      const result = await response.json();
 
-  const inputClasses = "flex w-full rounded-[1.5rem] border border-border/50 bg-secondary/30 backdrop-blur-md px-8 py-5 text-lg font-medium tracking-tight ring-offset-background transition-all duration-500 focus-visible:outline-none focus-visible:ring-4 focus-visible:ring-primary/5 focus-visible:border-primary/30 disabled:cursor-not-allowed disabled:opacity-50 placeholder:text-muted-foreground/40";
+      if (!response.ok) {
+        throw new Error(result.error || "Failed to send message");
+      }
+
+      setIsSuccess(true);
+    } catch (err) {
+      setError(err instanceof Error ? err.message : "Something went wrong");
+    } finally {
+      setIsSubmitting(false);
+    }
+  };
 
   return (
-    <div className="max-w-5xl mx-auto px-4 py-32 md:py-48">
-      <motion.div
-        initial={{ opacity: 0, y: 20 }}
-        animate={{ opacity: 1, y: 0 }}
-        transition={{ duration: 0.8 }}
-        className="text-center mb-24"
-      >
-        <span className="inline-flex items-center gap-2 px-6 py-2 text-[10px] font-black tracking-[0.3em] text-primary uppercase border border-primary/10 rounded-full bg-primary/5 backdrop-blur-md mb-8">
-          <span className="w-1.5 h-1.5 rounded-full bg-primary animate-pulse" />
-          {t("title")}
-        </span>
-        <h1 className="text-6xl md:text-[8rem] font-black tracking-tighter mb-12 leading-[0.85] text-gradient">{t("title")}</h1>
-        <p className="text-xl md:text-3xl text-muted-foreground max-w-2xl mx-auto font-medium tracking-tight leading-snug text-balance">
-          {t("description")}
-        </p>
-      </motion.div>
-
-      <AnimatePresence mode="wait">
-        {status === 'success' ? (
-          <motion.div 
-            key="success"
-            initial={{ opacity: 0, scale: 0.9 }}
-            animate={{ opacity: 1, scale: 1 }}
-            exit={{ opacity: 0, scale: 0.9 }}
-            className="bg-primary/5 border border-primary/20 p-12 rounded-[2.5rem] text-center mb-8 flex flex-col items-center gap-6"
-          >
-            <div className="w-20 h-20 bg-primary/10 rounded-full flex items-center justify-center text-primary">
-              <CheckCircle2 size={40} />
-            </div>
-            <div>
-              <h3 className="text-2xl font-bold mb-2">{t('form.success.title')}</h3>
-              <p className="text-muted-foreground">{t('form.success.description')}</p>
-            </div>
-            <Button
-              variant="outline"
-              onClick={() => setStatus('idle')}
-              className="rounded-full px-8 h-12"
-            >
-              {t('form.success.button')}
-            </Button>
-          </motion.div>
-        ) : (
+    <section className="py-24 bg-gradient-to-b from-slate-950 to-slate-900 relative overflow-hidden">
+      <div className="container mx-auto px-6 md:px-12 relative z-10">
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
           <motion.div
-            key="form"
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            className="relative"
+            initial={{ opacity: 0, x: -50 }}
+            whileInView={{ opacity: 1, x: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.8 }}
           >
-            {status === 'error' && (
-              <motion.div
-                initial={{ opacity: 0, height: 0 }}
-                animate={{ opacity: 1, height: 'auto' }}
-                className="bg-destructive/10 border border-destructive/20 text-destructive p-4 rounded-xl mb-8 flex items-center gap-3"
-              >
-                <AlertCircle className="h-5 w-5" />
-                <span>{t('form.error')}</span>
-              </motion.div>
-            )}
+            <h2 className="text-5xl md:text-7xl font-black mb-8 uppercase tracking-tighter text-white">
+              {t.rich('title', {
+                br: () => <br />,
+                span: (chunks) => <span className="text-primary">{chunks}</span>
+              })}
+            </h2>
+            <p className="text-xl text-slate-400 mb-12 max-w-lg leading-relaxed">
+              {t("description")}
+            </p>
 
-            <form className="space-y-8" onSubmit={handleSubmit} noValidate={loading}>
-              <div className="hidden" aria-hidden="true">
-                <label htmlFor="_honeypot">Do not fill this field</label>
-                <input
-                  type="text"
-                  id="_honeypot"
-                  name="_honeypot"
-                  tabIndex={-1}
-                  autoComplete="off"
-                />
-              </div>
-              <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
-                <div className="space-y-3">
-                  <label htmlFor="name" className="text-sm font-bold uppercase tracking-widest text-foreground/70 ml-2">{t('form.name')}</label>
-                  <input 
-                    type="text" 
-                    id="name"
-                    name="name"
-                    required
-                    className={inputClasses}
-                    placeholder={t('form.namePlaceholder')}
-                  />
+            <div className="space-y-8">
+              <div className="flex items-start gap-4 group">
+                <div className="p-3 bg-white/5 rounded-xl group-hover:bg-primary/20 transition-colors">
+                  <Mail className="text-white group-hover:text-primary transition-colors" size={24} />
                 </div>
-                <div className="space-y-3">
-                  <label htmlFor="email" className="text-sm font-bold uppercase tracking-widest text-foreground/70 ml-2">{t('form.email')}</label>
-                  <input 
-                    type="email" 
-                    id="email"
-                    name="email"
-                    required
-                    className={inputClasses}
-                    placeholder={t('form.emailPlaceholder')}
-                  />
+                <div>
+                  <h4 className="font-bold text-white uppercase tracking-widest text-xs mb-1">{t("emailLabel")}</h4>
+                  <a href={`mailto:${siteConfig.contact.email}`} className="text-lg text-slate-300 hover:text-white transition-colors">{siteConfig.contact.email}</a>
                 </div>
               </div>
+              
+              <div className="flex items-start gap-4 group">
+                <div className="p-3 bg-white/5 rounded-xl group-hover:bg-primary/20 transition-colors">
+                  <MapPin className="text-white group-hover:text-primary transition-colors" size={24} />
+                </div>
+                <div>
+                  <h4 className="font-bold text-white uppercase tracking-widest text-xs mb-1">{t("locationLabel")}</h4>
+                  <p className="text-lg text-slate-300">{t("locationValue")}</p>
+                </div>
+              </div>
+            </div>
 
-              <div className="space-y-3">
-                <label htmlFor="type" className="text-sm font-bold uppercase tracking-widest text-foreground/70 ml-2">{t('form.type')}</label>
-                <div className="relative">
-                  <select 
-                    id="type"
-                    name="type"
-                    className={cn(inputClasses, "appearance-none cursor-pointer")}
-                  >
-                    <option value="wedding">{t('form.types.wedding')}</option>
-                    <option value="portrait">{t('form.types.portrait')}</option>
-                    <option value="lovestory">{t('form.types.lovestory')}</option>
-                    <option value="reportage">{t('form.types.reportage')}</option>
-                    <option value="other">{t('form.types.other')}</option>
-                  </select>
-                  <div className="pointer-events-none absolute inset-y-0 right-6 flex items-center text-muted-foreground">
-                    <svg className="h-5 w-5 fill-current" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20"><path d="M9.293 12.95l.707.707L15.657 8l-1.414-1.414L10 10.828 5.757 6.586 4.343 8z"/></svg>
+            <div className="mt-12">
+               <WorldMap />
+            </div>
+          </motion.div>
+
+          <motion.div
+            initial={{ opacity: 0, x: 50 }}
+            whileInView={{ opacity: 1, x: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.8 }}
+            className="bg-white/[0.02] backdrop-blur-xl border border-white/5 p-8 md:p-12 rounded-[2.5rem] shadow-2xl relative"
+          >
+            {isSuccess ? (
+              <div className="text-center py-20">
+                <motion.div
+                  initial={{ scale: 0 }}
+                  animate={{ scale: 1 }}
+                  className="w-20 h-20 bg-green-500 rounded-full flex items-center justify-center mx-auto mb-6"
+                >
+                  <Send className="text-white" size={32} />
+                </motion.div>
+                <h3 className="text-3xl font-bold text-white mb-4">{t("form.successTitle")}</h3>
+                <p className="text-slate-400">{t("form.successMessage")}</p>
+                <Button 
+                  onClick={() => setIsSuccess(false)} 
+                  className="mt-8 bg-white/10 hover:bg-white/20 text-white"
+                >
+                  {t("form.sendAnother")}
+                </Button>
+              </div>
+            ) : (
+              <form onSubmit={handleSubmit} className="space-y-6">
+                <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+                  <div className="space-y-2">
+                    <label className="text-xs font-bold uppercase tracking-widest text-slate-500 ml-1">{t("form.name")}</label>
+                    <Input name="name" placeholder={t("form.namePlaceholder")} className="bg-slate-950/50 border-white/10 h-14 rounded-xl text-white placeholder:text-slate-600 focus:border-primary/50" required minLength={2} />
+                  </div>
+                  <div className="space-y-2">
+                    <label className="text-xs font-bold uppercase tracking-widest text-slate-500 ml-1">{t("form.email")}</label>
+                    <Input name="email" type="email" placeholder={t("form.emailPlaceholder")} className="bg-slate-950/50 border-white/10 h-14 rounded-xl text-white placeholder:text-slate-600 focus:border-primary/50" required />
                   </div>
                 </div>
-              </div>
+                
+                <div className="space-y-2">
+                  <label className="text-xs font-bold uppercase tracking-widest text-slate-500 ml-1">{t("form.subject")}</label>
+                  <Input name="subject" placeholder={t("form.subjectPlaceholder")} className="bg-slate-950/50 border-white/10 h-14 rounded-xl text-white placeholder:text-slate-600 focus:border-primary/50" required minLength={5} />
+                </div>
 
-              <div className="space-y-3">
-                <label htmlFor="message" className="text-sm font-bold uppercase tracking-widest text-foreground/70 ml-2">{t('form.message')}</label>
-                <textarea 
-                  id="message"
-                  name="message"
-                  required
-                  rows={6}
-                  className={cn(inputClasses, "h-auto min-h-[150px] resize-none")}
-                  placeholder={t('form.messagePlaceholder')}
-                />
-              </div>
+                <div className="space-y-2">
+                  <label className="text-xs font-bold uppercase tracking-widest text-slate-500 ml-1">{t("form.message")}</label>
+                  <Textarea name="message" placeholder={t("form.messagePlaceholder")} className="bg-slate-950/50 border-white/10 min-h-[150px] rounded-xl text-white placeholder:text-slate-600 focus:border-primary/50 resize-none p-4" required minLength={10} />
+                </div>
 
-              <Button
-                type="submit"
-                size="lg"
-                disabled={loading}
-                className="w-full h-24 text-2xl font-black rounded-[2rem] group transition-all duration-500 relative overflow-hidden bg-primary shadow-2xl shadow-primary/30 hover:scale-[1.02] active:scale-[0.98]"
-              >
-                {loading ? (
-                  <Loader2 className="animate-spin h-8 w-8 text-primary-foreground" />
-                ) : (
-                  <span className="relative z-10 flex items-center gap-4 uppercase tracking-widest text-xs">
-                    {t("form.submit")}
-                    <Send
-                      size={20}
-                      className="transition-transform duration-500 group-hover:translate-x-2 group-hover:-translate-y-2"
-                    />
-                  </span>
+                {error && (
+                  <p className="text-red-500 text-sm font-medium">{error}</p>
                 )}
-              </Button>
-            </form>
+
+                <Button 
+                  type="submit" 
+                  disabled={isSubmitting}
+                  className="w-full h-16 bg-primary hover:bg-primary/90 text-white rounded-xl text-lg font-bold shadow-lg shadow-primary/25 transition-all active:scale-[0.98]"
+                >
+                  {isSubmitting ? t("form.sending") : t("form.submit")}
+                </Button>
+              </form>
+            )}
           </motion.div>
-        )}
-      </AnimatePresence>
-    </div>
+        </div>
+      </div>
+    </section>
   );
 }

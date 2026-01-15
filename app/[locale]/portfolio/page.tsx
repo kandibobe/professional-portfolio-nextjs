@@ -1,5 +1,6 @@
 import {getTranslations} from 'next-intl/server';
 import {PortfolioList} from "@/components/PortfolioList";
+import { projects as staticProjects } from "@/lib/projects";
 
 export async function generateMetadata({
   params
@@ -15,29 +16,11 @@ export async function generateMetadata({
   };
 }
 
-import { client } from "@/lib/sanity";
-
-async function getProjects() {
-  // This query is a placeholder and assumes a Sanity schema
-  // You will need to replace this with your actual query
-  const query = `*[_type == "project"]{
-    "id": _id,
-    "slug": slug.current,
-    title,
-    "category": category->title,
-    "src": image.asset->url,
-    date
-  }`;
-  try {
-    const data = await client.fetch(query);
-    return data;
-  } catch (error) {
-    console.error("Failed to fetch projects:", error);
-    return []; // Return empty array on error
-  }
-}
-
 export default async function PortfolioPage() {
-  const projects = await getProjects();
-  return <PortfolioList initialProjects={projects} />;
+  // We use static projects for the portfolio to ensure stability and professional performance
+  return (
+    <div className="container mx-auto px-6 md:px-12 py-32">
+      <PortfolioList />
+    </div>
+  );
 }

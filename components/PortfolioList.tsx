@@ -1,89 +1,76 @@
-'use client';
+"use client";
 
-import { useState } from 'react';
-import { Gallery } from "@/components/gallery";
-import { useTranslations } from 'next-intl';
-import { cn } from "@/lib/utils";
-import { motion } from "framer-motion";
+import { ProjectCard } from "@/components/ProjectCard";
+import { Link } from "@/i18n/routing";
+import { useTranslations } from "next-intl";
 import { projects as staticProjects, Project } from "@/lib/projects";
+import { motion } from "framer-motion";
+import { useState, useEffect } from "react";
+import { ProjectModal } from "@/components/ProjectModal";
+import { getGithubProjects } from "@/lib/github";
 
-interface PortfolioListProps {
-  initialProjects?: Project[];
-}
+export function PortfolioList() {
+  const t = useTranslations("PortfolioPage");
+  const [selectedProject, setSelectedProject] = useState<Project | null>(null);
+  const [allProjects, setAllProjects] = useState<Project[]>(staticProjects);
 
-export function PortfolioList({ initialProjects }: PortfolioListProps) {
-  const projects = initialProjects || staticProjects;
-  const t = useTranslations('PortfolioPage');
-
-  const categories = [
-    { id: 'all', name: t('categories.all') },
-    { id: 'wedding', name: t('categories.wedding') },
-    { id: 'portrait', name: t('categories.portrait') },
-    { id: 'lovestory', name: t('categories.lovestory') },
-  ];
-
-  const translatedProjects = projects.map(project => ({
-    ...project,
-    title: t(`projects.${project.titleKey}.title`),
-    category: t(project.categoryKey),
-  }));
-
-  const [activeCategory, setActiveCategory] = useState('all');
-
-  const filteredProjects = activeCategory === 'all' 
-    ? translatedProjects 
-    : translatedProjects.filter(project => {
-        const cat = categories.find(c => c.id === activeCategory);
-        return project.category === cat?.name;
-    });
+  useEffect(() => {
+    async function loadGithubProjects() {
+      try {
+        const githubProjects = await getGithubProjects();
+        // Merge static projects with github projects, avoiding duplicates by slug
+        const combined = [...staticProjects];
+        
+        githubProjects.forEach(gp => {
+          if (!combined.some(p => p.slug === gp.slug)) {
+            combined.push(gp);
+          }
+        });
+        
+        setAllProjects(combined);
+      } catch (error) {
+        console.error("Failed to load github projects", error);
+      }
+    }
+    loadGithubProjects();
+  }, []);
 
   return (
-    <div className="container mx-auto px-4 md:px-8 py-32 md:py-48">
-      <div className="flex flex-col items-center mb-24 text-center">
-        <motion.div
-          initial={{ opacity: 0, y: 10 }}
-          animate={{ opacity: 1, y: 0 }}
-          className="inline-flex items-center gap-2 px-6 py-2 text-[10px] font-black tracking-[0.3em] text-primary uppercase border border-primary/10 rounded-full bg-primary/5 backdrop-blur-md mb-8"
-        >
-          <span className="w-1.5 h-1.5 rounded-full bg-primary animate-pulse" />
-          Selected Works
-        </motion.div>
-
-        <motion.h1
-          initial={{ opacity: 0, y: 20 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.8, ease: "easeOut" }}
-          className="text-6xl md:text-[8rem] font-black tracking-tighter mb-12 leading-[0.85] text-gradient"
-        >
-          {t("title")}
-        </motion.h1>
-
-        {/* Categorie */}
-        <div className="flex flex-wrap justify-center gap-2 md:gap-3 p-2 bg-secondary/30 rounded-3xl md:rounded-full backdrop-blur-md border border-border/50">
-          {categories.map((cat) => (
-            <button
-              key={cat.id}
-              onClick={() => setActiveCategory(cat.id)}
-              className={cn(
-                "relative px-8 py-3 rounded-2xl md:rounded-full text-sm font-black tracking-tight transition-all duration-500 whitespace-nowrap overflow-hidden",
-                activeCategory === cat.id ? "text-primary-foreground" : "text-muted-foreground hover:text-foreground"
-              )}
-            >
-              {activeCategory === cat.id && (
-                <motion.div
-                  layoutId="activeCategory"
-                  className="absolute inset-0 bg-primary"
-                  transition={{ type: "spring", bounce: 0.2, duration: 0.6 }}
-                />
-              )}
-              <span className="relative z-10 uppercase tracking-widest text-[10px]">{cat.name}</span>
-            </button>
-          ))}
-        </div>
+    <>
+      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+        {allProjects.map((project) => (
+          <motion.div
+            key={project.id}
+            layoutId={`project-${project.id}`}
+            whileHover={{ 
+              scale: 1.02,
+              transition: { duration: 0.2 }
+            }}
+            className="relative group cursor-pointer"
+            onClick={() => setSelectedProject(project)}
+          >
+            {/* Dynamic Glow Effect */}
+            <motion.div
+              className="absolute -inset-0.5 bg-gradient-to-r from-primary to-blue-600 rounded-3xl blur opacity-0 group-hover:opacity-50 transition duration-500"
+              animate={{
+                backgroundPosition: ["0% 50%", "100% 50%", "0% 50%"],
+              }}
+              transition={{
+                duration: 5,
+                repeat: Infinity,
+                ease: "linear",
+              }}
+              style={{
+                backgroundSize: "200% 200%",
+              }}
+            />
+            <div className="relative">
+              <ProjectCard project={project} />
+            </div>
+          </motion.div>
+        ))}
       </div>
-
-      {/* Galleria */}
-      <Gallery items={filteredProjects} />
-    </div>
+      <ProjectModal project={selectedProject} onClose={() => setSelectedProject(null)} />
+    </>
   );
 }
