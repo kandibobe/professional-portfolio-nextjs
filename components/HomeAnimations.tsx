@@ -1,7 +1,7 @@
-"use client";
+'use client';
 
-import { motion, useScroll, useTransform, Variants, useReducedMotion } from "framer-motion";
-import { useRef, useEffect, useState, useCallback } from "react";
+import { motion, useScroll, useTransform, Variants, useReducedMotion } from 'framer-motion';
+import { useRef, useEffect, useState } from 'react';
 
 interface AnimatedHeroProps {
   children: React.ReactNode;
@@ -11,7 +11,7 @@ export function AnimatedHero({ children }: AnimatedHeroProps) {
   const targetRef = useRef<HTMLDivElement>(null);
   const { scrollYProgress } = useScroll({
     target: targetRef,
-    offset: ["start start", "end start"],
+    offset: ['start start', 'end start'],
   });
 
   const opacity = useTransform(scrollYProgress, [0, 0.5], [1, 0]);
@@ -33,35 +33,41 @@ export function AnimatedHero({ children }: AnimatedHeroProps) {
   );
 }
 
-export function FadeInWhenInView({ children, delay = 0 }: { children: React.ReactNode; delay?: number }) {
-    const shouldReduceMotion = useReducedMotion();
-    return (
-        <motion.div
-            initial={shouldReduceMotion ? { opacity: 0 } : { opacity: 0, y: 20 }}
-            whileInView={shouldReduceMotion ? { opacity: 1 } : { opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ delay, duration: shouldReduceMotion ? 0.5 : 1.2, ease: [0.16, 1, 0.3, 1] }}
-        >
-            {children}
-        </motion.div>
-    );
+export function FadeInWhenInView({
+  children,
+  delay = 0,
+}: {
+  children: React.ReactNode;
+  delay?: number;
+}) {
+  const shouldReduceMotion = useReducedMotion();
+  return (
+    <motion.div
+      initial={shouldReduceMotion ? { opacity: 0 } : { opacity: 0, y: 20 }}
+      whileInView={shouldReduceMotion ? { opacity: 1 } : { opacity: 1, y: 0 }}
+      viewport={{ once: true }}
+      transition={{ delay, duration: shouldReduceMotion ? 0.5 : 1.2, ease: [0.16, 1, 0.3, 1] }}
+    >
+      {children}
+    </motion.div>
+  );
 }
 
 export function HeroItem({ children }: { children: React.ReactNode }) {
-    const shouldReduceMotion = useReducedMotion();
-    const heroItemVariants: Variants = {
-        hidden: shouldReduceMotion ? { opacity: 0 } : { opacity: 0, y: 30 },
-        show: { 
-          opacity: 1, 
-          y: 0, 
-          transition: { duration: shouldReduceMotion ? 0.5 : 1.5, ease: [0.16, 1, 0.3, 1] } 
-        },
-    };
-    return (
-        <motion.div variants={heroItemVariants} className="w-full">
-            {children}
-        </motion.div>
-    );
+  const shouldReduceMotion = useReducedMotion();
+  const heroItemVariants: Variants = {
+    hidden: shouldReduceMotion ? { opacity: 0 } : { opacity: 0, y: 30 },
+    show: {
+      opacity: 1,
+      y: 0,
+      transition: { duration: shouldReduceMotion ? 0.5 : 1.5, ease: [0.16, 1, 0.3, 1] },
+    },
+  };
+  return (
+    <motion.div variants={heroItemVariants} className="w-full">
+      {children}
+    </motion.div>
+  );
 }
 
 export function CustomCursor() {
@@ -82,11 +88,11 @@ export function CustomCursor() {
       }
     };
 
-    window.addEventListener("mousemove", handleMouseMove);
-    window.addEventListener("mouseover", handleMouseOver);
+    window.addEventListener('mousemove', handleMouseMove);
+    window.addEventListener('mouseover', handleMouseOver);
     return () => {
-      window.removeEventListener("mousemove", handleMouseMove);
-      window.removeEventListener("mouseover", handleMouseOver);
+      window.removeEventListener('mousemove', handleMouseMove);
+      window.removeEventListener('mouseover', handleMouseOver);
     };
   }, []);
 
@@ -97,11 +103,57 @@ export function CustomCursor() {
         x: mousePos.x - 16,
         y: mousePos.y - 16,
         scale: isHovering ? 2 : 1,
-        backgroundColor: isHovering ? "rgba(var(--primary), 0.1)" : "transparent",
+        backgroundColor: isHovering ? 'rgba(var(--primary), 0.1)' : 'transparent',
       }}
-      transition={{ type: "spring", damping: 20, stiffness: 250, mass: 0.5 }}
+      transition={{ type: 'spring', damping: 20, stiffness: 250, mass: 0.5 }}
     />
   );
+}
+
+class Particle {
+  x: number;
+  y: number;
+  size: number;
+  speedX: number;
+  speedY: number;
+  color: string;
+  canvas: HTMLCanvasElement;
+
+  constructor(canvas: HTMLCanvasElement) {
+    this.canvas = canvas;
+    this.x = Math.random() * canvas.width;
+    this.y = Math.random() * canvas.height;
+    this.size = Math.random() * 1.5 + 0.5;
+    this.speedX = (Math.random() - 0.5) * 0.5;
+    this.speedY = (Math.random() - 0.5) * 0.5;
+    this.color = 'rgba(129, 140, 248, 0.3)';
+  }
+
+  update(mouse: { x: number; y: number }) {
+    this.x += this.speedX;
+    this.y += this.speedY;
+
+    if (this.x > this.canvas.width) this.x = 0;
+    else if (this.x < 0) this.x = this.canvas.width;
+    if (this.y > this.canvas.height) this.y = 0;
+    else if (this.y < 0) this.y = this.canvas.height;
+
+    // Mouse interaction
+    const dx = mouse.x - this.x;
+    const dy = mouse.y - this.y;
+    const distance = Math.sqrt(dx * dx + dy * dy);
+    if (distance < 100) {
+      this.x -= dx / 20;
+      this.y -= dy / 20;
+    }
+  }
+
+  draw(ctx: CanvasRenderingContext2D) {
+    ctx.fillStyle = this.color;
+    ctx.beginPath();
+    ctx.arc(this.x, this.y, this.size, 0, Math.PI * 2);
+    ctx.fill();
+  }
 }
 
 export function ParticleSystem() {
@@ -112,7 +164,7 @@ export function ParticleSystem() {
     const canvas = canvasRef.current;
     if (!canvas) return;
 
-    const ctx = canvas.getContext("2d");
+    const ctx = canvas.getContext('2d');
     if (!ctx) return;
 
     let particles: Particle[] = [];
@@ -123,65 +175,20 @@ export function ParticleSystem() {
       canvas.height = window.innerHeight;
     };
 
-    class Particle {
-      x: number;
-      y: number;
-      size: number;
-      speedX: number;
-      speedY: number;
-      color: string;
-
-      constructor() {
-        this.x = Math.random() * canvas!.width;
-        this.y = Math.random() * canvas!.height;
-        this.size = Math.random() * 2 + 0.5;
-        this.speedX = Math.random() * 1 - 0.5;
-        this.speedY = Math.random() * 1 - 0.5;
-        this.color = "rgba(147, 197, 253, 0.5)";
-      }
-
-      update() {
-        this.x += this.speedX;
-        this.y += this.speedY;
-
-        if (this.x > canvas!.width) this.x = 0;
-        else if (this.x < 0) this.x = canvas!.width;
-        if (this.y > canvas!.height) this.y = 0;
-        else if (this.y < 0) this.y = canvas!.height;
-
-        // Mouse interaction
-        const dx = mouse.x - this.x;
-        const dy = mouse.y - this.y;
-        const distance = Math.sqrt(dx * dx + dy * dy);
-        if (distance < 100) {
-          this.x -= dx / 20;
-          this.y -= dy / 20;
-        }
-      }
-
-      draw() {
-        if (!ctx) return;
-        ctx.fillStyle = this.color;
-        ctx.beginPath();
-        ctx.arc(this.x, this.y, this.size, 0, Math.PI * 2);
-        ctx.fill();
-      }
-    }
-
     const init = () => {
       particles = [];
       const numberOfParticles = (canvas.width * canvas.height) / 10000;
       for (let i = 0; i < numberOfParticles; i++) {
-        particles.push(new Particle());
+        particles.push(new Particle(canvas));
       }
     };
 
     const animate = () => {
       ctx.clearRect(0, 0, canvas.width, canvas.height);
       for (let i = 0; i < particles.length; i++) {
-        particles[i].update();
-        particles[i].draw();
-        
+        particles[i].update(mouse);
+        particles[i].draw(ctx);
+
         for (let j = i; j < particles.length; j++) {
           const dx = particles[i].x - particles[j].x;
           const dy = particles[i].y - particles[j].y;
@@ -203,25 +210,20 @@ export function ParticleSystem() {
     init();
     animate();
 
-    window.addEventListener("resize", resize);
+    window.addEventListener('resize', resize);
     const handleMouseMove = (e: MouseEvent) => {
       setMouse({ x: e.clientX, y: e.clientY });
     };
-    window.addEventListener("mousemove", handleMouseMove);
+    window.addEventListener('mousemove', handleMouseMove);
 
     return () => {
-      window.removeEventListener("resize", resize);
-      window.removeEventListener("mousemove", handleMouseMove);
+      window.removeEventListener('resize', resize);
+      window.removeEventListener('mousemove', handleMouseMove);
       cancelAnimationFrame(animationFrameId);
     };
   }, [mouse]);
 
-  return (
-    <canvas
-      ref={canvasRef}
-      className="absolute inset-0 pointer-events-none opacity-40"
-    />
-  );
+  return <canvas ref={canvasRef} className="absolute inset-0 pointer-events-none opacity-40" />;
 }
 
 export function BackgroundEffects() {
@@ -230,21 +232,29 @@ export function BackgroundEffects() {
     <div className="fixed inset-0 -z-10 overflow-hidden pointer-events-none">
       {!shouldReduceMotion && <ParticleSystem />}
       <div className="absolute top-0 left-0 w-full h-full bg-[url('/grid.svg')] opacity-[0.03]" />
-      <motion.div 
-        animate={shouldReduceMotion ? { opacity: 0.3 } : {
-          scale: [1, 1.2, 1],
-          opacity: [0.3, 0.5, 0.3],
-        }}
-        transition={{ duration: 10, repeat: Infinity, ease: "linear" }}
-        className="absolute -top-[20%] -left-[10%] w-[60%] h-[60%] bg-primary/20 rounded-full blur-[120px]" 
+      <motion.div
+        animate={
+          shouldReduceMotion
+            ? { opacity: 0.3 }
+            : {
+                scale: [1, 1.2, 1],
+                opacity: [0.3, 0.5, 0.3],
+              }
+        }
+        transition={{ duration: 10, repeat: Infinity, ease: 'linear' }}
+        className="absolute -top-[20%] -left-[10%] w-[60%] h-[60%] bg-primary/20 rounded-full blur-[120px]"
       />
-      <motion.div 
-        animate={shouldReduceMotion ? { opacity: 0.2 } : {
-          scale: [1.2, 1, 1.2],
-          opacity: [0.2, 0.4, 0.2],
-        }}
-        transition={{ duration: 15, repeat: Infinity, ease: "linear" }}
-        className="absolute -bottom-[20%] -right-[10%] w-[60%] h-[60%] bg-blue-600/10 rounded-full blur-[120px]" 
+      <motion.div
+        animate={
+          shouldReduceMotion
+            ? { opacity: 0.2 }
+            : {
+                scale: [1.2, 1, 1.2],
+                opacity: [0.2, 0.4, 0.2],
+              }
+        }
+        transition={{ duration: 15, repeat: Infinity, ease: 'linear' }}
+        className="absolute -bottom-[20%] -right-[10%] w-[60%] h-[60%] bg-blue-600/10 rounded-full blur-[120px]"
       />
     </div>
   );

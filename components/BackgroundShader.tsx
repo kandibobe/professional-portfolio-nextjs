@@ -1,8 +1,8 @@
-"use client";
+'use client';
 
-import { useRef, useMemo, useEffect } from "react";
-import { Canvas, useFrame, useThree } from "@react-three/fiber";
-import * as THREE from "three";
+import { useRef, useMemo, useEffect } from 'react';
+import { Canvas, useFrame, useThree } from '@react-three/fiber';
+import * as THREE from 'three';
 
 const fluidVertexShader = `
   varying vec2 vUv;
@@ -57,9 +57,9 @@ const fluidFragmentShader = `
     float n = snoise(st * 3.0 + time + snoise(st * 2.0 - time * 0.5));
     float n2 = snoise(st * 5.0 - time * 0.8 + n);
     
-    vec3 color1 = vec3(0.02, 0.05, 0.15); // Deep blue
-    vec3 color2 = vec3(0.1, 0.4, 0.8);    // Electric blue
-    vec3 color3 = vec3(0.0, 0.8, 1.0);    // Cyan
+    vec3 color1 = vec3(0.0, 0.0, 0.0);    // Black
+    vec3 color2 = vec3(0.3, 0.3, 0.8);    // Indigo
+    vec3 color3 = vec3(0.1, 0.8, 0.9);    // Cyan
     
     float mixFactor = n2 * 0.5 + 0.5 + mouseStrength;
     vec3 finalColor = mix(color1, color2, mixFactor);
@@ -92,8 +92,8 @@ function FluidPlane() {
       mouse.current.x = e.clientX / window.innerWidth;
       mouse.current.y = 1.0 - e.clientY / window.innerHeight;
     };
-    window.addEventListener("mousemove", handleMouseMove);
-    return () => window.removeEventListener("mousemove", handleMouseMove);
+    window.addEventListener('mousemove', handleMouseMove);
+    return () => window.removeEventListener('mousemove', handleMouseMove);
   }, []);
 
   useFrame((state) => {
@@ -122,7 +122,7 @@ export function BackgroundShader() {
       <Canvas camera={{ position: [0, 0, 1] }}>
         <FluidPlane />
       </Canvas>
-      <div className="absolute inset-0 bg-slate-950/20 backdrop-blur-[2px]" />
+      <div className="absolute inset-0 bg-black/40 backdrop-blur-[2px]" />
     </div>
   );
 }
