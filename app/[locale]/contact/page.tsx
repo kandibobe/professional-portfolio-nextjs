@@ -1,17 +1,13 @@
-import {getTranslations} from 'next-intl/server';
-import {ContactForm} from "@/components/ContactForm";
+import { getTranslations } from 'next-intl/server';
+import { ContactForm } from '@/components/ContactForm';
 
-export async function generateMetadata({
-  params
-}: {
-  params: Promise<{locale: string}>;
-}) {
-  const {locale} = await params;
-  const t = await getTranslations({locale, namespace: 'ContactPage'});
- 
+export async function generateMetadata({ params }: { params: Promise<{ locale: string }> }) {
+  const { locale } = await params;
+  const t = await getTranslations({ locale, namespace: 'ContactPage' });
+
   return {
     title: t('meta.title'),
-    description: t('meta.description')
+    description: t('meta.description'),
   };
 }
 

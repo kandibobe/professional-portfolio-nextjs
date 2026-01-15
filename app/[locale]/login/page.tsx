@@ -1,8 +1,8 @@
-"use client";
+'use client';
 
-import { signIn } from "next-auth/react";
-import { Button } from "@/components/ui/button";
-import { motion } from "framer-motion";
+import { signIn } from 'next-auth/react';
+import { Button } from '@/components/ui/button';
+import { motion } from 'framer-motion';
 
 export default function LoginPage() {
   return (
@@ -14,13 +14,11 @@ export default function LoginPage() {
       >
         <div className="space-y-2">
           <h1 className="text-3xl font-bold">Client Login</h1>
-          <p className="text-muted-foreground">
-            Sign in to view your private galleries.
-          </p>
+          <p className="text-muted-foreground">Sign in to view your private galleries.</p>
         </div>
         <div className="space-y-4">
           <Button
-            onClick={() => signIn("google", { callbackUrl: "/" })}
+            onClick={() => signIn('google', { callbackUrl: '/' })}
             className="w-full"
             variant="outline"
           >
