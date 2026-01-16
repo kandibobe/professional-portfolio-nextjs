@@ -1,6 +1,7 @@
 import { getTranslations } from 'next-intl/server';
 import { HomePageContent } from '@/components/HomePageContent';
 import { siteConfig } from '@/lib/config';
+import { getProjects } from '@/lib/actions/projects';
 
 export const revalidate = 3600; // revalidate every hour
 
@@ -17,6 +18,7 @@ export async function generateMetadata({ params }: { params: Promise<{ locale: s
 export default async function Home() {
   const t = await getTranslations('HomePage');
   const tGlobal = await getTranslations();
+  const projects = await getProjects();
 
   const translations = {
     hero: {
@@ -73,7 +75,7 @@ export default async function Home() {
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
       />
-      <HomePageContent translations={translations} />
+      <HomePageContent translations={translations} projects={projects} />
     </>
   );
 }

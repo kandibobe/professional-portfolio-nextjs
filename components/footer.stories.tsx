@@ -25,7 +25,7 @@ const meta: Meta<typeof Footer> = {
   title: 'Components/Footer',
   component: Footer,
   decorators: [
-    (Story: any) => (
+    (Story) => (
       <NextIntlClientProvider locale="en" messages={messages}>
         <Story />
       </NextIntlClientProvider>

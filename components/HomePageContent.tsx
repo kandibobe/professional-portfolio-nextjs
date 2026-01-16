@@ -30,6 +30,7 @@ import Image from 'next/image';
 import { HeroVisual } from './HeroVisual';
 import { FeaturedProjects } from './FeaturedProjects';
 import { Testimonials } from './Testimonials';
+import { Project } from '@prisma/client';
 
 const Scene3D = dynamic(() => import('./Scene3D').then((mod) => mod.Scene), {
   ssr: false,
@@ -37,6 +38,7 @@ const Scene3D = dynamic(() => import('./Scene3D').then((mod) => mod.Scene), {
 });
 
 interface HomePageContentProps {
+  projects?: Project[];
   translations: {
     hero: {
       available: string;
@@ -86,7 +88,7 @@ const getIcon = (iconName: string) => {
   }
 };
 
-export function HomePageContent({ translations }: HomePageContentProps) {
+export function HomePageContent({ translations, projects }: HomePageContentProps) {
   const { hero, subtitle, viewPortfolio, contact, techStack, aboutSection, testimonials } =
     translations;
 
@@ -169,7 +171,7 @@ export function HomePageContent({ translations }: HomePageContentProps) {
         </section>
 
         {/* Featured Projects */}
-        <FeaturedProjects />
+        <FeaturedProjects projects={projects} />
 
         {/* Tech Stack - Clean Minimalist Grid */}
         <section className="py-32 relative">

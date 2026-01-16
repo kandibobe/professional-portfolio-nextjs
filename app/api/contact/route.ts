@@ -3,6 +3,7 @@ import { Resend } from 'resend';
 import { z } from 'zod';
 import { ratelimit } from '@/lib/ratelimit';
 import { headers } from 'next/headers';
+import { prisma } from '@/lib/db';
 
 const resend = process.env.RESEND_API_KEY ? new Resend(process.env.RESEND_API_KEY) : null;
 
@@ -32,6 +33,22 @@ export async function POST(request: Request) {
 
     // Validate request data
     const validatedData = contactFormSchema.parse(body);
+
+    // Save to database if available
+    if (prisma) {
+      try {
+        await prisma.inquiry.create({
+          data: {
+            name: validatedData.name,
+            email: validatedData.email,
+            message: `Subject: ${validatedData.subject}\n\n${validatedData.message}`,
+          },
+        });
+      } catch (dbErr) {
+        console.error('Failed to save inquiry to database:', dbErr);
+        // Continue anyway as we still want to try sending the email
+      }
+    }
 
     if (!process.env.RESEND_API_KEY || !resend) {
       const logger = (await import('@/lib/logger')).default;

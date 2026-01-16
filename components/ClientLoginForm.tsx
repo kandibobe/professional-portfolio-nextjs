@@ -1,26 +1,21 @@
-"use client";
+'use client';
 
-import { useState } from "react";
-import { useTranslations } from "next-intl";
-import { Button } from "@/components/ui/button";
-import { Input } from "@/components/ui/input";
-import { motion } from "framer-motion";
-import { Lock, Mail } from "lucide-react";
+import { useState } from 'react';
+import { useTranslations } from 'next-intl';
+import { Button } from '@/components/ui/button';
+import { Input } from '@/components/ui/input';
+import { motion } from 'framer-motion';
+import { Lock, Mail, Github } from 'lucide-react';
+import { signIn } from 'next-auth/react';
 
 export function ClientLoginForm() {
-  const t = useTranslations("ClientsPage");
-  const [email, setEmail] = useState("");
-  const [password, setPassword] = useState("");
+  const t = useTranslations('ClientsPage');
+  const [email, setEmail] = useState('');
   const [isLoading, setIsLoading] = useState(false);
 
-  const handleSubmit = async (e: React.FormEvent) => {
-    e.preventDefault();
+  const handleGithubLogin = async () => {
     setIsLoading(true);
-    // Simulate login
-    await new Promise((resolve) => setTimeout(resolve, 2000));
-    setIsLoading(false);
-    // In a real app, handle auth here
-    console.log("Login attempt with:", { email, password });
+    await signIn('github', { callbackUrl: '/dashboard' });
   };
 
   return (
@@ -45,56 +40,45 @@ export function ClientLoginForm() {
             >
               <Lock className="text-primary" size={32} />
             </motion.div>
-            <h1 className="text-3xl font-black uppercase tracking-tight mb-2">{t("title")}</h1>
-            <p className="text-muted-foreground">{t("description")}</p>
+            <h1 className="text-3xl font-black uppercase tracking-tight mb-2">{t('title')}</h1>
+            <p className="text-muted-foreground">{t('description')}</p>
           </div>
 
-          <form onSubmit={handleSubmit} className="space-y-6">
-            <div className="space-y-2">
-              <label className="text-xs font-bold uppercase tracking-widest text-muted-foreground ml-1">
-                {t("form.email")}
-              </label>
-              <div className="relative">
-                <Mail className="absolute left-4 top-1/2 -translate-y-1/2 text-muted-foreground" size={18} />
-                <Input
-                  type="email"
-                  value={email}
-                  onChange={(e) => setEmail(e.target.value)}
-                  className="pl-12 h-14 bg-background/50 border-white/10 rounded-xl focus:border-primary/50"
-                  required
-                />
-              </div>
-            </div>
-
-            <div className="space-y-2">
-              <div className="flex justify-between items-center ml-1">
-                <label className="text-xs font-bold uppercase tracking-widest text-muted-foreground">
-                  {t("form.password")}
-                </label>
-                <button type="button" className="text-xs text-primary hover:text-primary/80 transition-colors font-medium">
-                  {t("form.forgotPassword")}
-                </button>
-              </div>
-              <div className="relative">
-                <Lock className="absolute left-4 top-1/2 -translate-y-1/2 text-muted-foreground" size={18} />
-                <Input
-                  type="password"
-                  value={password}
-                  onChange={(e) => setPassword(e.target.value)}
-                  className="pl-12 h-14 bg-background/50 border-white/10 rounded-xl focus:border-primary/50"
-                  required
-                />
-              </div>
-            </div>
-
+          <div className="space-y-6">
             <Button
-              type="submit"
+              onClick={handleGithubLogin}
               disabled={isLoading}
-              className="w-full h-14 bg-primary hover:bg-primary/90 text-primary-foreground rounded-xl font-bold shadow-lg shadow-primary/20 transition-all active:scale-[0.98] mt-4"
+              className="w-full h-14 bg-white/10 hover:bg-white/20 text-white rounded-xl font-bold shadow-lg border border-white/10 transition-all active:scale-[0.98] flex items-center gap-3"
             >
-              {isLoading ? t("form.loading") : t("form.submit")}
+              <Github size={20} />
+              Sign in with GitHub
             </Button>
-          </form>
+
+            <div className="relative">
+              <div className="absolute inset-0 flex items-center">
+                <span className="w-full border-t border-white/10" />
+              </div>
+              <div className="relative flex justify-center text-xs uppercase">
+                <span className="bg-background px-2 text-muted-foreground">
+                  Or with credentials
+                </span>
+              </div>
+            </div>
+
+            <form className="space-y-4 opacity-50 pointer-events-none">
+              {/* Disabled for now as we use GitHub */}
+              <div className="space-y-2">
+                <Input placeholder="Email" disabled />
+                <Input placeholder="Password" type="password" disabled />
+              </div>
+              <Button disabled className="w-full">
+                Login
+              </Button>
+            </form>
+            <p className="text-xs text-center text-muted-foreground">
+              Credential login is currently disabled. Use GitHub or contact admin.
+            </p>
+          </div>
         </div>
       </motion.div>
     </div>

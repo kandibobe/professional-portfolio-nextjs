@@ -1,20 +1,19 @@
-"use client";
+'use client';
 
-import { ProjectCard } from "@/components/ProjectCard";
-import { useTranslations } from "next-intl";
-import { Project as DBProject } from "@prisma/client";
-import { Project as StaticProject } from "@/lib/projects";
-import { motion } from "framer-motion";
-import { useState, useEffect } from "react";
-import { ProjectModal } from "@/components/ProjectModal";
-import { getGithubProjects } from "@/lib/github";
-import { getProjects } from "@/lib/actions/projects";
+import { ProjectCard } from '@/components/ProjectCard';
+import { useTranslations } from 'next-intl';
+import { Project as DBProject } from '@prisma/client';
+import { Project as StaticProject } from '@/lib/projects';
+import { motion } from 'framer-motion';
+import { useState, useEffect } from 'react';
+import { ProjectModal } from '@/components/ProjectModal';
+import { getGithubProjects } from '@/lib/github';
+import { getProjects } from '@/lib/actions/projects';
 
 // Adaptive type to handle both static and DB projects
-type AdaptableProject = StaticProject | DBProject | any;
+type AdaptableProject = StaticProject;
 
 export function PortfolioList() {
-  const t = useTranslations("PortfolioPage");
   const [selectedProject, setSelectedProject] = useState<AdaptableProject | null>(null);
   const [allProjects, setAllProjects] = useState<AdaptableProject[]>([]);
 
@@ -23,31 +22,36 @@ export function PortfolioList() {
       try {
         const [dbProjects, githubProjects] = await Promise.all([
           getProjects().catch(() => []),
-          getGithubProjects().catch(() => [])
+          getGithubProjects().catch(() => []),
         ]);
 
         // Map DB projects to a format compatible with ProjectCard if needed
-        const mappedDbProjects = (dbProjects as any[]).map(p => ({
-          ...p,
-          src: p.imageUrl, // ProjectCard expects src
+        const mappedDbProjects = (dbProjects as DBProject[]).map((p) => ({
+          id: p.id,
+          slug: p.slug,
+          title: p.title,
+          description: p.description || '',
+          src: p.imageUrl,
+          technologies: [],
+          date: p.createdAt.toLocaleDateString(),
           stats: {
-            stars: p.stars || 0,
-            forks: p.forks || 0
-          }
-        }));
+            stars: 0,
+            forks: 0,
+          },
+        })) as StaticProject[];
 
         // Merge and avoid duplicates by slug
         const combined = [...mappedDbProjects];
-        
-        (githubProjects as any[]).forEach(gp => {
-          if (!combined.some(p => p.slug === gp.slug)) {
+
+        (githubProjects as StaticProject[]).forEach((gp) => {
+          if (!combined.some((p) => p.slug === gp.slug)) {
             combined.push(gp);
           }
         });
-        
+
         setAllProjects(combined);
       } catch (error) {
-        console.error("Failed to load projects", error);
+        console.error('Failed to load projects', error);
       }
     }
     loadAllProjects();
@@ -60,9 +64,9 @@ export function PortfolioList() {
           <motion.div
             key={project.id}
             layoutId={`project-${project.id}`}
-            whileHover={{ 
+            whileHover={{
               scale: 1.02,
-              transition: { duration: 0.2 }
+              transition: { duration: 0.2 },
             }}
             className="relative group cursor-pointer"
             onClick={() => setSelectedProject(project)}
@@ -71,15 +75,15 @@ export function PortfolioList() {
             <motion.div
               className="absolute -inset-0.5 bg-gradient-to-r from-primary to-blue-600 rounded-3xl blur opacity-0 group-hover:opacity-50 transition duration-500"
               animate={{
-                backgroundPosition: ["0% 50%", "100% 50%", "0% 50%"],
+                backgroundPosition: ['0% 50%', '100% 50%', '0% 50%'],
               }}
               transition={{
                 duration: 5,
                 repeat: Infinity,
-                ease: "linear",
+                ease: 'linear',
               }}
               style={{
-                backgroundSize: "200% 200%",
+                backgroundSize: '200% 200%',
               }}
             />
             <div className="relative">

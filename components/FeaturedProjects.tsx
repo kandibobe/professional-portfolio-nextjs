@@ -1,15 +1,32 @@
-"use client";
+'use client';
 
-import { projects } from "@/lib/projects";
-import { ProjectCard } from "./ProjectCard";
-import { FadeInWhenInView } from "./HomeAnimations";
-import { Button } from "./ui/button";
-import { Link } from "@/i18n/routing";
-import { ArrowRight } from "lucide-react";
+import { ProjectCard } from './ProjectCard';
+import { FadeInWhenInView } from './HomeAnimations';
+import { Button } from './ui/button';
+import { Link } from '@/i18n/routing';
+import { ArrowRight } from 'lucide-react';
+import { Project as DBProject } from '@prisma/client';
+import { Project as StaticProject } from '@/lib/projects';
 
-export function FeaturedProjects() {
+interface FeaturedProjectsProps {
+  projects?: DBProject[];
+}
+
+export function FeaturedProjects({ projects = [] }: FeaturedProjectsProps) {
   // Select top 3 projects (or specific ones by slug if preferred)
-  const featuredProjects = projects.slice(0, 3);
+  const featuredProjects = projects.slice(0, 3).map((p) => ({
+    id: p.id,
+    slug: p.slug,
+    title: p.title,
+    description: p.description || '',
+    src: p.imageUrl,
+    technologies: [],
+    date: p.createdAt.toLocaleDateString(),
+    stats: {
+      stars: 0,
+      forks: 0,
+    },
+  })) as StaticProject[];
 
   return (
     <section className="py-32 relative">
@@ -41,9 +58,9 @@ export function FeaturedProjects() {
         <FadeInWhenInView delay={0.4}>
           <div className="flex justify-center mt-20">
             <Link href="/portfolio">
-              <Button 
-                variant="outline" 
-                size="lg" 
+              <Button
+                variant="outline"
+                size="lg"
                 className="h-16 px-10 rounded-2xl border-primary/20 hover:bg-primary hover:text-primary-foreground text-lg font-bold flex items-center gap-3 transition-all group"
               >
                 View Full Portfolio

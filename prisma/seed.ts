@@ -1,18 +1,18 @@
-import { PrismaClient } from '@prisma/client'
-import { projects } from '../lib/projects'
+import { PrismaClient } from '@prisma/client';
+import { projects } from '../lib/projects';
 
-const prisma = new PrismaClient()
+const prisma = new PrismaClient();
 
 async function main() {
-  console.log('Starting seed...')
-  
+  console.log('Starting seed...');
+
   if (!process.env.DATABASE_URL) {
-    console.warn('DATABASE_URL is not set. Skipping seed.')
-    return
+    console.warn('DATABASE_URL is not set. Skipping seed.');
+    return;
   }
 
   for (const project of projects) {
-    await (prisma.project as any).upsert({
+    await prisma.project.upsert({
       where: { slug: project.slug },
       update: {
         title: project.title,
@@ -47,17 +47,17 @@ async function main() {
         forks: project.stats?.forks || 0,
         isFeatured: true,
       },
-    })
+    });
   }
 
-  console.log('Seed completed successfully.')
+  console.log('Seed completed successfully.');
 }
 
 main()
   .catch((e) => {
-    console.error(e)
-    process.exit(1)
+    console.error(e);
+    process.exit(1);
   })
   .finally(async () => {
-    await prisma.$disconnect()
-  })
+    await prisma.$disconnect();
+  });

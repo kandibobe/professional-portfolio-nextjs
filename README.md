@@ -4,7 +4,7 @@
 
 **Kandibobe.ai** is a high-performance, professional portfolio and service platform for **Vladyslav Kobiakov**, an AI & Algo-Trading Developer. This project showcases advanced web development practices, real-time AI integration, and a modern, high-fashion aesthetic.
 
-Built with **Next.js 15**, **React 19**, **Tailwind CSS v4**, and **Framer Motion**, it features a fully responsive, bilingual (English/Italian) interface with smooth page transitions and interactive 3D elements.
+Built with **Next.js 16**, **React 19**, **Tailwind CSS v4**, and **Framer Motion**, it features a fully responsive, bilingual (English/Italian) interface with smooth page transitions and interactive 3D elements.
 
 ---
 
@@ -18,8 +18,8 @@ Built with **Next.js 15**, **React 19**, **Tailwind CSS v4**, and **Framer Motio
   - Glitch text effects and real-time data visualization components.
 - **Client Portal**: A secure-looking client login interface with custom animations.
 - **Project Showcase**: A dynamic, filterable portfolio grid with detailed project modals.
-- **Performance Optimized**: Built on Next.js 15 App Router with server components and optimized assets.
-- **Robust Error Handling**: Global error boundaries to prevent application crashes.
+- **Performance Optimized**: Built on Next.js 16 App Router with server components and optimized assets.
+- **Robust Error Handling**: Global error boundaries and database connection hardening to prevent application crashes.
 - **Accessibility**: Enhanced for screen readers and keyboard navigation.
 
 ## 🛠️ Technology Stack
@@ -130,6 +130,8 @@ docker run -p 3000:3000 portfolio-site
 | `GITHUB_ID`           | Your GitHub application ID.             |
 | `GITHUB_SECRET`       | Your GitHub application secret.         |
 | `RESEND_API_KEY`      | Your Resend API key for sending emails. |
+| `DATABASE_URL`        | PostgreSQL connection string.           |
+| `CONTACT_EMAIL`       | Email address to receive inquiries.     |
 
 ## 🧪 Testing
 

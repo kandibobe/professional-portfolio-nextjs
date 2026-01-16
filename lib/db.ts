@@ -8,9 +8,13 @@ declare global {
 }
 
 const createPrismaClient = () => {
-  if (!process.env.DATABASE_URL || process.env.DATABASE_URL === "postgresql://user:password@localhost:5432/db") {
-     // Return a mock or handle the case where DB is not available during build
-     return {} as any;
+  if (
+    !process.env.DATABASE_URL ||
+    process.env.DATABASE_URL === 'postgresql://user:password@localhost:5432/db'
+  ) {
+    // Return null or handle the case where DB is not available during build
+    // Consumers must check if prisma is a valid client before use
+    return null;
   }
 
   const client = new PrismaClient({
@@ -24,6 +28,6 @@ const createPrismaClient = () => {
   return client;
 };
 
-export const prisma = global.prisma || createPrismaClient();
+export const prisma = (global.prisma || createPrismaClient()) as PrismaClient;
 
 if (process.env.NODE_ENV !== 'production') global.prisma = prisma;

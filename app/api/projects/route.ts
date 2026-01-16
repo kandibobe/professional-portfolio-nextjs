@@ -23,7 +23,7 @@ export async function POST(request: Request) {
       .replace(/ /g, '-')
       .replace(/[^\w-]+/g, '');
 
-    const project = await (prisma.project as any).create({
+    const project = await prisma.project.create({
       data: {
         title,
         description,
@@ -42,11 +42,14 @@ export async function POST(request: Request) {
 export const dynamic = 'force-dynamic';
 
 export async function GET() {
-  if (!process.env.DATABASE_URL || process.env.DATABASE_URL === "postgresql://user:password@localhost:5432/db") {
+  if (
+    !process.env.DATABASE_URL ||
+    process.env.DATABASE_URL === 'postgresql://user:password@localhost:5432/db'
+  ) {
     return NextResponse.json([]);
   }
   try {
-    const projects = await (prisma.project as any).findMany({
+    const projects = await prisma.project.findMany({
       orderBy: {
         createdAt: 'desc',
       },
