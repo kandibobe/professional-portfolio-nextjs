@@ -8,6 +8,11 @@ declare global {
 }
 
 const createPrismaClient = () => {
+  if (!process.env.DATABASE_URL || process.env.DATABASE_URL === "postgresql://user:password@localhost:5432/db") {
+     // Return a mock or handle the case where DB is not available during build
+     return {} as any;
+  }
+
   const client = new PrismaClient({
     log: process.env.NODE_ENV === 'development' ? ['query', 'error', 'warn'] : ['error'],
   });

@@ -1,27 +1,45 @@
 "use client";
 
 import { ProjectCard } from "@/components/ProjectCard";
-import { Link } from "@/i18n/routing";
 import { useTranslations } from "next-intl";
-import { projects as staticProjects, Project } from "@/lib/projects";
+import { Project as DBProject } from "@prisma/client";
+import { Project as StaticProject } from "@/lib/projects";
 import { motion } from "framer-motion";
 import { useState, useEffect } from "react";
 import { ProjectModal } from "@/components/ProjectModal";
 import { getGithubProjects } from "@/lib/github";
+import { getProjects } from "@/lib/actions/projects";
+
+// Adaptive type to handle both static and DB projects
+type AdaptableProject = StaticProject | DBProject | any;
 
 export function PortfolioList() {
   const t = useTranslations("PortfolioPage");
-  const [selectedProject, setSelectedProject] = useState<Project | null>(null);
-  const [allProjects, setAllProjects] = useState<Project[]>(staticProjects);
+  const [selectedProject, setSelectedProject] = useState<AdaptableProject | null>(null);
+  const [allProjects, setAllProjects] = useState<AdaptableProject[]>([]);
 
   useEffect(() => {
-    async function loadGithubProjects() {
+    async function loadAllProjects() {
       try {
-        const githubProjects = await getGithubProjects();
-        // Merge static projects with github projects, avoiding duplicates by slug
-        const combined = [...staticProjects];
+        const [dbProjects, githubProjects] = await Promise.all([
+          getProjects().catch(() => []),
+          getGithubProjects().catch(() => [])
+        ]);
+
+        // Map DB projects to a format compatible with ProjectCard if needed
+        const mappedDbProjects = (dbProjects as any[]).map(p => ({
+          ...p,
+          src: p.imageUrl, // ProjectCard expects src
+          stats: {
+            stars: p.stars || 0,
+            forks: p.forks || 0
+          }
+        }));
+
+        // Merge and avoid duplicates by slug
+        const combined = [...mappedDbProjects];
         
-        githubProjects.forEach(gp => {
+        (githubProjects as any[]).forEach(gp => {
           if (!combined.some(p => p.slug === gp.slug)) {
             combined.push(gp);
           }
@@ -29,10 +47,10 @@ export function PortfolioList() {
         
         setAllProjects(combined);
       } catch (error) {
-        console.error("Failed to load github projects", error);
+        console.error("Failed to load projects", error);
       }
     }
-    loadGithubProjects();
+    loadAllProjects();
   }, []);
 
   return (
